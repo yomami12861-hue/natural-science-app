@@ -1,0 +1,2674 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EYE KNOW</title>
+
+<!-- Leaflet -->
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+<style>
+
+/* =========================
+   全体
+========================= */
+
+body {
+
+    margin: 0;
+
+    font-family:
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
+
+    background: #f5f7fa;
+
+    color: #333;
+
+}
+
+
+header {
+
+    background: #2e7d32;
+
+    color: white;
+
+    padding: 20px;
+
+    text-align: center;
+
+}
+
+
+header h1 {
+
+    margin: 0;
+
+    font-size: 28px;
+
+}
+
+
+header p {
+
+    margin: 8px 0 0;
+
+}
+
+
+.container {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 20px;
+
+}
+
+
+/* =========================
+   画面
+========================= */
+
+.screen {
+
+    display: none;
+
+}
+
+
+.screen.active {
+
+    display: block;
+
+}
+
+
+/* =========================
+   ボタン
+========================= */
+
+button {
+
+    cursor: pointer;
+
+}
+
+
+.back-button {
+
+    margin-bottom: 15px;
+
+    padding: 10px 18px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #555;
+
+    color: white;
+
+}
+
+
+.main-menu {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.main-menu button {
+
+    padding: 30px 10px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background: white;
+
+    box-shadow:
+        0 3px 10px
+        rgba(0,0,0,0.1);
+
+    font-size: 18px;
+
+}
+
+
+.main-menu button:hover {
+
+    background: #e8f5e9;
+
+}
+
+
+/* =========================
+   マップ
+========================= */
+
+.map-step {
+
+    background: white;
+
+    padding: 20px;
+
+    margin-bottom: 15px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0,0,0,0.08);
+
+}
+
+
+.map-step h3 {
+
+    margin-top: 0;
+
+}
+
+
+/* テーマ選択 */
+
+.theme-buttons {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+
+}
+
+
+.theme-button {
+
+    padding: 18px 10px;
+
+    border: 2px solid #ddd;
+
+    border-radius: 10px;
+
+    background: white;
+
+    font-size: 16px;
+
+}
+
+
+.theme-button.selected {
+
+    border-color: #2e7d32;
+
+    background: #e8f5e9;
+
+}
+
+
+/* セレクト */
+
+select {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+}
+
+
+/* チェック */
+
+.checkbox-area {
+
+    display: grid;
+
+    gap: 10px;
+
+}
+
+
+.checkbox-item {
+
+    padding: 12px;
+
+    background: #f5f5f5;
+
+    border-radius: 8px;
+
+}
+
+
+.checkbox-item input {
+
+    margin-right: 8px;
+
+}
+
+
+/* 地図表示ボタン */
+
+.map-start-button {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2e7d32;
+
+    color: white;
+
+    font-size: 18px;
+
+}
+
+
+.map-start-button:hover {
+
+    background: #1b5e20;
+
+}
+
+
+.map-start-button:disabled {
+
+    background: #aaa;
+
+    cursor: not-allowed;
+
+}
+
+
+/* =========================
+   地図
+========================= */
+
+#map {
+
+    width: 100%;
+
+    height: 550px;
+
+    border-radius: 15px;
+
+}
+
+
+.map-result {
+
+    background: white;
+
+    padding: 15px;
+
+    margin-bottom: 15px;
+
+    border-radius: 10px;
+
+}
+
+
+.update-area {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin: 10px 0;
+
+    gap: 10px;
+
+}
+
+
+#updateButton {
+
+    padding: 10px 15px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2e7d32;
+
+    color: white;
+
+}
+
+
+#updateStatus {
+
+    font-size: 13px;
+
+    color: #666;
+
+}
+
+
+/* =========================
+   相談
+========================= */
+
+.consult-box {
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+}
+
+
+.consult-box input {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    margin-bottom: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+}
+
+
+.search-button {
+
+    padding: 10px 20px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2e7d32;
+
+    color: white;
+
+}
+
+
+/* =========================
+   クイズ
+========================= */
+
+.quiz-box {
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+}
+
+
+.answer-button {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin: 10px 0;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #e8f5e9;
+
+}
+
+
+.answer-button:hover {
+
+    background: #c8e6c9;
+
+}
+
+
+/* =========================
+   スマホ
+========================= */
+
+@media (max-width: 700px) {
+
+    .main-menu {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .theme-buttons {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    #map {
+
+        height: 450px;
+
+    }
+
+
+    .update-area {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    body {
+
+        margin: 0;
+
+        padding: 15px;
+
+        font-size: 16px;
+
+    }
+
+
+    h1 {
+
+        font-size: 26px;
+
+        text-align: center;
+
+    }
+
+
+    h2 {
+
+        font-size: 22px;
+
+    }
+
+
+    h3 {
+
+        font-size: 19px;
+
+    }
+
+
+    button {
+
+        width: 100%;
+
+        min-height: 52px;
+
+        margin: 8px 0;
+
+        font-size: 17px;
+
+        border-radius: 12px;
+
+    }
+
+
+    select,
+    input,
+    textarea {
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        min-height: 48px;
+
+        font-size: 16px;
+
+        margin: 8px 0;
+
+    }
+
+
+    #map {
+
+        width: 100%;
+
+        height: 60vh;
+
+        min-height: 400px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>🌱 EYE KNOW</h1>
+
+<p>
+環境について楽しく学べるアプリ
+</p>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- ==================================
+     メイン
+================================== -->
+
+<section
+    id="mainScreen"
+    class="screen active">
+
+<h2>メニュー</h2>
+
+
+<div class="main-menu">
+
+<button
+    onclick="showScreen('quizScreen')">
+
+📝
+<br>
+クイズ
+
+</button>
+
+
+<button
+    onclick="showScreen('consultScreen')">
+
+💬
+<br>
+相談
+
+</button>
+
+
+<button
+    onclick="openMapScreen()">
+
+🗺️
+<br>
+環境情報マップ
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================================
+     クイズ
+================================== -->
+
+<section
+    id="quizScreen"
+    class="screen">
+
+
+<button
+    class="back-button"
+    onclick="showScreen('mainScreen')">
+
+← メニューへ戻る
+
+</button>
+
+
+<div class="quiz-box">
+
+<h2>📝 自然科学クイズ</h2>
+
+<p id="question"></p>
+
+<div id="answers"></div>
+
+<p id="result"></p>
+
+<button
+    id="nextButton"
+    onclick="nextQuestion()"
+    style="display:none;">
+
+次の問題
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================================
+     相談
+================================== -->
+
+<section
+    id="consultScreen"
+    class="screen">
+
+
+<button
+    class="back-button"
+    onclick="showScreen('mainScreen')">
+
+← メニューへ戻る
+
+</button>
+
+
+<div class="consult-box">
+
+<h2>💬 環境について相談</h2>
+
+
+<input
+    id="consultInput"
+    type="text"
+    placeholder="例：暑さ、雨、PM2.5、温暖化">
+
+
+<button
+    class="search-button"
+    onclick="consult()">
+
+調べる
+
+</button>
+
+
+<div id="consultResult"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- ==================================
+     環境情報マップ
+================================== -->
+
+<section
+    id="mapScreen"
+    class="screen">
+
+
+<button
+    class="back-button"
+    onclick="showScreen('mainScreen')">
+
+← メニューへ戻る
+
+</button>
+
+
+<h2>🗺️ 環境情報マップ</h2>
+
+
+<p>
+調べたいテーマ・地域・項目を
+順番に選択してください。
+</p>
+
+
+
+<!-- STEP 1 -->
+
+<div class="map-step">
+
+<h3>
+① 何を調べたいですか？
+</h3>
+
+
+<div class="theme-buttons">
+
+
+<button
+    id="theme-temperature"
+    class="theme-button"
+    onclick="selectTheme('temperature')">
+
+🌡️
+<br>
+気温・暑さ
+
+</button>
+
+
+<button
+    id="theme-rain"
+    class="theme-button"
+    onclick="selectTheme('rain')">
+
+🌧️
+<br>
+雨・大雨
+
+</button>
+
+
+<button
+    id="theme-pm25"
+    class="theme-button"
+    onclick="selectTheme('pm25')">
+
+🌫️
+<br>
+PM2.5・大気
+
+</button>
+
+
+</div>
+
+</div>
+
+
+
+<!-- STEP 2 -->
+
+<div class="map-step">
+
+<h3>
+② どこを調べますか？
+</h3>
+
+
+<label>
+都道府県
+</label>
+
+
+<select
+    id="prefecture"
+    onchange="changeArea()">
+
+<option value="">
+選択してください
+</option>
+
+<option value="tokyo">
+東京都
+</option>
+
+<option value="kanagawa">
+神奈川県
+</option>
+
+<option value="chiba">
+千葉県
+</option>
+
+</select>
+
+
+<br>
+<br>
+
+
+<label>
+地域
+</label>
+
+
+<select id="area">
+
+<option value="">
+都道府県を先に選択してください
+</option>
+
+</select>
+
+</div>
+
+
+
+<!-- STEP 3 -->
+
+<div class="map-step">
+
+<h3>
+③ 何を詳しく見ますか？
+</h3>
+
+
+<div
+    id="detailOptions"
+    class="checkbox-area">
+
+<p>
+まずテーマを選択してください。
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- STEP 4 -->
+
+<div class="map-step">
+
+<h3>
+④ 地図を見る
+</h3>
+
+
+<button
+    id="showMapButton"
+    class="map-start-button"
+    onclick="displaySelectedMap()"
+    disabled>
+
+🗺️ 選択した条件で地図を見る
+
+</button>
+
+</div>
+
+
+
+<!-- 地図 -->
+
+<div
+    id="mapResult"
+    style="display:none;">
+
+
+<div class="map-result">
+
+<h3 id="resultTitle">
+地図
+</h3>
+
+
+<p id="resultDescription">
+</p>
+
+
+<div class="update-area">
+
+<button
+    id="updateButton"
+    onclick="updateMapData()">
+
+🔄 データを更新
+
+</button>
+
+
+<span id="updateStatus">
+</span>
+
+</div>
+
+</div>
+
+
+<div id="map"></div>
+
+
+</div>
+
+
+</section>
+
+</div>
+
+
+
+<script>
+
+
+/* =================================================
+   画面切り替え
+================================================= */
+
+function showScreen(id) {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+
+            screen.classList.remove("active");
+
+        });
+
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+}
+
+
+
+/* =================================================
+   マップ変数
+================================================= */
+
+let map = null;
+
+let currentLayer = null;
+
+let selectedTheme = null;
+
+
+
+/* =================================================
+   マップデータ
+================================================= */
+
+const mapData = {
+
+
+    temperature: [
+
+        {
+            name: "東京",
+            lat: 35.6895,
+            lng: 139.6917,
+
+            maximum: 34,
+            minimum: 24,
+            average: 29,
+
+            summerDay: "○",
+            extremeHotDay: "×"
+        },
+
+        {
+            name: "八王子",
+            lat: 35.6558,
+            lng: 139.3239,
+
+            maximum: 32,
+            minimum: 23,
+            average: 27,
+
+            summerDay: "○",
+            extremeHotDay: "×"
+        },
+
+        {
+            name: "青梅",
+            lat: 35.7879,
+            lng: 139.2756,
+
+            maximum: 31,
+            minimum: 22,
+            average: 26,
+
+            summerDay: "○",
+            extremeHotDay: "×"
+        }
+
+    ],
+
+
+
+    rain: [
+
+        {
+            name: "東京",
+            lat: 35.6895,
+            lng: 139.6917,
+
+            hour1: 5,
+            day24: 20,
+            dayTotal: 20
+        },
+
+        {
+            name: "八王子",
+            lat: 35.6558,
+            lng: 139.3239,
+
+            hour1: 12,
+            day24: 35,
+            dayTotal: 35
+        },
+
+        {
+            name: "千葉",
+            lat: 35.6074,
+            lng: 140.1065,
+
+            hour1: 8,
+            day24: 25,
+            dayTotal: 25
+        }
+
+    ],
+
+
+
+    pm25: [
+
+        {
+            name: "東京",
+            lat: 35.6895,
+            lng: 139.6917,
+
+            pm25: 25,
+            pm25Status: "通常",
+            airPollution: "PM2.5",
+            observationPoint: "東京観測地点",
+            airCondition: "良好"
+        },
+
+        {
+            name: "八王子",
+            lat: 35.6558,
+            lng: 139.3239,
+
+            pm25: 18,
+            pm25Status: "通常",
+            airPollution: "PM2.5",
+            observationPoint: "八王子観測地点",
+            airCondition: "良好"
+        },
+
+        {
+            name: "横浜",
+            lat: 35.4437,
+            lng: 139.6380,
+
+            pm25: 10,
+            pm25Status: "通常",
+            airPollution: "PM2.5",
+            observationPoint: "横浜観測地点",
+            airCondition: "良好"
+        }
+
+    ]
+
+};
+
+
+
+/* =================================================
+   マップ画面を開く
+================================================= */
+
+function openMapScreen() {
+
+    showScreen("mapScreen");
+
+}
+
+
+
+/* =================================================
+   テーマ選択
+================================================= */
+
+function selectTheme(theme) {
+
+    selectedTheme = theme;
+
+
+    document
+        .querySelectorAll(".theme-button")
+        .forEach(button => {
+
+            button.classList.remove("selected");
+
+        });
+
+
+    document
+        .getElementById("theme-" + theme)
+        .classList.add("selected");
+
+
+    createDetailOptions(theme);
+
+
+    checkMapButton();
+
+}
+
+
+
+/* =================================================
+   詳細項目
+================================================= */
+
+function createDetailOptions(theme) {
+
+    const box =
+        document.getElementById("detailOptions");
+
+    box.innerHTML = "";
+
+
+    let options = [];
+
+
+    if (theme === "temperature") {
+
+        options = [
+
+            {
+                value: "maximum",
+                text: "🌡️ 最高気温"
+            },
+
+            {
+                value: "minimum",
+                text: "🌡️ 最低気温"
+            },
+
+            {
+                value: "average",
+                text: "🌡️ 平均気温"
+            },
+
+            {
+                value: "summerDay",
+                text: "☀️ 真夏日"
+            },
+
+            {
+                value: "extremeHotDay",
+                text: "🔥 猛暑日"
+            }
+
+        ];
+
+    }
+
+
+    else if (theme === "rain") {
+
+        options = [
+
+            {
+                value: "hour1",
+                text: "🌧️ 1時間降水量"
+            },
+
+            {
+                value: "day24",
+                text: "🌧️ 24時間降水量"
+            },
+
+            {
+                value: "dayTotal",
+                text: "🌧️ 日降水量"
+            },
+
+            {
+                value: "heavyRain",
+                text: "⚠️ 大雨の状況"
+            }
+
+        ];
+
+    }
+
+
+    else if (theme === "pm25") {
+
+        options = [
+
+            {
+                value: "pm25",
+                text: "🌫️ PM2.5濃度"
+            },
+
+            {
+                value: "pm25Status",
+                text: "🟢 PM2.5の状態"
+            },
+
+            {
+                value: "airPollution",
+                text: "🌁 大気汚染物質"
+            },
+
+            {
+                value: "observationPoint",
+                text: "📍 大気観測地点"
+            },
+
+            {
+                value: "airCondition",
+                text: "🌬️ 大気の状態"
+            }
+
+        ];
+
+    }
+
+
+    options.forEach((option, index) => {
+
+        const label =
+            document.createElement("label");
+
+        label.className =
+            "checkbox-item";
+
+
+        label.innerHTML = `
+
+            <input
+                type="checkbox"
+                name="detailOption"
+                value="${option.value}"
+                ${index === 0 ? "checked" : ""}
+                onchange="checkMapButton()">
+
+            ${option.text}
+
+        `;
+
+
+        box.appendChild(label);
+
+    });
+
+
+    const explanation =
+        document.createElement("p");
+
+
+    if (theme === "temperature") {
+
+        explanation.textContent =
+            "気温や暑さに関する情報を選択できます。";
+
+    }
+
+
+    else if (theme === "rain") {
+
+        explanation.textContent =
+            "降水量や大雨に関する情報を選択できます。";
+
+    }
+
+
+    else if (theme === "pm25") {
+
+        explanation.textContent =
+            "PM2.5や大気環境に関する情報を選択できます。";
+
+    }
+
+
+    box.appendChild(explanation);
+
+}
+
+
+
+/* =================================================
+   地域変更
+================================================= */
+
+function changeArea() {
+
+    const prefecture =
+        document.getElementById(
+            "prefecture"
+        ).value;
+
+
+    const area =
+        document.getElementById(
+            "area"
+        );
+
+
+    area.innerHTML = "";
+
+
+    if (prefecture === "tokyo") {
+
+        area.innerHTML = `
+
+            <option value="all">
+                東京都全域
+            </option>
+
+            <option value="23ku">
+                東京23区
+            </option>
+
+            <option value="tama">
+                多摩地域
+            </option>
+
+        `;
+
+    }
+
+
+    else if (prefecture === "kanagawa") {
+
+        area.innerHTML = `
+
+            <option value="all">
+                神奈川県全域
+            </option>
+
+            <option value="yokohama">
+                横浜地域
+            </option>
+
+        `;
+
+    }
+
+
+    else if (prefecture === "chiba") {
+
+        area.innerHTML = `
+
+            <option value="all">
+                千葉県全域
+            </option>
+
+        `;
+
+    }
+
+
+    else {
+
+        area.innerHTML = `
+
+            <option value="">
+                都道府県を先に選択してください
+            </option>
+
+        `;
+
+    }
+
+
+    checkMapButton();
+
+}
+
+
+
+/* =================================================
+   地図ボタン
+================================================= */
+
+function checkMapButton() {
+
+    const prefecture =
+        document.getElementById(
+            "prefecture"
+        ).value;
+
+
+    const area =
+        document.getElementById(
+            "area"
+        ).value;
+
+
+    const options =
+        document.querySelectorAll(
+            'input[name="detailOption"]:checked'
+        );
+
+
+    const button =
+        document.getElementById(
+            "showMapButton"
+        );
+
+
+    if (
+        selectedTheme &&
+        prefecture &&
+        area &&
+        options.length > 0
+    ) {
+
+        button.disabled = false;
+
+    }
+
+    else {
+
+        button.disabled = true;
+
+    }
+
+}
+
+
+
+/* =================================================
+   地域ごとの中心位置
+================================================= */
+
+function getAreaPosition(prefecture, area) {
+
+
+    /* =========================
+       東京都
+    ========================= */
+
+    if (prefecture === "tokyo") {
+
+        if (area === "23ku") {
+
+            return {
+
+                center: [35.6895, 139.6917],
+
+                zoom: 12
+
+            };
+
+        }
+
+
+        if (area === "tama") {
+
+            return {
+
+                center: [35.6558, 139.3239],
+
+                zoom: 11
+
+            };
+
+        }
+
+
+        return {
+
+            center: [35.6895, 139.6917],
+
+            zoom: 10
+
+        };
+
+    }
+
+
+
+    /* =========================
+       神奈川県
+    ========================= */
+
+    if (prefecture === "kanagawa") {
+
+        if (area === "yokohama") {
+
+            return {
+
+                center: [35.4437, 139.6380],
+
+                zoom: 12
+
+            };
+
+        }
+
+
+        return {
+
+            center: [35.4478, 139.6425],
+
+            zoom: 10
+
+        };
+
+    }
+
+
+
+    /* =========================
+       千葉県
+    ========================= */
+
+    if (prefecture === "chiba") {
+
+        return {
+
+            center: [35.6074, 140.1065],
+
+            zoom: 10
+
+        };
+
+    }
+
+
+
+    /* =========================
+       デフォルト
+    ========================= */
+
+    return {
+
+        center: [35.6895, 139.6917],
+
+        zoom: 9
+
+    };
+
+}
+
+
+
+/* =================================================
+   選択した条件で地図を表示
+================================================= */
+
+function displaySelectedMap() {
+
+    const prefecture =
+        document.getElementById(
+            "prefecture"
+        ).value;
+
+
+    const area =
+        document.getElementById(
+            "area"
+        ).value;
+
+
+    const options =
+        Array.from(
+            document.querySelectorAll(
+                'input[name="detailOption"]:checked'
+            )
+        ).map(
+            checkbox => checkbox.value
+        );
+
+
+    /* =========================
+       入力チェック
+    ========================= */
+
+    if (
+        !selectedTheme ||
+        !prefecture ||
+        !area ||
+        options.length === 0
+    ) {
+
+        alert(
+            "テーマ・地域・項目を選択してください。"
+        );
+
+        return;
+
+    }
+
+
+    /* =========================
+       地図エリアを表示
+    ========================= */
+
+    document.getElementById(
+        "mapResult"
+    ).style.display = "block";
+
+
+    /* =========================
+       地図を作成
+    ========================= */
+
+    createMap();
+
+
+    /* =========================
+       地域に合わせてZOOM
+    ========================= */
+
+    const position =
+        getAreaPosition(
+            prefecture,
+            area
+        );
+
+
+    map.setView(
+
+        position.center,
+
+        position.zoom
+
+    );
+
+
+    /* =========================
+       地図を描画
+    ========================= */
+
+    drawMap(
+
+        selectedTheme,
+
+        options
+
+    );
+
+
+    /* =========================
+       地図サイズ更新
+    ========================= */
+
+    setTimeout(() => {
+
+        map.invalidateSize();
+
+    }, 300);
+
+
+    /* =========================
+       地図までスクロール
+    ========================= */
+
+    document
+        .getElementById("mapResult")
+        .scrollIntoView({
+
+            behavior: "smooth"
+
+        });
+
+}
+
+
+
+/* =================================================
+   地図作成
+================================================= */
+
+function createMap() {
+
+    if (map !== null) {
+
+        return;
+
+    }
+
+
+    map = L.map("map").setView(
+
+        [35.6895, 139.6917],
+
+        9
+
+    );
+
+
+    L.tileLayer(
+
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+
+        {
+
+            attribution:
+                "&copy; OpenStreetMap contributors"
+
+        }
+
+    ).addTo(map);
+
+}
+
+
+
+/* =================================================
+   地図描画
+================================================= */
+
+function drawMap(theme, options) {
+
+
+    /* =========================
+       前のデータを削除
+    ========================= */
+
+    if (currentLayer !== null) {
+
+        map.removeLayer(
+            currentLayer
+        );
+
+    }
+
+
+    currentLayer =
+        L.layerGroup().addTo(map);
+
+
+    const data =
+        mapData[theme];
+
+
+    if (!data) {
+
+        return;
+
+    }
+
+
+    /* =========================
+       タイトル
+    ========================= */
+
+    document.getElementById(
+        "resultTitle"
+    ).textContent =
+        getThemeName(theme);
+
+
+    document.getElementById(
+        "resultDescription"
+    ).textContent =
+        "選択した地域・条件のデータを地図上に表示しています。";
+
+
+
+    /* =========================
+       各地点
+    ========================= */
+
+    data.forEach(place => {
+
+
+        const marker =
+            L.marker([
+
+                place.lat,
+
+                place.lng
+
+            ]);
+
+
+        let detailHTML = "";
+
+
+        options.forEach(option => {
+
+
+            /* =====================
+               気温
+            ===================== */
+
+            if (theme === "temperature") {
+
+
+                if (option === "maximum") {
+
+                    detailHTML +=
+                        `<p>
+                            🌡️ 最高気温：
+                            <strong>
+                                ${place.maximum}℃
+                            </strong>
+                        </p>`;
+
+                }
+
+
+                if (option === "minimum") {
+
+                    detailHTML +=
+                        `<p>
+                            🌡️ 最低気温：
+                            <strong>
+                                ${place.minimum}℃
+                            </strong>
+                        </p>`;
+
+                }
+
+
+                if (option === "average") {
+
+                    detailHTML +=
+                        `<p>
+                            🌡️ 平均気温：
+                            <strong>
+                                ${place.average}℃
+                            </strong>
+                        </p>`;
+
+                }
+
+
+                if (option === "summerDay") {
+
+                    detailHTML +=
+                        `<p>
+                            ☀️ 真夏日：
+                            <strong>
+                                ${place.summerDay}
+                            </strong>
+                        </p>`;
+
+                }
+
+
+                if (option === "extremeHotDay") {
+
+                    detailHTML +=
+                        `<p>
+                            🔥 猛暑日：
+                            <strong>
+                                ${place.extremeHotDay}
+                            </strong>
+                        </p>`;
+
+                }
+
+            }
+
+
+
+            /* =====================
+               雨
+            ===================== */
+
+            else if (theme === "rain") {
+
+
+                if (option === "hour1") {
+
+                    detailHTML +=
+                        `<p>
+                            🌧️ 1時間降水量：
+                            <strong>
+                                ${place.hour1} mm
+                            </strong>
+                        </p>`;
+
+                }
+
+
+                if (option === "day24") {
+
+                    detailHTML +=
+                        `<p>
+                            🌧️ 24時間降水量：
+                            <strong>
+                                ${place.day24} mm
+                            </strong>
+                        </p>`;
+
+                }
+
+
+                if (option === "dayTotal") {
+
+                    detailHTML +=
+                        `<p>
+                            🌧️ 日降水量：
+                            <strong>
+                                ${place.dayTotal} mm
+                            </strong>
+                        </p>`;
+
+                }
+
+
+                if (option === "heavyRain") {
+
+                    detailHTML +=
+                        `<p>
+                            ⚠️ 大雨の状況：
+                            <strong>
+                                確認中
+                            </strong>
+                        </p>`;
+
+                }
+
+            }
+
+
+
+            /* =====================
+               PM2.5・大気
+            ===================== */
+
+            else if (theme === "pm25") {
+
+
+                if (option === "pm25") {
+
+                    detailHTML +=
+                        `<p>
+                            🌫️ PM2.5濃度：
+                            <strong>
+                                ${place.pm25} μg/m³
+                            </strong>
+                        </p>`;
+
+                }
+
+
+                if (option === "pm25Status") {
+
+                    detailHTML +=
+                        `<p>
+                            🟢 PM2.5の状態：
+                            <strong>
+                                ${place.pm25Status}
+                            </strong>
+                        </p>`;
+
+                }
+
+
+                if (option === "airPollution") {
+
+                    detailHTML +=
+                        `<p>
+                            🌁 大気汚染物質：
+                            <strong>
+                                ${place.airPollution}
+                            </strong>
+                        </p>`;
+
+                }
+
+
+                if (option === "observationPoint") {
+
+                    detailHTML +=
+                        `<p>
+                            📍 大気観測地点：
+                            <strong>
+                                ${place.observationPoint}
+                            </strong>
+                        </p>`;
+
+                }
+
+
+                if (option === "airCondition") {
+
+                    detailHTML +=
+                        `<p>
+                            🌬️ 大気の状態：
+                            <strong>
+                                ${place.airCondition}
+                            </strong>
+                        </p>`;
+
+                }
+
+            }
+
+        });
+
+
+
+        marker.bindPopup(`
+
+            <div>
+
+                <h3>
+                    📍 ${place.name}
+                </h3>
+
+                ${detailHTML}
+
+                <hr>
+
+                <small>
+                    ※現在は動作確認用の
+                    サンプルデータです。
+                </small>
+
+            </div>
+
+        `);
+
+
+        marker.addTo(
+            currentLayer
+        );
+
+    });
+
+
+    /* =========================
+       地図サイズ更新
+    ========================= */
+
+    setTimeout(() => {
+
+        map.invalidateSize();
+
+    }, 200);
+
+}
+
+
+
+/* =================================================
+   テーマ名
+================================================= */
+
+function getThemeName(theme) {
+
+    if (theme === "temperature") {
+
+        return "🌡️ 気温・暑さマップ";
+
+    }
+
+
+    if (theme === "rain") {
+
+        return "🌧️ 雨・大雨マップ";
+
+    }
+
+
+    if (theme === "pm25") {
+
+        return "🌫️ PM2.5・大気マップ";
+
+    }
+
+
+    return "🗺️ 環境情報マップ";
+
+}
+
+
+
+/* =================================================
+   更新
+================================================= */
+
+function updateMapData() {
+
+    const button =
+        document.getElementById(
+            "updateButton"
+        );
+
+
+    const status =
+        document.getElementById(
+            "updateStatus"
+        );
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ 更新中...";
+
+
+    setTimeout(() => {
+
+
+        const options =
+            Array.from(
+                document.querySelectorAll(
+                    'input[name="detailOption"]:checked'
+                )
+            ).map(
+                checkbox => checkbox.value
+            );
+
+
+        drawMap(
+
+            selectedTheme,
+
+            options
+
+        );
+
+
+        const now =
+            new Date();
+
+
+        const time =
+            now.getFullYear()
+            + "/"
+            + String(
+                now.getMonth() + 1
+            ).padStart(2, "0")
+            + "/"
+            + String(
+                now.getDate()
+            ).padStart(2, "0")
+            + " "
+            + String(
+                now.getHours()
+            ).padStart(2, "0")
+            + ":"
+            + String(
+                now.getMinutes()
+            ).padStart(2, "0");
+
+
+        status.textContent =
+            "最終更新：" + time;
+
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            "🔄 データを更新";
+
+
+    }, 700);
+
+}
+
+
+
+/* =================================================
+   クイズ
+================================================= */
+
+const questions = [
+
+    {
+
+        question:
+            "植物が光合成によって吸収する気体は？",
+
+        answers: [
+
+            "酸素",
+
+            "二酸化炭素",
+
+            "窒素"
+
+        ],
+
+        correct: 1,
+
+        explanation:
+            "植物は光合成によって二酸化炭素を吸収します。"
+
+    },
+
+
+    {
+
+        question:
+            "地球温暖化に大きく関係する気体は？",
+
+        answers: [
+
+            "二酸化炭素",
+
+            "酸素",
+
+            "水素"
+
+        ],
+
+        correct: 0,
+
+        explanation:
+            "二酸化炭素は代表的な温室効果ガスです。"
+
+    },
+
+
+    {
+
+        question:
+            "水が蒸発して水蒸気になる現象は？",
+
+        answers: [
+
+            "凝結",
+
+            "蒸発",
+
+            "融解"
+
+        ],
+
+        correct: 1,
+
+        explanation:
+            "液体の水が気体になることを蒸発といいます。"
+
+    }
+
+];
+
+
+let currentQuestion = 0;
+
+let score = 0;
+
+
+function startQuiz() {
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    showQuestion();
+
+}
+
+
+function showQuestion() {
+
+    const q =
+        questions[currentQuestion];
+
+
+    document.getElementById(
+        "question"
+    ).textContent =
+        q.question;
+
+
+    const answers =
+        document.getElementById(
+            "answers"
+        );
+
+
+    answers.innerHTML = "";
+
+
+    q.answers.forEach(
+        (answer, index) => {
+
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.textContent =
+                answer;
+
+
+            button.className =
+                "answer-button";
+
+
+            button.onclick =
+                () => checkAnswer(index);
+
+
+            answers.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        "result"
+    ).textContent = "";
+
+
+    document.getElementById(
+        "nextButton"
+    ).style.display =
+        "none";
+
+}
+
+
+function checkAnswer(index) {
+
+    const q =
+        questions[currentQuestion];
+
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    if (index === q.correct) {
+
+        score++;
+
+        result.textContent =
+            "⭕ 正解！ " +
+            q.explanation;
+
+    }
+
+    else {
+
+        result.textContent =
+            "❌ 不正解。 " +
+            q.explanation;
+
+    }
+
+
+    document.getElementById(
+        "nextButton"
+    ).style.display =
+        "block";
+
+}
+
+
+function nextQuestion() {
+
+    currentQuestion++;
+
+
+    if (
+        currentQuestion >=
+        questions.length
+    ) {
+
+        finishQuiz();
+
+        return;
+
+    }
+
+
+    showQuestion();
+
+}
+
+
+function finishQuiz() {
+
+    let message = "";
+
+
+    if (
+        score === questions.length
+    ) {
+
+        message =
+            "🌟 全問正解！すごいです！";
+
+    }
+
+    else if (
+        score === questions.length - 1
+    ) {
+
+        message =
+            "👏 あと少し！とてもよくできました！";
+
+    }
+
+    else if (
+        score >= questions.length / 2
+    ) {
+
+        message =
+            "😊 よくできました！";
+
+    }
+
+    else if (score >= 1) {
+
+        message =
+            "📚 もう少し！復習してみましょう！";
+
+    }
+
+    else {
+
+        message =
+            "💪 まずは基礎から復習してみましょう！";
+
+    }
+
+
+    document.getElementById(
+        "question"
+    ).textContent =
+        "クイズ終了！";
+
+
+    document.getElementById(
+        "answers"
+    ).innerHTML = "";
+
+
+    document.getElementById(
+        "result"
+    ).innerHTML = `
+
+        <h3>${message}</h3>
+
+        <p>
+            あなたの得点：
+            ${score} / ${questions.length}
+        </p>
+
+        <button onclick="startQuiz()">
+            🔄 もう一度挑戦
+        </button>
+
+    `;
+
+
+    document.getElementById(
+        "nextButton"
+    ).style.display =
+        "none";
+
+}
+
+
+
+/* =================================================
+   相談
+================================================= */
+
+function consult() {
+
+    const input =
+        document.getElementById(
+            "consultInput"
+        )
+        .value
+        .toLowerCase();
+
+
+    const result =
+        document.getElementById(
+            "consultResult"
+        );
+
+
+    if (
+        input.includes("暑") ||
+        input.includes("気温")
+    ) {
+
+        result.innerHTML = `
+
+            <h3>🌡️ 暑さについて</h3>
+
+            <p>
+                気温が高い日は熱中症などに
+                注意が必要です。
+            </p>
+
+        `;
+
+    }
+
+
+    else if (
+        input.includes("雨") ||
+        input.includes("大雨")
+    ) {
+
+        result.innerHTML = `
+
+            <h3>🌧️ 大雨について</h3>
+
+            <p>
+                大雨の際には河川の増水や
+                土砂災害などに注意しましょう。
+            </p>
+
+        `;
+
+    }
+
+
+    else if (
+        input.includes("pm2.5") ||
+        input.includes("大気")
+    ) {
+
+        result.innerHTML = `
+
+            <h3>🌫️ PM2.5について</h3>
+
+            <p>
+                PM2.5は非常に小さな粒子状物質です。
+            </p>
+
+        `;
+
+    }
+
+
+    else if (
+        input.includes("温暖化") ||
+        input.includes("co2")
+    ) {
+
+        result.innerHTML = `
+
+            <h3>🌎 地球温暖化について</h3>
+
+            <p>
+                二酸化炭素などの温室効果ガスは
+                地球温暖化と関係しています。
+            </p>
+
+        `;
+
+    }
+
+
+    else {
+
+        result.innerHTML = `
+
+            <p>
+                「暑さ」「大雨」「PM2.5」
+                「温暖化」などについて
+                質問してみてください。
+            </p>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =================================================
+   最初の処理
+================================================= */
+
+startQuiz();
+
+</script>
+
+
+</body>
+
+</html>
