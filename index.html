@@ -1,11 +1,3127 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EYE KNOW</title>
+
+<style>
+
+/* =========================
+   全体
+========================= */
+
+body {
+    margin: 0;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    background: #f5f7fa;
+    color: #333;
+}
+
+header {
+    background: #2e7d32;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    margin: 8px 0 0;
+    font-size: 18px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* =========================
+   画面切り替え
+========================= */
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* =========================
+   ボタン
+========================= */
+
+button {
+    cursor: pointer;
+}
+
+.back-button {
+    margin-bottom: 15px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #555;
+    color: white;
+}
+
+/* =========================
+   メインメニュー
+========================= */
+
+.main-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.main-menu button {
+    padding: 30px 10px;
+    border: none;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    font-size: 18px;
+}
+
+.main-menu button:hover {
+    background: #e8f5e9;
+}
+
+/* =========================
+   相談画面
+========================= */
+
+.consult-box {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.consult-box input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #2e7d32;
+    color: white;
+}
+
+/* =========================
+   クイズ画面
+========================= */
+
+.quiz-box {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.answer-button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    background: #e8f5e9;
+}
+
+.answer-button:hover {
+    background: #c8e6c9;
+}
+
+/* =========================
+   クイズカテゴリー
+========================= */
+
+.quiz-category-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/* =========================
+   環境クイズのテーマ
+========================= */
+
+#environmentMenu {
+    margin-top: 20px;
+}
+
+#environmentMenu button {
+    width: calc(33.333% - 16px);
+    padding: 15px 10px;
+    margin: 6px;
+    min-height: 55px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background: #e8f5e9;
+    color: #333;
+}
+
+#environmentMenu button:hover {
+    background: #c8e6c9;
+}
+
+/* =========================
+   環境学習度
+========================= */
+
+.learning-box {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.parameter {
+    margin: 25px 0;
+}
+
+.parameter p {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.meter {
+    width: 100%;
+    height: 25px;
+    background: #eeeeee;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.meter-bar {
+    width: 0%;
+    height: 100%;
+    background: #66bb6a;
+    border-radius: 20px;
+    transition: width 0.8s;
+}
+
+.total-learning {
+    margin-top: 35px;
+    padding: 20px;
+    background: #e8f5e9;
+    border-radius: 15px;
+    text-align: center;
+}
+
+#totalLearning {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* =========================
+   相談テーマ選択
+========================= */
+
+.consult-category-button {
+    display: block;
+    width: 100%;
+    min-height: 55px;
+    padding: 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+}
+
+/* =========================
+   化学クイズ難易度
+========================= */
+
+#difficulty-screen {
+    margin-top: 20px;
+}
+
+#difficulty-screen .quiz-category-button {
+    background: #e8f5e9;
+    color: #333;
+}
+
+#difficulty-screen .quiz-category-button:hover:not(:disabled) {
+    background: #c8e6c9;
+}
+
+#difficulty-screen .quiz-category-button:disabled {
+    background: #eeeeee;
+    color: #888;
+    cursor: not-allowed;
+    opacity: 0.75;
+}
+/* =========================
+   元素の周期表マップ
+========================= */
+
+.periodic-scroll {
+    width: 100%;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.periodic-table {
+    display: grid;
+    grid-template-columns: repeat(18, 48px);
+    gap: 5px;
+    width: max-content;
+}
+
+.element-button {
+    width: 48px;
+    height: 54px;
+    padding: 3px;
+    border: 1px solid #a6b8c7;
+    border-radius: 8px;
+    background: #dbeafe;
+    color: #17365d;
+    cursor: pointer;
+    text-align: center;
+}
+
+.element-button:hover {
+    background: #93c5fd;
+    transform: translateY(-2px);
+}
+
+.element-button.selected {
+    outline: 3px solid #2563eb;
+    background: #bfdbfe;
+}
+
+.element-button .number {
+    display: block;
+    font-size: 10px;
+}
+
+.element-button .symbol {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.element-info {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #f0f7ff;
+    color: #17365d;
+    line-height: 1.8;
+}
+
+.element-info h3 {
+    margin-top: 0;
+}
+
+/* =========================
+   スマートフォン対応
+========================= */
+
+@media (max-width: 700px) {
+
+    .main-menu {
+        grid-template-columns: 1fr;
+    }
+
+    #environmentMenu button {
+        width: 100%;
+        margin: 6px 0;
+    }
+
+    .periodic-scroll {
+        overflow-x: auto;
+    }
+
+    .element-info {
+        padding: 15px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    body {
+        font-size: 16px;
+    }
+
+    header h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 19px;
+    }
+
+    button {
+        min-height: 48px;
+        font-size: 16px;
+    }
+
+    input,
+    select,
+    textarea {
+        max-width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>🌱 EYE KNOW</h1>
+
+    <p>
+        環境について楽しく学べるアプリ
+    </p>
+
+</header>
+
+<div class="container">
+
+<!-- ==================================
+     メイン画面
+================================== -->
+
+<section id="mainScreen" class="screen active">
+
+    <h2>メニュー</h2>
+
+    <div class="main-menu">
+
+        <button onclick="showScreen('quizScreen')">
+            📝 クイズ
+        </button>
+
+        <button onclick="showScreen('consultScreen')">
+            💬 調べる
+        </button>
+
+        <button onclick="showLearningLevel()">
+            📊 環境学習度を確認
+        </button>
+
+        <button onclick="showScreen('periodicScreen')">
+            🧪 元素の周期表マップ
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================
+     元素の周期表マップ画面
+================================== -->
+
+<section id="periodicScreen" class="screen">
+
+    <button
+        class="back-button"
+        onclick="showScreen('mainScreen')">
+        ← メニューへ戻る
+    </button>
+
+    <h2>🧪 元素の周期表マップ</h2>
+
+    <p>
+        元素をクリックすると、元素の特徴や
+        環境問題との関係を確認できます。
+    </p>
+
+    <div class="periodic-scroll">
+
+        <div
+            id="periodicTable"
+            class="periodic-table">
+        </div>
+
+    </div>
+
+    <div id="elementInfo" class="element-info">
+
+        <h3>元素を選択してください</h3>
+
+        <p>
+            周期表の元素をクリックすると、
+            ここに詳しい情報が表示されます。
+        </p>
+
+    </div>
+
+</section>
+<!-- ==================================
+     環境学習度
+================================== -->
+
+<section id="learningScreen" class="screen">
+
+    <button
+        class="back-button"
+        onclick="showScreen('mainScreen')">
+        ← メニューへ戻る
+    </button>
+
+    <div class="learning-box">
+
+        <h2>📊 あなたの環境学習度</h2>
+
+        <p>
+            アプリでの学習状況から、
+            あなたの環境学習度を確認できます。
+        </p>
+
+        <!-- 環境知識 -->
+
+        <div class="parameter">
+
+            <p>🌱 環境知識</p>
+
+            <div class="meter">
+                <div id="environmentBar" class="meter-bar"></div>
+            </div>
+
+            <span id="environmentValue">0</span> / 100
+
+        </div>
+
+        <!-- 化学理解 -->
+
+        <div class="parameter">
+
+            <p>🧪 化学理解</p>
+
+            <div class="meter">
+                <div id="chemistryBar" class="meter-bar"></div>
+            </div>
+
+            <span id="chemistryValue">0</span> / 100
+
+        </div>
+
+        <!-- 環境との関連理解 -->
+
+        <div class="parameter">
+
+            <p>🔗 環境との関連理解</p>
+
+            <div class="meter">
+                <div id="relationBar" class="meter-bar"></div>
+            </div>
+
+            <span id="relationValue">0</span> / 100
+
+        </div>
+
+        <!-- 周期表の学習 -->
+
+        <div class="parameter">
+
+            <p>🧪 周期表の学習</p>
+
+            <div class="meter">
+                <div id="mapBar" class="meter-bar"></div>
+            </div>
+
+            <span id="mapValue">0</span> / 100
+
+        </div>
+
+        <!-- 環境への問題意識 -->
+
+        <div class="parameter">
+
+            <p>💬 環境への問題意識</p>
+
+            <div class="meter">
+                <div id="interestBar" class="meter-bar"></div>
+            </div>
+
+            <span id="interestValue">0</span> / 100
+
+        </div>
+
+        <!-- 総合学習度 -->
+
+        <div class="total-learning">
+
+            <h3>総合環境学習度</h3>
+
+            <p id="totalLearning">
+                0 / 100
+            </p>
+
+            <p id="learningMessage"></p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================
+     クイズ画面
+================================== -->
+
+<section id="quizScreen" class="screen">
+
+    <button
+        class="back-button"
+        onclick="showScreen('mainScreen')">
+        ← メニューへ戻る
+    </button>
+
+    <div class="quiz-box">
+
+        <h2>📝 自然科学クイズ</h2>
+
+        <!-- ① カテゴリー選択 -->
+
+        <div id="quizCategory">
+
+            <p>学びたい分野を選んでください</p>
+
+            <button
+                class="quiz-category-button"
+                onclick="showChemistryMenu()">
+                🧪 化学
+            </button>
+
+            <button
+                class="quiz-category-button"
+                onclick="showEnvironmentMenu()">
+                🌱 環境
+            </button>
+
+        </div>
+
+
+        <!-- ② 化学クイズ難易度選択 -->
+
+        <div id="difficulty-screen" style="display:none;">
+
+            <h3>🧪 化学クイズ</h3>
+
+            <p>難易度を選択してください</p>
+
+            <p>
+                初級で80%以上正解すると、
+                中級・上級が解放されます！
+            </p>
+
+            <button
+                class="quiz-category-button"
+                onclick="startChemistryLevelQuiz('初級')">
+                🧪 初級
+            </button>
+
+            <button
+                id="intermediate-btn"
+                class="quiz-category-button"
+                onclick="startChemistryLevelQuiz('中級')"
+                disabled>
+                🔒 中級
+            </button>
+
+            <button
+                id="advanced-btn"
+                class="quiz-category-button"
+                onclick="startChemistryLevelQuiz('上級')"
+                disabled>
+                🔒 上級
+            </button>
+
+            <button
+                class="back-button"
+                onclick="backToQuizCategory()">
+                ← カテゴリー選択へ戻る
+            </button>
+
+        </div>
+
+
+        <!-- ③ 環境クイズのテーマ選択 -->
+
+        <div id="environmentMenu" style="display:none;">
+
+            <h3>🌱 環境のテーマを選んでください</h3>
+
+            <button onclick="startEnvironmentQuiz('地球温暖化')">
+                🌍 地球温暖化
+            </button>
+
+            <button onclick="startEnvironmentQuiz('大気汚染')">
+                🌫️ 大気汚染
+            </button>
+
+            <button onclick="startEnvironmentQuiz('水質汚染')">
+                💧 水質汚染
+            </button>
+
+            <button onclick="startEnvironmentQuiz('人口と食料')">
+                🌾 人口と食料
+            </button>
+
+            <button onclick="startEnvironmentQuiz('公害の歴史')">
+                🏭 公害の歴史
+            </button>
+
+            <button onclick="startEnvironmentQuiz('都市化')">
+                🏙️ 都市化
+            </button>
+
+            <button onclick="startEnvironmentQuiz('その他の環境問題')">
+                🌳 その他の環境問題
+            </button>
+
+            <button
+                class="back-button"
+                onclick="backToQuizCategory()">
+                ← カテゴリー選択へ戻る
+            </button>
+
+        </div>
+
+
+        <!-- ④ クイズ問題表示 -->
+
+        <div id="quizQuestionArea" style="display:none;">
+
+            <p id="quizField"></p>
+
+            <p id="question"></p>
+
+            <div id="answers"></div>
+
+            <p id="result"></p>
+
+            <div id="explanation"></div>
+
+            <button
+                id="nextButton"
+                onclick="nextQuestion()"
+                style="display:none;">
+                次の問題
+            </button>
+
+            <button
+                class="back-button"
+                onclick="backToQuizCategory()">
+                ← クイズ選択に戻る
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================
+     調べる画面
+================================== -->
+
+<section id="consultScreen" class="screen">
+
+    <button
+        class="back-button"
+        onclick="showScreen('mainScreen')">
+        ← メニューへ戻る
+    </button>
+
+    <div class="consult-box">
+
+        <h2>💬 環境について調べる</h2>
+
+        <!-- ① テーマ選択 -->
+
+        <div id="consultCategory">
+
+            <p>調べたいテーマを選んでください</p>
+
+            <button
+                class="consult-category-button"
+                onclick="selectConsultCategory('環境問題を調べる')">
+                🔎 環境問題を調べる
+            </button>
+
+            <button
+                class="consult-category-button"
+                onclick="selectConsultCategory('環境問題と化学の関連性を調べる')">
+                🔍 環境問題と化学の関連性を調べる
+            </button>
+
+        </div>
+
+
+        <!-- ② 質問入力 -->
+
+        <div
+            id="consultQuestionArea"
+            style="display:none;">
+
+            <h3 id="consultCategoryTitle"></h3>
+
+            <p>気になることを入力してください</p>
+
+            <input
+                id="consultInput"
+                type="text"
+                placeholder="質問を入力してください">
+
+            <button
+                class="search-button"
+                onclick="consult()">
+                🔍 調べる
+            </button>
+
+            <div id="consultResult"></div>
+
+            <button
+                class="back-button"
+                onclick="backToConsultCategory()">
+                ← テーマ選択に戻る
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==================================
+     HTML画面構成ここまで
+================================== -->
+
+</div>
+
+<!-- ==================================
+     JavaScript開始
+================================== -->
+
+<script>
+ /* =================================================
+   画面切り替え
+================================================= */
+
+function showScreen(id) {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    const targetScreen = document.getElementById(id);
+
+    if (targetScreen) {
+        targetScreen.classList.add("active");
+    } else {
+        console.error("画面が見つかりません:", id);
+    }
+
+    window.scrollTo(0, 0);
+}
+
+
+/* =================================================
+   クイズ用変数
+================================================= */
+
+let currentCategory = "";
+
+let currentDifficulty = "";
+
+let currentChemistryField = "";
+
+let currentQuestions = [];
+
+let currentQuestionIndex = 0;
+
+let quizScore = 0;
+
+let answerSelected = false;
+
+
+/* =================================================
+   化学クイズの解放状態
+================================================= */
+
+const QUIZ_UNLOCK_KEY = "eyeKnowChemistryUnlocked";
+
+/*
+初級クイズで80%以上正解すると、
+中級と上級が解放されます。
+
+解放状態はlocalStorageに保存されるため、
+ブラウザを閉じても維持されます。
+*/
+
+function isChemistryUnlocked() {
+
+    return localStorage.getItem(QUIZ_UNLOCK_KEY) === "true";
+
+}
+
+
+/* =================================================
+   クイズカテゴリー選択
+================================================= */
+
+function selectCategory(category) {
+
+    if (category === "環境") {
+
+        showEnvironmentMenu();
+
+    } else if (category === "化学") {
+
+        showChemistryMenu();
+
+    }
+
+}
+
+
+/* =================================================
+   環境クイズのテーマ選択画面
+================================================= */
+
+function showEnvironmentMenu() {
+
+    currentCategory = "環境";
+
+    document.getElementById("quizCategory").style.display = "none";
+
+    document.getElementById("difficulty-screen").style.display = "none";
+
+    document.getElementById("quizQuestionArea").style.display = "none";
+
+    document.getElementById("environmentMenu").style.display = "block";
+
+}
+
+
+/* =================================================
+   化学クイズの難易度ボタン更新
+================================================= */
+
+function updateDifficultyButtons() {
+
+    const unlocked = isChemistryUnlocked();
+
+    const intermediateButton =
+        document.getElementById("intermediate-btn");
+
+    const advancedButton =
+        document.getElementById("advanced-btn");
+
+    if (!intermediateButton || !advancedButton) {
+        return;
+    }
+
+    intermediateButton.disabled = !unlocked;
+
+    advancedButton.disabled = !unlocked;
+
+    intermediateButton.textContent =
+        unlocked ? "🧪 中級" : "🔒 中級";
+
+    advancedButton.textContent =
+        unlocked ? "🧪 上級" : "🔒 上級";
+
+}
+
+
+/* =================================================
+   化学クイズの難易度選択画面
+================================================= */
+
+function showChemistryMenu() {
+
+    currentCategory = "化学";
+
+    document.getElementById("quizCategory").style.display = "none";
+
+    document.getElementById("environmentMenu").style.display = "none";
+
+    document.getElementById("quizQuestionArea").style.display = "none";
+
+    document.getElementById("difficulty-screen").style.display = "block";
+
+    updateDifficultyButtons();
+
+}
+
+
+/* =================================================
+   クイズカテゴリー選択へ戻る
+================================================= */
+
+function backToQuizCategory() {
+
+    document.getElementById("quizCategory").style.display = "block";
+
+    document.getElementById("difficulty-screen").style.display = "none";
+
+    document.getElementById("environmentMenu").style.display = "none";
+
+    document.getElementById("quizQuestionArea").style.display = "none";
+
+    currentCategory = "";
+
+    currentDifficulty = "";
+
+    currentChemistryField = "";
+
+    currentQuestions = [];
+
+    currentQuestionIndex = 0;
+
+    quizScore = 0;
+
+    answerSelected = false;
+
+}
+
+
+/* =================================================
+   クイズの開始準備
+================================================= */
+
+/*
+この関数は化学クイズ・環境クイズの両方で
+共通して使用します。
+
+問題データは次のコード⑤以降で追加します。
+*/
+
+function prepareQuiz(questions, fieldName) {
+
+    if (!Array.isArray(questions) || questions.length === 0) {
+
+        alert("この分野にはまだ問題が登録されていません。");
+
+        return false;
+
+    }
+
+    currentQuestions = [...questions];
+
+    currentQuestionIndex = 0;
+
+    quizScore = 0;
+
+    answerSelected = false;
+
+    document.getElementById("quizCategory").style.display = "none";
+
+    document.getElementById("difficulty-screen").style.display = "none";
+
+    document.getElementById("environmentMenu").style.display = "none";
+
+    document.getElementById("quizQuestionArea").style.display = "block";
+
+    document.getElementById("quizField").textContent = fieldName;
+
+    document.getElementById("result").textContent = "";
+
+    document.getElementById("explanation").textContent = "";
+
+    document.getElementById("nextButton").style.display = "none";
+
+    return true;
+
+}
 /* ================================================
-   調べる機能
+   化学クイズ問題データ
+================================================ */
+
+const chemistryQuizData = {
+
+    /* =========================
+       初級
+    ========================= */
+
+    "初級": [
+
+        {
+            question:
+                "二酸化炭素の化学式はどれですか？",
+
+            choices: [
+                "CO",
+                "CO₂",
+                "O₂",
+                "H₂"
+            ],
+
+            answer: 1,
+
+            explanation:
+                "二酸化炭素の化学式はCO₂です。一方、COは一酸化炭素であり、不完全燃焼などによって発生する有毒な気体です。"
+        },
+
+        {
+            question:
+                "次の光合成の化学反応式で、植物が大気中から吸収する物質はどれですか？\n6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂",
+
+            choices: [
+                "酸素（O₂）",
+                "二酸化炭素（CO₂）",
+                "窒素（N₂）",
+                "メタン（CH₄）"
+            ],
+
+            answer: 1,
+
+            explanation:
+                "森林の樹木は、光合成によって大気中の二酸化炭素（CO₂）を吸収し、有機物をつくります。森林は炭素を蓄える重要な役割を担っています。しかし、森林伐採によって森林が減少すると、二酸化炭素を吸収・蓄積する能力が低下し、蓄えられた炭素が大気中に放出されることもあります。そのため、森林の保全は地球温暖化の抑制や生物多様性の保護につながります。"
+        },
+
+        {
+            question:
+                "メタンの化学式はどれですか？",
+
+            choices: [
+                "CH₄",
+                "CO₂",
+                "C₂H₅OH",
+                "H₂O"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "メタンは温室効果ガスの一つで、炭素原子1個と水素原子4個からなる化合物です。"
+        },
+
+        {
+            question:
+                "エタノールの化学式はどれですか？",
+
+            choices: [
+                "CH₄",
+                "C₂H₅OH",
+                "CO",
+                "NH₃"
+            ],
+
+            answer: 1,
+
+            explanation:
+                "エタノールはアルコールの一種で、化学式はC₂H₅OHです。燃料として燃焼すると二酸化炭素と水が発生します。"
+        },
+
+        {
+            question:
+                "二酸化硫黄の化学式はどれですか？",
+
+            choices: [
+                "SO₂",
+                "CO₂",
+                "NO₂",
+                "H₂O"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "二酸化硫黄はSO₂で表され、酸性雨の原因物質の一つです。"
+        },
+
+        {
+            question:
+                "アンモニアの化学式はどれですか？",
+
+            choices: [
+                "NH₃",
+                "NO₂",
+                "N₂",
+                "HNO₃"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "アンモニアは窒素原子1個と水素原子3個からなる化合物です。"
+        },
+
+        {
+            question:
+                "鉄がさびる現象は主に何に該当しますか？",
+
+            choices: [
+                "酸化",
+                "中和",
+                "蒸発",
+                "凝縮"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "鉄が酸素などと反応して酸化されることが、さびの生成に関係しています。"
+        }
+
+    ],
+
+
+    /* =========================
+       中級
+    ========================= */
+
+    "中級": [
+
+        {
+            question:
+                "炭素が酸素中で完全燃焼すると、主に何が生成しますか？",
+
+            choices: [
+                "二酸化炭素",
+                "窒素",
+                "アンモニア",
+                "塩酸"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "炭素が完全燃焼すると、二酸化炭素が生成します。"
+        },
+
+        {
+            question:
+                "燃焼に必要な三要素に含まれないものはどれですか？",
+
+            choices: [
+                "可燃物",
+                "酸素供給源",
+                "熱",
+                "塩分"
+            ],
+
+            answer: 3,
+
+            explanation:
+                "燃焼には一般に可燃物、酸素供給源、熱が必要です。"
+        },
+
+        {
+            question:
+                "pHが7より小さい水溶液は、一般的に何性ですか？",
+
+            choices: [
+                "酸性",
+                "中性",
+                "塩基性",
+                "必ず無色"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "25℃では、一般にpHが7より小さい水溶液は酸性を示します。"
+        },
+
+        {
+            question:
+                "水銀について正しい説明はどれですか？",
+
+            choices: [
+                "常温で液体の金属である",
+                "常温で気体の金属である",
+                "人体に影響を与えることはない",
+                "水銀は非金属元素である"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "水銀（Hg）は常温で液体の金属です。水銀やその化合物には有害なものがあり、特にメチル水銀は水俣病の原因となった物質として知られています。"
+        },
+
+        {
+            question:
+                "光化学反応を引き起こす要因として適切なものはどれですか？",
+
+            choices: [
+                "光の吸収",
+                "音の反射のみ",
+                "物質の色だけ",
+                "容器の重さだけ"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "光化学反応は、物質が光を吸収することによって開始される化学反応です。"
+        },
+
+        {
+            question:
+                "イオン化傾向の説明として正しいものはどれですか？",
+
+            choices: [
+                "金属が水に溶ける量を表す性質",
+                "金属が電子を失い、陽イオンになりやすい性質",
+                "金属が電子を受け取り、陰イオンになりやすい性質",
+                "金属が熱によって溶けやすい性質"
+            ],
+
+            answer: 1,
+
+            explanation:
+                "イオン化傾向とは、金属が電子を失って陽イオンになろうとする傾向のことです。イオン化傾向は金属の腐食や水質汚染と大きなかかわりを持ちます。"
+        },
+
+        {
+            question:
+                "オゾンを化学式で表したものはどれ？",
+
+            choices: [
+                "O",
+                "ZO₂",
+                "O₃",
+                "HO"
+            ],
+
+            answer: 2,
+
+            explanation:
+                "オゾン（O₃）は、3つの酸素原子が結びついた物質です。地上から約10〜50kmの成層圏にあるオゾン層は、太陽からの有害な紫外線の多くを吸収し、私たちの健康や生態系を守る重要な役割を果たしています。"
+        }
+
+    ],
+
+
+    /* =========================
+       上級
+    ========================= */
+
+    "上級": [
+
+        {
+            question:
+                "光化学オキシダントの主成分として知られる物質はどれですか？",
+
+            choices: [
+                "オゾン",
+                "窒素",
+                "アルゴン",
+                "水素"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "光化学オキシダントは、窒素酸化物や揮発性有機化合物が太陽光の作用を受けて生成される酸化性物質で、オゾンが主成分です。"
+        },
+
+        {
+            question:
+                "光化学スモッグの発生に関係するものはどれですか？",
+
+            choices: [
+                "窒素酸化物・揮発性有機化合物・太陽光",
+                "酸素だけ",
+                "水蒸気だけ",
+                "食塩だけ"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "窒素酸化物や揮発性有機化合物が太陽光の作用を受け、光化学オキシダントが生成されます。"
+        },
+
+        {
+            question:
+                "水素の酸化反応と酸素の還元反応を利用して発電する電池を何といいますか？",
+
+            choices: [
+                "水素電池",
+                "燃料電池",
+                "二次電池",
+                "蓄電電池"
+            ],
+
+            answer: 1,
+
+            explanation:
+                "燃料電池は、車にも利用され、温室効果ガス削減の期待を持たれている。"
+        },
+
+        {
+            question:
+                "次の金属のうち、最も酸化されやすいものはどれですか？",
+
+            choices: [
+                "鉄（Fe）",
+                "銅（Cu）",
+                "金（Au）",
+                "マグネシウム（Mg）"
+            ],
+
+            answer: 3,
+
+            explanation:
+                "金属の酸化されやすさは、一般にイオン化傾向によって比較できます。マグネシウム（Mg）は鉄（Fe）、銅（Cu）、金（Au）よりもイオン化傾向が大きく、電子を失って酸化されやすい金属です。"
+        },
+
+        {
+            question:
+                "銅や銅合金の表面に形成される、緑色のさびを何といいますか？",
+
+            choices: [
+                "赤さび",
+                "黒さび",
+                "緑青",
+                "白さび"
+            ],
+
+            answer: 2,
+
+            explanation:
+                "緑青（ろくしょう）は、銅や銅合金の表面に形成される緑色の腐食生成物です。銅が空気中の酸素や水分、二酸化炭素などと反応することで生じ、主に塩基性炭酸銅などの化合物から構成されます。緑青の層は、内部の銅をさらなる腐食から保護する働きもあります。"
+        },
+
+        {
+            question:
+                "アンモニアの気体の特徴として正しいものはどれ？",
+
+            choices: [
+                "刺激臭がある。",
+                "腐った卵のようなにおいがする。",
+                "火に近づけると必ず激しく燃える。",
+                "酸素が含まれている。"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "アンモニア（NH₃）は、鼻をツンと刺激する強いにおいを持つ無色の気体です。腐った卵のようなにおいは、硫化水素（H₂S）の特徴です。また、アンモニアは家畜の排せつ物や肥料などから発生し、悪臭問題やPM2.5の生成にも関係しています。"
+        },
+
+        {
+            question:
+                "二酸化窒素NO₂の説明として正しいのはどれか？",
+
+            choices: [
+                "水に溶けにくい。",
+                "無臭である。",
+                "黄褐色である。",
+                "有毒である。"
+            ],
+
+            answer: 3,
+
+            explanation:
+                "二酸化窒素（NO₂）は、刺激臭を持つ赤褐色の有毒な気体です。自動車の排気ガスや燃料の燃焼などによって発生する窒素酸化物（NOₓ）の一種で、大気汚染の原因となります。また、光化学オキシダントや酸性雨の生成にも関係しており、高濃度では呼吸器に悪影響を及ぼします。"
+        }
+
+    ]
+
+};
+/* ================================================
+   環境クイズ問題データ
+================================================ */
+
+const environmentQuizData = {
+
+    /* =========================
+       地球温暖化
+    ========================= */
+
+    "地球温暖化": [
+
+        {
+            question:
+                "地球温暖化の主な原因として考えられているものはどれですか？",
+
+            choices: [
+                "温室効果ガスの増加",
+                "地球の自転の停止",
+                "海水の消失",
+                "月の重力の増加"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "人間活動によって二酸化炭素などの温室効果ガスが増加し、地球の平均気温が上昇しています。"
+        },
+
+        {
+            question:
+                "次のうち、温室効果ガスに該当するものはどれですか？",
+
+            choices: [
+                "アルゴン",
+                "二酸化炭素",
+                "ヘリウム",
+                "ネオン"
+            ],
+
+            answer: 1,
+
+            explanation:
+                "二酸化炭素（CO₂）は代表的な温室効果ガスです。化石燃料の燃焼などによって大気中の濃度が増加しています。"
+        },
+
+        {
+            question:
+                "地球温暖化の対策として適切なものはどれですか？",
+
+            choices: [
+                "化石燃料の消費を増やす",
+                "森林をすべて伐採する",
+                "省エネルギーを進める",
+                "電力を無駄に使用する"
+            ],
+
+            answer: 2,
+
+            explanation:
+                "省エネルギーや再生可能エネルギーの利用は、温室効果ガスの排出削減につながります。"
+        }
+
+    ],
+
+
+    /* =========================
+       大気汚染
+    ========================= */
+
+    "大気汚染": [
+
+        {
+            question:
+                "PM2.5とは何を指しますか？",
+
+            choices: [
+                "粒径が2.5mm以下の粒子",
+                "粒径が2.5μm以下の微小粒子",
+                "酸素の一種",
+                "水に含まれる細菌"
+            ],
+
+            answer: 1,
+
+            explanation:
+                "PM2.5は、大気中に浮遊する粒径2.5μm以下の微小粒子状物質です。呼吸器や循環器への健康影響が懸念されています。"
+        },
+
+        {
+            question:
+                "光化学スモッグの発生に関係するものはどれですか？",
+
+            choices: [
+                "窒素酸化物と揮発性有機化合物",
+                "水と食塩",
+                "窒素だけ",
+                "酸素だけ"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "窒素酸化物や揮発性有機化合物が太陽光の作用を受けることで、光化学オキシダントが生成されます。"
+        },
+
+        {
+            question:
+                "酸性雨の原因物質として適切なものはどれですか？",
+
+            choices: [
+                "ヘリウム",
+                "アルゴン",
+                "二酸化硫黄",
+                "水素"
+            ],
+
+            answer: 2,
+
+            explanation:
+                "二酸化硫黄（SO₂）や窒素酸化物（NOₓ）は、大気中で反応して酸性雨の原因となります。"
+        }
+
+    ],
+
+
+    /* =========================
+       水質汚染
+    ========================= */
+
+    "水質汚染": [
+
+        {
+            question:
+                "水俣病の原因となった物質はどれですか？",
+
+            choices: [
+                "メチル水銀",
+                "二酸化炭素",
+                "酸素",
+                "窒素"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "水俣病は、工場排水に由来するメチル水銀が魚介類に蓄積し、それを食べた人々に健康被害をもたらした公害病です。"
+        },
+
+        {
+            question:
+                "河川や湖沼の富栄養化に関係する栄養塩類はどれですか？",
+
+            choices: [
+                "窒素とリン",
+                "ヘリウムとネオン",
+                "金と銀",
+                "酸素とアルゴン"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "窒素やリンが水域に過剰に流入すると、植物プランクトンが増殖し、富栄養化が進むことがあります。"
+        },
+
+        {
+            question:
+                "水質汚濁の指標であるBODは何を表しますか？",
+
+            choices: [
+                "水の温度",
+                "生物化学的酸素要求量",
+                "水の透明度",
+                "水の塩分濃度"
+            ],
+
+            answer: 1,
+
+            explanation:
+                "BODは、生物化学的酸素要求量を表します。水中の有機物が微生物によって分解される際に必要となる酸素量を示す指標です。"
+        }
+
+    ],
+
+
+    /* =========================
+       人口と食料
+    ========================= */
+
+    "人口と食料": [
+
+        {
+            question:
+                "食品ロスとは何ですか？",
+
+            choices: [
+                "まだ食べられるのに捨てられる食品",
+                "食べ終わった食品",
+                "収穫されたすべての農作物",
+                "食品の栄養価"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "食品ロスとは、本来食べられるにもかかわらず廃棄される食品のことです。"
+        },
+
+        {
+            question:
+                "持続可能な農業の取り組みとして適切なものはどれですか？",
+
+            choices: [
+                "土壌を無制限に利用する",
+                "水資源を浪費する",
+                "土壌や水資源を適切に管理する",
+                "農地周辺の生態系を必ず破壊する"
+            ],
+
+            answer: 2,
+
+            explanation:
+                "持続可能な農業では、土壌や水資源、生物多様性を保全しながら食料を生産することが重要です。"
+        },
+
+        {
+            question:
+                "世界の食料問題に関係する要因はどれですか？",
+
+            choices: [
+                "気候変動",
+                "人口増加",
+                "紛争",
+                "すべて"
+            ],
+
+            answer: 3,
+
+            explanation:
+                "気候変動、人口増加、紛争などは、食料の生産・供給・入手に影響を与える要因です。"
+        }
+
+    ],
+
+
+    /* =========================
+       公害の歴史
+    ========================= */
+
+    "公害の歴史": [
+
+        {
+            question:
+                "四日市ぜんそくに関係した主な大気汚染物質はどれですか？",
+
+            choices: [
+                "二酸化硫黄",
+                "ヘリウム",
+                "水素",
+                "ネオン"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "四日市ぜんそくは、工場などから排出された二酸化硫黄を中心とする大気汚染によって、多くの住民に呼吸器疾患が発生した公害問題です。"
+        },
+
+        {
+            question:
+                "イタイイタイ病の原因物質はどれですか？",
+
+            choices: [
+                "水銀",
+                "カドミウム",
+                "二酸化炭素",
+                "メタン"
+            ],
+
+            answer: 1,
+
+            explanation:
+                "イタイイタイ病は、カドミウムによる環境汚染が原因となった公害病です。"
+        },
+
+        {
+            question:
+                "新潟水俣病の原因となった物質はどれですか？",
+
+            choices: [
+                "メチル水銀",
+                "鉛",
+                "二酸化硫黄",
+                "アンモニア"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "新潟水俣病は、阿賀野川流域で発生したメチル水銀による公害病です。"
+        }
+
+    ],
+
+
+    /* =========================
+       都市化
+    ========================= */
+
+    "都市化": [
+
+        {
+            question:
+                "ヒートアイランド現象とは何ですか？",
+
+            choices: [
+                "都市部の気温が周辺地域より高くなる現象",
+                "海水温が必ず低下する現象",
+                "森林の気温が常に上昇する現象",
+                "地球の自転が速くなる現象"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "ヒートアイランド現象は、人工排熱の増加や地表面の人工化、緑地の減少などによって、都市部の気温が周辺地域より高くなる現象です。"
+        },
+
+        {
+            question:
+                "都市の暑さ対策として適切なものはどれですか？",
+
+            choices: [
+                "緑地を減らす",
+                "建物からの排熱を増やす",
+                "緑化を進める",
+                "アスファルト舗装を無制限に増やす"
+            ],
+
+            answer: 2,
+
+            explanation:
+                "都市緑化は、日射の遮蔽や蒸発散による冷却効果を通じて、都市の暑さの緩和に役立ちます。"
+        },
+
+        {
+            question:
+                "都市部で雨水が地中に浸透しにくくなる主な理由はどれですか？",
+
+            choices: [
+                "舗装面の増加",
+                "森林の増加",
+                "土壌の保全",
+                "透水性舗装の普及"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "アスファルトやコンクリートなどの不透水面が増えると、雨水が地中に浸透しにくくなり、地表を流れる水が増加します。"
+        }
+
+    ],
+
+
+    /* =========================
+       その他の環境問題
+    ========================= */
+
+    "その他の環境問題": [
+
+        {
+            question:
+                "森林減少によって生じる問題として適切なものはどれですか？",
+
+            choices: [
+                "生物多様性の損失",
+                "土壌流出の増加",
+                "炭素貯蔵量の減少",
+                "すべて"
+            ],
+
+            answer: 3,
+
+            explanation:
+                "森林の減少は、生物多様性の損失や土壌流出、炭素貯蔵量の減少など、さまざまな環境問題につながります。"
+        },
+
+        {
+            question:
+                "マイクロプラスチックとは、一般にどのようなものですか？",
+
+            choices: [
+                "5mm以下の小さなプラスチック片",
+                "必ず目に見えない気体",
+                "自然界に存在する金属",
+                "水に溶けた酸素"
+            ],
+
+            answer: 0,
+
+            explanation:
+                "マイクロプラスチックは、一般に大きさが5mm以下のプラスチック粒子を指します。海洋や河川などへの流出が問題になっています。"
+        },
+
+        {
+            question:
+                "生物多様性の保全に役立つ取り組みはどれですか？",
+
+            choices: [
+                "生息地を破壊する",
+                "外来種を無制限に放出する",
+                "自然環境や生息地を保護する",
+                "絶滅危惧種を無視する"
+            ],
+
+            answer: 2,
+
+            explanation:
+                "生物多様性を守るには、生物の生息地を保全し、生態系への負荷を減らすことが重要です。"
+        }
+
+    ]
+
+};
+/* ================================================
+   化学クイズ開始
+================================================ */
+
+function startChemistryLevelQuiz(level) {
+
+    if (
+        level !== "初級" &&
+        !isChemistryUnlocked()
+    ) {
+        alert("初級クイズで80%以上正解すると解放されます。");
+        return;
+    }
+
+    const questions = chemistryQuizData[level];
+
+    if (!questions) {
+        alert("問題データが見つかりません。");
+        return;
+    }
+
+    currentCategory = "化学";
+    currentDifficulty = level;
+    currentChemistryField = level;
+
+    if (prepareQuiz(questions, "🧪 化学クイズ：" + level)) {
+        showQuestion();
+    }
+
+}
+
+
+/* ================================================
+   環境クイズ開始
+================================================ */
+
+function startEnvironmentQuiz(theme) {
+
+    const questions = environmentQuizData[theme];
+
+    if (!questions) {
+        alert("このテーマの問題が見つかりません。");
+        return;
+    }
+
+    currentCategory = "環境";
+    currentDifficulty = "";
+    currentChemistryField = "";
+
+    if (prepareQuiz(questions, "🌱 環境クイズ：" + theme)) {
+        showQuestion();
+    }
+
+}
+
+
+/* ================================================
+   問題を表示
+================================================ */
+
+function showQuestion() {
+
+    const questionArea =
+        document.getElementById("question");
+
+    const answersArea =
+        document.getElementById("answers");
+
+    const resultArea =
+        document.getElementById("result");
+
+    const explanationArea =
+        document.getElementById("explanation");
+
+    const nextButton =
+        document.getElementById("nextButton");
+
+    if (currentQuestionIndex >= currentQuestions.length) {
+        showQuizResult();
+        return;
+    }
+
+    const quiz = currentQuestions[currentQuestionIndex];
+
+    answerSelected = false;
+
+    questionArea.textContent =
+        "第" + (currentQuestionIndex + 1) + "問 / " +
+        currentQuestions.length + "問\n\n" +
+        quiz.question;
+
+    questionArea.style.whiteSpace = "pre-line";
+
+    answersArea.innerHTML = "";
+
+    resultArea.textContent = "";
+
+    explanationArea.textContent = "";
+
+    nextButton.style.display = "none";
+
+    quiz.choices.forEach((choice, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "answer-button";
+
+        button.textContent = choice;
+
+        button.onclick = function () {
+            checkAnswer(index);
+        };
+
+        answersArea.appendChild(button);
+
+    });
+
+}
+
+
+/* ================================================
+   正誤判定
+================================================ */
+
+function checkAnswer(selectedIndex) {
+
+    if (answerSelected) {
+        return;
+    }
+
+    answerSelected = true;
+
+    const quiz = currentQuestions[currentQuestionIndex];
+
+    const resultArea =
+        document.getElementById("result");
+
+    const explanationArea =
+        document.getElementById("explanation");
+
+    const nextButton =
+        document.getElementById("nextButton");
+
+    const answerButtons =
+        document.querySelectorAll("#answers .answer-button");
+
+    const correctIndex = quiz.answer;
+
+    const isCorrect = selectedIndex === correctIndex;
+
+    if (isCorrect) {
+
+        quizScore++;
+
+        resultArea.textContent = "⭕ 正解です！";
+
+        resultArea.style.color = "#2e7d32";
+
+    } else {
+
+        resultArea.textContent =
+            "❌ 不正解です。正解は「" +
+            quiz.choices[correctIndex] + "」です。";
+
+        resultArea.style.color = "#c62828";
+
+    }
+
+    /* 回答後に選択肢を無効化 */
+
+    answerButtons.forEach((button, index) => {
+
+        button.disabled = true;
+
+        if (index === correctIndex) {
+
+            button.style.background = "#a5d6a7";
+
+            button.style.color = "#1b5e20";
+
+        } else if (index === selectedIndex && !isCorrect) {
+
+            button.style.background = "#ef9a9a";
+
+            button.style.color = "#7f0000";
+
+        }
+
+    });
+
+    /* 解説表示 */
+
+    explanationArea.textContent =
+        "📖 解説\n" + quiz.explanation;
+
+    explanationArea.style.whiteSpace = "pre-line";
+
+    explanationArea.style.marginTop = "15px";
+
+    explanationArea.style.padding = "15px";
+
+    explanationArea.style.background = "#f5f5f5";
+
+    explanationArea.style.borderRadius = "10px";
+
+    /* 次の問題ボタン */
+
+    nextButton.style.display = "inline-block";
+
+    if (currentQuestionIndex === currentQuestions.length - 1) {
+
+        nextButton.textContent = "結果を見る";
+
+    } else {
+
+        nextButton.textContent = "次の問題へ";
+
+    }
+
+}
+
+
+/* ================================================
+   次の問題へ
+================================================ */
+
+function nextQuestion() {
+
+    if (!answerSelected) {
+        alert("先に問題に回答してください。");
+        return;
+    }
+
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < currentQuestions.length) {
+
+        showQuestion();
+
+    } else {
+
+        showQuizResult();
+
+    }
+
+}
+
+
+/* ================================================
+   クイズ結果表示
+================================================ */
+
+function showQuizResult() {
+
+    const questionArea =
+        document.getElementById("question");
+
+    const answersArea =
+        document.getElementById("answers");
+
+    const resultArea =
+        document.getElementById("result");
+
+    const explanationArea =
+        document.getElementById("explanation");
+
+    const nextButton =
+        document.getElementById("nextButton");
+
+    const total = currentQuestions.length;
+
+    const percentage =
+        Math.round((quizScore / total) * 100);
+
+    questionArea.textContent = "🎉 クイズ終了！";
+
+    answersArea.innerHTML = "";
+
+    resultArea.style.color = "#333";
+
+    resultArea.textContent =
+        "正解数：" + quizScore + " / " + total + "問\n" +
+        "正答率：" + percentage + "%";
+
+    resultArea.style.whiteSpace = "pre-line";
+
+    nextButton.style.display = "none";
+
+    let message = "";
+
+    if (percentage === 100) {
+
+        message = "🌟 全問正解！素晴らしいです！";
+
+    } else if (percentage >= 80) {
+
+        message = "👏 よくできました！";
+
+    } else if (percentage >= 60) {
+
+        message = "😊 あと少しです！";
+
+    } else {
+
+        message = "📚 解説を復習して再挑戦しましょう！";
+
+    }
+
+    /* 初級80%以上で中級・上級を解放 */
+
+    if (
+        currentCategory === "化学" &&
+        currentDifficulty === "初級" &&
+        percentage >= 80
+    ) {
+
+        localStorage.setItem(
+            QUIZ_UNLOCK_KEY,
+            "true"
+        );
+
+        message +=
+            "\n\n🔓 中級・上級クイズが解放されました！";
+
+        updateDifficultyButtons();
+
+    }
+
+    explanationArea.textContent = message;
+
+    explanationArea.style.whiteSpace = "pre-line";
+
+    /* 環境学習度への反映 */
+
+    if (currentCategory === "化学") {
+
+        addLearningScore("chemistry", percentage);
+
+    } else if (currentCategory === "環境") {
+
+        addLearningScore("environment", percentage);
+
+    }
+
+    /* 再挑戦ボタン */
+
+    const retryButton = document.createElement("button");
+
+    retryButton.className = "answer-button";
+
+    retryButton.textContent = "🔄 もう一度挑戦する";
+
+    retryButton.onclick = function () {
+
+        if (currentCategory === "化学") {
+
+            startChemistryLevelQuiz(currentDifficulty);
+
+        } else {
+
+            const field =
+                document.getElementById("quizField").textContent;
+
+            const theme = field.replace("🌱 環境クイズ：", "");
+
+            startEnvironmentQuiz(theme);
+
+        }
+
+    };
+
+    answersArea.appendChild(retryButton);
+
+}
+/* ================================================
+   環境学習度の管理
+================================================ */
+
+const LEARNING_STORAGE_KEY = "eyeKnowLearningData";
+
+/* 学習度の初期値 */
+
+const defaultLearningData = {
+    environment: 0,
+    chemistry: 0,
+    relation: 0,
+    map: 0,
+    interest: 0
+};
+
+/* ================================================
+   保存済み学習データを読み込む
+================================================ */
+
+function loadLearningData() {
+
+    try {
+
+        const savedData = localStorage.getItem(
+            LEARNING_STORAGE_KEY
+        );
+
+        if (savedData) {
+
+            const parsedData = JSON.parse(savedData);
+
+            return {
+                ...defaultLearningData,
+                ...parsedData
+            };
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "学習データの読み込みに失敗しました:",
+            error
+        );
+
+    }
+
+    return { ...defaultLearningData };
+
+}
+
+/* 学習データ */
+
+let learningData = loadLearningData();
+
+
+/* ================================================
+   学習データを保存
+================================================ */
+
+function saveLearningData() {
+
+    try {
+
+        localStorage.setItem(
+            LEARNING_STORAGE_KEY,
+            JSON.stringify(learningData)
+        );
+
+    } catch (error) {
+
+        console.error(
+            "学習データの保存に失敗しました:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ================================================
+   数値を0～100に調整
+================================================ */
+
+function limitScore(value) {
+
+    const number = Number(value);
+
+    if (!Number.isFinite(number)) {
+        return 0;
+    }
+
+    return Math.max(
+        0,
+        Math.min(100, Math.round(number))
+    );
+
+}
+
+
+/* ================================================
+   学習度を加算
 ================================================ */
 
 /*
-環境問題と化学の関係について
-キーワード検索できるようにします。
+使い方：
+
+addLearningScore("environment", 80);
+
+環境知識に加点します。
+
+クイズの場合は正答率を受け取り、
+正答率の20%を加算します。
+
+例：
+正答率80% → 16ポイント加算
+
+※これはアプリ内の独自指標です。
 */
+
+function addLearningScore(category, score) {
+
+    if (!Object.prototype.hasOwnProperty.call(
+        learningData,
+        category
+    )) {
+
+        console.warn(
+            "存在しない学習カテゴリー:",
+            category
+        );
+
+        return;
+
+    }
+
+    const points = Math.round(
+        limitScore(score) * 0.2
+    );
+
+    learningData[category] = limitScore(
+        learningData[category] + points
+    );
+
+    /* クイズで学習した場合、関連理解にも加点 */
+
+    if (
+        category === "environment" ||
+        category === "chemistry"
+    ) {
+
+        learningData.relation = limitScore(
+            learningData.relation + Math.round(points * 0.25)
+        );
+
+    }
+
+    saveLearningData();
+
+    updateLearningDisplay();
+
+}
+
+
+/* ================================================
+   周期表の学習を記録
+================================================ */
+
+/*
+周期表で元素をクリックした際に使用します。
+
+同じ元素を何度クリックしても、
+学習度が無制限に増えないように、
+学習済み元素を記録します。
+*/
+
+const PERIODIC_LEARNED_KEY = "eyeKnowLearnedElements";
+
+function loadLearnedElements() {
+
+    try {
+
+        const saved = localStorage.getItem(
+            PERIODIC_LEARNED_KEY
+        );
+
+        const data = saved ? JSON.parse(saved) : [];
+
+        return Array.isArray(data) ? data : [];
+
+    } catch (error) {
+
+        return [];
+
+    }
+
+}
+
+let learnedElements = loadLearnedElements();
+
+
+function recordElementLearning(atomicNumber) {
+
+    const number = Number(atomicNumber);
+
+    if (!Number.isInteger(number) || number < 1) {
+        return;
+    }
+
+    if (learnedElements.includes(number)) {
+        return;
+    }
+
+    learnedElements.push(number);
+
+    try {
+
+        localStorage.setItem(
+            PERIODIC_LEARNED_KEY,
+            JSON.stringify(learnedElements)
+        );
+
+    } catch (error) {
+
+        console.error(
+            "元素の学習履歴を保存できませんでした:",
+            error
+        );
+
+    }
+
+    /*
+    周期表の学習度を計算。
+
+    今回の周期表は原子番号1～20を対象とするため、
+    1元素につき5ポイントです。
+    */
+
+    learningData.map = limitScore(
+        learnedElements.filter(
+            number => number >= 1 && number <= 20
+        ).length * 5
+    );
+
+    /* 化学と環境の関連理解にも少し加点 */
+
+    learningData.relation = limitScore(
+        learningData.relation + 1
+    );
+
+    saveLearningData();
+
+    updateLearningDisplay();
+
+}
+
+
+/* ================================================
+   調べる機能の利用を記録
+================================================ */
+
+function recordConsultLearning() {
+
+    learningData.interest = limitScore(
+        learningData.interest + 5
+    );
+
+    saveLearningData();
+
+    updateLearningDisplay();
+
+}
+
+
+/* ================================================
+   総合環境学習度の計算
+================================================ */
+
+function calculateTotalLearning() {
+
+    const values = Object.values(learningData);
+
+    const total = values.reduce(
+        (sum, value) => sum + limitScore(value),
+        0
+    );
+
+    return Math.round(
+        total / values.length
+    );
+
+}
+
+
+/* ================================================
+   学習度に応じたメッセージ
+================================================ */
+
+function getLearningMessage(total) {
+
+    if (total >= 90) {
+
+        return "🌟 素晴らしい！環境と化学について幅広く学習しています！";
+
+    } else if (total >= 70) {
+
+        return "👏 順調に学習が進んでいます！";
+
+    } else if (total >= 50) {
+
+        return "🌱 環境への理解が深まっています！";
+
+    } else if (total >= 20) {
+
+        return "📚 この調子で学習を続けましょう！";
+
+    } else {
+
+        return "🌿 クイズや周期表マップから学習を始めましょう！";
+
+    }
+
+}
+
+
+/* ================================================
+   学習度の表示更新
+================================================ */
+
+function updateLearningDisplay() {
+
+    const categories = [
+        "environment",
+        "chemistry",
+        "relation",
+        "map",
+        "interest"
+    ];
+
+    categories.forEach(category => {
+
+        const value = limitScore(
+            learningData[category]
+        );
+
+        const bar = document.getElementById(
+            category + "Bar"
+        );
+
+        const valueText = document.getElementById(
+            category + "Value"
+        );
+
+        if (bar) {
+            bar.style.width = value + "%";
+        }
+
+        if (valueText) {
+            valueText.textContent = value;
+        }
+
+    });
+
+    const total = calculateTotalLearning();
+
+    const totalElement =
+        document.getElementById("totalLearning");
+
+    const messageElement =
+        document.getElementById("learningMessage");
+
+    if (totalElement) {
+
+        totalElement.textContent =
+            total + " / 100";
+
+    }
+
+    if (messageElement) {
+
+        messageElement.textContent =
+            getLearningMessage(total);
+
+    }
+
+}
+
+
+/* ================================================
+   環境学習度画面を表示
+================================================ */
+
+function showLearningLevel() {
+
+    updateLearningDisplay();
+
+    showScreen("learningScreen");
+
+}
+
+
+/* ================================================
+   ページ読み込み時に表示を更新
+================================================ */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        updateLearningDisplay();
+
+        updateDifficultyButtons();
+
+    }
+);
+/* ================================================
+   元素の周期表マップ
+================================================ */
+
+/*
+原子番号1～20の元素データ
+
+number   : 原子番号
+symbol   : 元素記号
+name     : 元素名
+period   : 周期
+group    : 族
+category : 元素の分類
+feature  : 元素の特徴
+environment : 環境問題との関係
+*/
+
+const periodicElements = [
+
+    {
+        number: 1,
+        symbol: "H",
+        name: "水素",
+        period: 1,
+        group: 1,
+        category: "非金属",
+        feature:
+            "最も軽い元素で、水やさまざまな化合物に含まれています。",
+        environment:
+            "水素は燃料電池などのエネルギー技術に利用されています。利用時に二酸化炭素を直接排出しない場合がありますが、製造方法によって環境負荷が異なります。"
+    },
+
+    {
+        number: 2,
+        symbol: "He",
+        name: "ヘリウム",
+        period: 1,
+        group: 18,
+        category: "希ガス",
+        feature:
+            "化学反応を起こしにくい、非常に軽い気体です。",
+        environment:
+            "医療機器や研究設備などで利用される貴重な資源です。限りある資源として効率的な利用や回収が重要です。"
+    },
+
+    {
+        number: 3,
+        symbol: "Li",
+        name: "リチウム",
+        period: 2,
+        group: 1,
+        category: "アルカリ金属",
+        feature:
+            "軽く、反応性の高い金属です。",
+        environment:
+            "リチウムイオン電池に利用されています。採掘時の環境負荷や使用済み電池のリサイクルが課題です。"
+    },
+
+    {
+        number: 4,
+        symbol: "Be",
+        name: "ベリリウム",
+        period: 2,
+        group: 2,
+        category: "アルカリ土類金属",
+        feature:
+            "軽量で硬く、特殊な合金などに利用される金属です。",
+        environment:
+            "ベリリウムを含む粉じんを吸入すると健康被害が生じる可能性があり、作業環境での適切な管理が必要です。"
+    },
+
+    {
+        number: 5,
+        symbol: "B",
+        name: "ホウ素",
+        period: 2,
+        group: 13,
+        category: "半金属",
+        feature:
+            "ガラスやセラミックスなどの材料に利用されます。",
+        environment:
+            "ホウ素化合物は産業排水などに含まれる場合があり、水環境への影響を考慮した管理が必要です。"
+    },
+
+    {
+        number: 6,
+        symbol: "C",
+        name: "炭素",
+        period: 2,
+        group: 14,
+        category: "非金属",
+        feature:
+            "生物の体を構成する有機物の基本となる元素です。",
+        environment:
+            "二酸化炭素やメタンなどの温室効果ガスに含まれ、地球温暖化や炭素循環と深く関係しています。"
+    },
+
+    {
+        number: 7,
+        symbol: "N",
+        name: "窒素",
+        period: 2,
+        group: 15,
+        category: "非金属",
+        feature:
+            "大気の約78%を占める元素です。",
+        environment:
+            "窒素酸化物は大気汚染や酸性雨、光化学オキシダントの生成に関係します。また、窒素化合物の過剰な流入は水域の富栄養化につながります。"
+    },
+
+    {
+        number: 8,
+        symbol: "O",
+        name: "酸素",
+        period: 2,
+        group: 16,
+        category: "非金属",
+        feature:
+            "呼吸や燃焼などに関係する元素です。",
+        environment:
+            "水中の溶存酸素は水生生物の生存に重要です。また、酸素原子3個からなるオゾンは、大気環境と深く関係しています。"
+    },
+
+    {
+        number: 9,
+        symbol: "F",
+        name: "フッ素",
+        period: 2,
+        group: 17,
+        category: "ハロゲン",
+        feature:
+            "反応性が非常に高い元素です。",
+        environment:
+            "フッ素化合物には産業用途の広いものがあります。一部の有機フッ素化合物は環境中で分解されにくく、環境汚染が問題になっています。"
+    },
+
+    {
+        number: 10,
+        symbol: "Ne",
+        name: "ネオン",
+        period: 2,
+        group: 18,
+        category: "希ガス",
+        feature:
+            "化学反応を起こしにくい希ガスです。",
+        environment:
+            "照明や半導体製造などで利用されています。資源や製造工程に伴うエネルギー消費も環境負荷を考えるうえで重要です。"
+    },
+
+    {
+        number: 11,
+        symbol: "Na",
+        name: "ナトリウム",
+        period: 3,
+        group: 1,
+        category: "アルカリ金属",
+        feature:
+            "反応性が高く、食塩などの化合物に含まれる元素です。",
+        environment:
+            "ナトリウムイオン電池などの研究開発が進められています。また、塩分濃度の変化は水や土壌の環境に影響を与えます。"
+    },
+
+    {
+        number: 12,
+        symbol: "Mg",
+        name: "マグネシウム",
+        period: 3,
+        group: 2,
+        category: "アルカリ土類金属",
+        feature:
+            "軽量な金属で、生物にも必要な元素です。",
+        environment:
+            "軽量合金として自動車などに利用されます。車体の軽量化はエネルギー消費の削減に役立つ場合があります。"
+    },
+
+    {
+        number: 13,
+        symbol: "Al",
+        name: "アルミニウム",
+        period: 3,
+        group: 13,
+        category: "金属",
+        feature:
+            "軽く、加工しやすい金属です。",
+        environment:
+            "製造には多くの電力が必要ですが、リサイクルによって新たな製錬に必要なエネルギーを大幅に減らせます。"
+    },
+
+    {
+        number: 14,
+        symbol: "Si",
+        name: "ケイ素",
+        period: 3,
+        group: 14,
+        category: "半金属",
+        feature:
+            "半導体やガラスなどに利用される元素です。",
+        environment:
+            "太陽電池の主要な材料として利用され、再生可能エネルギーの普及に貢献しています。"
+    },
+
+    {
+        number: 15,
+        symbol: "P",
+        name: "リン",
+        period: 3,
+        group: 15,
+        category: "非金属",
+        feature:
+            "生物に必要な元素で、肥料などに利用されます。",
+        environment:
+            "リンが湖沼や河川に過剰に流入すると、富栄養化やアオコの発生などにつながります。"
+    },
+
+    {
+        number: 16,
+        symbol: "S",
+        name: "硫黄",
+        period: 3,
+        group: 16,
+        category: "非金属",
+        feature:
+            "さまざまな鉱物や生物の体に含まれる元素です。",
+        environment:
+            "化石燃料の燃焼などで発生する二酸化硫黄は、酸性雨や大気汚染の原因物質の一つです。"
+    },
+
+    {
+        number: 17,
+        symbol: "Cl",
+        name: "塩素",
+        period: 3,
+        group: 17,
+        category: "ハロゲン",
+        feature:
+            "反応性が高く、水の消毒などに利用される元素です。",
+        environment:
+            "水道水の消毒に重要ですが、消毒副生成物の管理も必要です。また、一部の塩素を含む化合物は環境汚染に関係します。"
+    },
+
+    {
+        number: 18,
+        symbol: "Ar",
+        name: "アルゴン",
+        period: 3,
+        group: 18,
+        category: "希ガス",
+        feature:
+            "化学反応を起こしにくい気体です。",
+        environment:
+            "溶接や断熱ガラスなどに利用されています。断熱ガラスは建物の省エネルギーに役立ちます。"
+    },
+
+    {
+        number: 19,
+        symbol: "K",
+        name: "カリウム",
+        period: 4,
+        group: 1,
+        category: "アルカリ金属",
+        feature:
+            "植物や人間に必要な元素です。",
+        environment:
+            "農業用肥料に利用されています。肥料を適切に使用することは、資源の有効利用や環境負荷の低減につながります。"
+    },
+
+    {
+        number: 20,
+        symbol: "Ca",
+        name: "カルシウム",
+        period: 4,
+        group: 2,
+        category: "アルカリ土類金属",
+        feature:
+            "骨や歯を構成する重要な元素です。",
+        environment:
+            "石灰石や炭酸カルシウムなどに含まれます。石灰は酸性化した土壌や水の中和などにも利用されています。"
+    }
+
+];
+
+
+/* ================================================
+   元素の分類ごとの色
+================================================ */
+
+const elementCategoryColors = {
+
+    "アルカリ金属": "#fecaca",
+    "アルカリ土類金属": "#fed7aa",
+    "金属": "#fde68a",
+    "半金属": "#d9f99d",
+    "非金属": "#bfdbfe",
+    "ハロゲン": "#ddd6fe",
+    "希ガス": "#fbcfe8"
+
+};
+
+
+/* ================================================
+   周期表を生成
+================================================ */
+
+function createPeriodicTable() {
+
+    const table = document.getElementById("periodicTable");
+
+    if (!table) {
+        console.error("周期表の表示領域が見つかりません。");
+        return;
+    }
+
+    table.innerHTML = "";
+
+    periodicElements.forEach(element => {
+
+        const button = document.createElement("button");
+
+        button.className = "element-button";
+
+        button.style.gridColumn = element.group;
+
+        button.style.gridRow = element.period;
+
+        button.style.background =
+            elementCategoryColors[element.category] || "#dbeafe";
+
+        button.title = element.name;
+
+        button.setAttribute(
+            "aria-label",
+            element.name + "、原子番号" + element.number
+        );
+
+        const numberSpan = document.createElement("span");
+        numberSpan.className = "number";
+        numberSpan.textContent = element.number;
+
+        const symbolSpan = document.createElement("span");
+        symbolSpan.className = "symbol";
+        symbolSpan.textContent = element.symbol;
+
+        button.appendChild(numberSpan);
+        button.appendChild(symbolSpan);
+
+        button.onclick = function () {
+            showElementInfo(element, button);
+        };
+
+        table.appendChild(button);
+
+    });
+
+}
+
+
+/* ================================================
+   元素の詳細情報を表示
+================================================ */
+
+function showElementInfo(element, selectedButton) {
+
+    const infoArea = document.getElementById("elementInfo");
+
+    if (!infoArea) {
+        return;
+    }
+
+    /* 選択中の元素を強調 */
+
+    document.querySelectorAll(".element-button").forEach(button => {
+        button.classList.remove("selected");
+    });
+
+    selectedButton.classList.add("selected");
+
+    /* 前回の表示内容を削除 */
+
+    infoArea.innerHTML = "";
+
+    const title = document.createElement("h3");
+
+    title.textContent =
+        element.symbol + "：" + element.name;
+
+    const numberText = document.createElement("p");
+
+    numberText.textContent =
+        "原子番号：" + element.number;
+
+    const categoryText = document.createElement("p");
+
+    categoryText.textContent =
+        "分類：" + element.category;
+
+    const featureTitle = document.createElement("h4");
+
+    featureTitle.textContent = "🔬 元素の特徴";
+
+    const featureText = document.createElement("p");
+
+    featureText.textContent = element.feature;
+
+    const environmentTitle = document.createElement("h4");
+
+    environmentTitle.textContent = "🌱 環境問題との関係";
+
+    const environmentText = document.createElement("p");
+
+    environmentText.textContent = element.environment;
+
+    infoArea.appendChild(title);
+    infoArea.appendChild(numberText);
+    infoArea.appendChild(categoryText);
+    infoArea.appendChild(featureTitle);
+    infoArea.appendChild(featureText);
+    infoArea.appendChild(environmentTitle);
+    infoArea.appendChild(environmentText);
+
+    /* 学習履歴に記録 */
+
+    recordElementLearning(element.number);
+
+}
+
+
+/* ================================================
+   ページ読み込み時に周期表を生成
+================================================ */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        createPeriodicTable();
+
+    }
+);
+
+/* ================================================
+   調べる機能：環境問題・化学・日常生活の対策
+================================================ */
 
 const consultData = [
 
@@ -15,19 +3131,22 @@ const consultData = [
             "温暖化",
             "気候変動",
             "二酸化炭素",
-            "温室効果ガス"
+            "CO2",
+            "CO₂",
+            "温室効果ガス",
+            "メタン"
         ],
 
         title: "地球温暖化",
 
         description:
-            "地球温暖化とは、温室効果ガスの増加などによって地球の平均気温が長期的に上昇する現象です。",
+            "地球温暖化とは、温室効果ガスの増加などによって、地球の平均気温が長期的に上昇する現象です。異常高温や大雨、海面水位の上昇など、さまざまな環境問題と関係しています。",
 
         chemistry:
-            "二酸化炭素（CO₂）やメタン（CH₄）などは、地表から放出される赤外線を吸収・放出する性質を持ち、地球の温室効果に関係しています。",
+            "二酸化炭素（CO₂）やメタン（CH₄）などの温室効果ガスは、地表から放出される赤外線を吸収・放出する性質があります。これらの気体が大気中で増加すると、地球から宇宙へ逃げる熱が減少し、地球温暖化につながります。",
 
         action:
-            "省エネルギーの推進、再生可能エネルギーの活用、森林保全などが重要です。"
+            "家庭での節電、冷暖房の適切な使用、公共交通機関の利用、食品ロスの削減などが挙げられます。また、長く使える製品を選ぶことも温室効果ガスの排出削減につながります。"
     },
 
     {
@@ -36,19 +3155,23 @@ const consultData = [
             "PM2.5",
             "排気ガス",
             "光化学スモッグ",
-            "光化学オキシダント"
+            "光化学オキシダント",
+            "窒素酸化物",
+            "NOx",
+            "VOC",
+            "揮発性有機化合物"
         ],
 
         title: "大気汚染",
 
         description:
-            "大気汚染とは、人間の活動などによって大気中に有害な物質が増加し、人の健康や環境に悪影響を及ぼす問題です。",
+            "大気汚染とは、人間の活動などによって大気中に有害な物質が増加し、人の健康や環境に悪影響を及ぼす問題です。主な原因には、自動車の排気ガスや工場からの排出物などがあります。",
 
         chemistry:
-            "窒素酸化物（NOₓ）や揮発性有機化合物（VOC）は、太陽光の作用によって光化学オキシダントを生成します。また、大気中の化学反応によってPM2.5が生成される場合もあります。",
+            "窒素酸化物（NOₓ）や揮発性有機化合物（VOC）は、太陽光の作用によって化学反応を起こし、光化学オキシダントを生成します。また、硫黄酸化物や窒素酸化物などが大気中で反応し、PM2.5の一部を生成する場合もあります。",
 
         action:
-            "工場や自動車からの排出削減、適切な排ガス処理、大気環境の監視などが重要です。"
+            "徒歩や自転車、公共交通機関を利用することで、自動車からの排出を減らすことができます。また、塗料やスプレーなどを適切に使用し、地域の大気汚染情報を確認することも大切です。"
     },
 
     {
@@ -58,19 +3181,20 @@ const consultData = [
             "河川汚染",
             "湖沼",
             "富栄養化",
-            "赤潮"
+            "赤潮",
+            "生活排水"
         ],
 
         title: "水質汚染",
 
         description:
-            "水質汚染とは、河川や湖沼、海などに汚染物質が流入し、水環境や生物、人の健康に悪影響を与える問題です。",
+            "水質汚染とは、河川や湖沼、海などに汚染物質が流入し、水環境や生物、人の健康に悪影響を与える問題です。生活排水や工場排水、農業活動などが原因になる場合があります。",
 
         chemistry:
-            "窒素やリンなどの栄養塩類が過剰に流入すると、富栄養化が進む場合があります。また、重金属や有機化学物質による汚染も問題となります。",
+            "水中に窒素やリンなどの栄養塩類が過剰に流入すると、藻類や植物プランクトンが大量に増殖する富栄養化が進む場合があります。また、有機物が微生物によって分解される際に酸素が消費され、水中の溶存酸素が減少することがあります。",
 
         action:
-            "生活排水や工場排水の適切な処理、化学物質の排出管理などが重要です。"
+            "食用油を排水口に流さない、洗剤を適量使用する、食べ残しを減らすなどが挙げられます。また、地域の河川清掃活動に参加することも水環境の保全につながります。"
     },
 
     {
@@ -79,19 +3203,20 @@ const consultData = [
             "森林減少",
             "森林伐採",
             "森林",
-            "公害"
+            "森林劣化",
+            "熱帯雨林"
         ],
 
         title: "森林破壊",
 
         description:
-            "森林の減少や劣化は、生物多様性の損失、土壌の流出、炭素貯蔵量の減少などにつながります。",
+            "森林破壊とは、森林の伐採や土地利用の変化などによって、森林が減少・劣化することです。生物多様性の損失や土壌の流出、炭素貯蔵量の減少などにつながります。",
 
         chemistry:
-            "森林は光合成によって二酸化炭素（CO₂）を吸収し、炭素を樹木や土壌に蓄積します。",
+            "森林の樹木は、光合成によって二酸化炭素（CO₂）と水（H₂O）から有機物をつくり、炭素を蓄えています。森林が減少すると、炭素を吸収・蓄積する能力が低下し、伐採後の燃焼や分解によって二酸化炭素が放出される場合もあります。",
 
         action:
-            "持続可能な森林管理、森林再生、適切に管理された木材製品の選択などが重要です。"
+            "紙の無駄遣いを減らす、再生紙を選ぶ、適切に管理された森林から生産された木材製品を選ぶなどが挙げられます。また、森林保全活動や植樹活動への参加も有効です。"
     },
 
     {
@@ -100,57 +3225,64 @@ const consultData = [
             "ヒートアイランド現象",
             "都市化",
             "都市の暑さ",
-            "都市気温"
+            "都市気温",
+            "人工排熱"
         ],
 
         title: "ヒートアイランド現象",
 
         description:
-            "ヒートアイランド現象とは、都市部の気温が周辺地域より高くなる現象です。",
+            "ヒートアイランド現象とは、都市部の気温が周辺地域より高くなる現象です。建物や道路の増加、緑地の減少、自動車やエアコンなどから発生する人工排熱が関係しています。",
 
         chemistry:
-            "アスファルトやコンクリートの蓄熱特性、人工排熱、緑地の減少による蒸発散の低下などが関係しています。",
+            "アスファルトやコンクリートなどの材料は、太陽光を吸収して熱を蓄える性質を持っています。また、燃料の燃焼によって化学エネルギーが熱に変換されることも、都市の人工排熱に関係しています。なお、ヒートアイランド現象には材料の熱特性や蒸発散など、物理的な要因も大きく関係しています。",
 
         action:
-            "都市緑化、建物の断熱、人工排熱の削減、保水性・遮熱性舗装などが対策として挙げられます。"
+            "家庭での節電、冷房の効率的な使用、打ち水、緑のカーテンの設置などが挙げられます。また、徒歩や公共交通機関を利用して自動車の使用を減らすことも対策の一つです。"
     },
 
     {
         keywords: [
             "酸性雨",
             "二酸化硫黄",
-            "窒素酸化物"
+            "硫黄酸化物",
+            "SO2",
+            "SO₂",
+            "硫酸",
+            "硝酸"
         ],
 
         title: "酸性雨",
 
         description:
-            "酸性雨とは、大気中の酸性物質が雨や雪などに取り込まれて地表に降下する現象です。",
+            "酸性雨とは、大気中の酸性物質が雨や雪などに取り込まれて地表に降下する現象です。森林や湖沼、建造物などに影響を与える場合があります。",
 
         chemistry:
-            "二酸化硫黄（SO₂）や窒素酸化物（NOₓ）が大気中で酸化され、硫酸や硝酸などが生成されることに関係しています。",
+            "化石燃料の燃焼などによって排出された二酸化硫黄（SO₂）や窒素酸化物（NOₓ）は、大気中で酸化され、硫酸（H₂SO₄）や硝酸（HNO₃）などを生成します。これらが雨水に取り込まれることで雨の酸性度が高くなります。",
 
         action:
-            "化石燃料の燃焼に伴う硫黄酸化物や窒素酸化物の排出削減が重要です。"
+            "節電や省エネルギーを心がけること、徒歩や公共交通機関を利用することなどが挙げられます。これらは、化石燃料の燃焼に伴う大気汚染物質の排出削減につながります。"
     },
 
     {
         keywords: [
             "水俣病",
             "水銀",
-            "メチル水銀"
+            "メチル水銀",
+            "有機水銀",
+            "公害病"
         ],
 
         title: "水俣病",
 
         description:
-            "水俣病は、メチル水銀に汚染された魚介類を食べたことによって発生した公害病です。",
+            "水俣病は、工場排水に含まれたメチル水銀によって汚染された魚介類を継続的に食べたことにより発生した公害病です。主に神経系に障害を引き起こします。",
 
         chemistry:
-            "メチル水銀は生物に取り込まれやすく、食物連鎖を通じて高濃度に蓄積することがあります。",
+            "メチル水銀は有機水銀化合物の一種で、生物に取り込まれやすい性質があります。水中の生物に取り込まれたメチル水銀は、食物連鎖を通じて高濃度に蓄積する場合があります。これは生物濃縮と呼ばれます。",
 
         action:
-            "有害化学物質の適切な管理、排水処理、環境中の濃度の監視が重要です。"
+            "水俣病のような公害を防ぐためには、企業や行政による有害化学物質の排出管理と環境監視が重要です。日常生活では、水銀を含む製品を自治体のルールに従って適切に処分し、化学物質の環境への流出を防ぐことができます。"
     },
 
     {
@@ -158,22 +3290,25 @@ const consultData = [
             "プラスチック",
             "マイクロプラスチック",
             "海洋ごみ",
-            "海洋汚染"
+            "海洋汚染",
+            "プラスチック汚染",
+            "海洋プラスチック"
         ],
 
         title: "プラスチック汚染",
 
         description:
-            "プラスチックごみが河川や海洋などに流出し、生態系や環境に影響を与える問題です。",
+            "プラスチック汚染とは、プラスチックごみが陸上や河川、海洋などに流出し、生態系や環境に悪影響を及ぼす問題です。特に、微細なマイクロプラスチックによる汚染が懸念されています。",
 
         chemistry:
-            "プラスチックは高分子化合物であり、種類によって化学構造や分解されやすさが異なります。",
+            "プラスチックは、ポリエチレン（PE）やポリプロピレン（PP）などの高分子化合物からできています。種類によって化学構造や分解されやすさが異なり、環境中で細かく砕けても、容易には完全に分解されないものがあります。",
 
         action:
-            "ごみの発生抑制、再使用、適切な分別・回収、リサイクルなどが重要です。"
+            "マイバッグやマイボトルを使用する、使い捨てプラスチックを減らす、ごみを適切に分別・回収するなどが挙げられます。また、ポイ捨てをしないことや地域の清掃活動への参加も重要です。"
     }
 
 ];
+
 
 
 /* ================================================
@@ -389,3 +3524,4 @@ document.addEventListener(
 </body>
 
 </html>
+
