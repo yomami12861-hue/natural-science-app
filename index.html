@@ -456,37 +456,45 @@ button {
 
 <section id="periodicScreen" class="screen">
 
-    <button
-        class="back-button"
-        onclick="showScreen('mainScreen')">
-        ← メニューへ戻る
+    <button class="back-button"
+            onclick="showScreen('mainScreen')">
+        ← 戻る
     </button>
 
-    <h2>🧪 元素の周期表マップ</h2>
+    <h2>🧪 元素の周期表</h2>
 
     <p>
-        元素をクリックすると、元素の特徴や
-        環境問題との関係を確認できます。
+        元素をクリックすると、特徴や環境問題との
+        関係を確認できます。
     </p>
 
-    <div class="periodic-scroll">
+    <!-- 表示切り替えボタン -->
 
-        <div
-            id="periodicTable"
-            class="periodic-table">
-        </div>
+    <div class="periodic-controls">
+
+        <button onclick="setPeriodicHighlight(false)">
+            通常表示
+        </button>
+
+        <button onclick="setPeriodicHighlight(true)">
+            🌱 環境問題をハイライト
+        </button>
 
     </div>
 
+    <!-- 周期表 -->
+
+    <div class="periodic-scroll">
+
+        <div id="periodicTable"
+             class="periodic-table"></div>
+
+    </div>
+
+    <!-- 元素の詳細情報 -->
+
     <div id="elementInfo" class="element-info">
-
-        <h3>元素を選択してください</h3>
-
-        <p>
-            周期表の元素をクリックすると、
-            ここに詳しい情報が表示されます。
-        </p>
-
+        元素をクリックしてください。
     </div>
 
 </section>
@@ -2966,16 +2974,46 @@ const periodicElements = [
 ================================================ */
 
 const elementCategoryColors = {
-
     "アルカリ金属": "#fecaca",
     "アルカリ土類金属": "#fed7aa",
     "金属": "#fde68a",
     "半金属": "#d9f99d",
     "非金属": "#bfdbfe",
     "ハロゲン": "#ddd6fe",
-    "希ガス": "#fbcfe8"
-
+    "希ガス": "#fbcfe8",
+    "遷移金属": "#fde68a",
+    "ランタノイド": "#c7d2fe",
+    "アクチノイド": "#e9d5ff"
 };
+
+
+/* ================================================
+   環境問題に関連する元素
+================================================ */
+
+const environmentalElementNumbers = [
+    1,   // H 水素
+    3,   // Li リチウム
+    6,   // C 炭素
+    7,   // N 窒素
+    8,   // O 酸素
+    13,  // Al アルミニウム
+    14,  // Si ケイ素
+    15,  // P リン
+    16,  // S 硫黄
+    24,  // Cr クロム
+    27,  // Co コバルト
+    29,  // Cu 銅
+    30,  // Zn 亜鉛
+    33,  // As ヒ素
+    48,  // Cd カドミウム
+    60,  // Nd ネオジム
+    80,  // Hg 水銀
+    82,  // Pb 鉛
+    92   // U ウラン
+];
+
+let periodicHighlightEnabled = false;
 
 
 /* ================================================
@@ -2999,8 +3037,10 @@ function createPeriodicTable() {
 
         button.className = "element-button";
 
-        button.style.gridColumn = element.group;
+        /* 原子番号を保存 */
+        button.dataset.atomicNumber = element.number;
 
+        button.style.gridColumn = element.group;
         button.style.gridRow = element.period;
 
         button.style.background =
@@ -3032,6 +3072,62 @@ function createPeriodicTable() {
 
     });
 
+    /* 表示状態を反映 */
+    updatePeriodicHighlight();
+
+}
+
+
+/* ================================================
+   ハイライト表示の切り替え
+================================================ */
+
+function setPeriodicHighlight(enabled) {
+
+    periodicHighlightEnabled = enabled;
+
+    updatePeriodicHighlight();
+
+}
+
+
+/* ================================================
+   ハイライト状態を更新
+================================================ */
+
+function updatePeriodicHighlight() {
+
+    const buttons = document.querySelectorAll(
+        "#periodicTable .element-button"
+    );
+
+    buttons.forEach(button => {
+
+        const atomicNumber = Number(
+            button.dataset.atomicNumber
+        );
+
+        if (!periodicHighlightEnabled) {
+
+            button.style.opacity = "1";
+            button.style.filter = "none";
+
+        } else if (
+            environmentalElementNumbers.includes(atomicNumber)
+        ) {
+
+            button.style.opacity = "1";
+            button.style.filter = "none";
+
+        } else {
+
+            button.style.opacity = "0.25";
+            button.style.filter = "grayscale(100%)";
+
+        }
+
+    });
+
 }
 
 
@@ -3047,47 +3143,40 @@ function showElementInfo(element, selectedButton) {
         return;
     }
 
-    /* 選択中の元素を強調 */
-
     document.querySelectorAll(".element-button").forEach(button => {
         button.classList.remove("selected");
     });
 
     selectedButton.classList.add("selected");
 
-    /* 前回の表示内容を削除 */
-
     infoArea.innerHTML = "";
 
     const title = document.createElement("h3");
-
     title.textContent =
         element.symbol + "：" + element.name;
 
     const numberText = document.createElement("p");
-
     numberText.textContent =
         "原子番号：" + element.number;
 
     const categoryText = document.createElement("p");
-
     categoryText.textContent =
         "分類：" + element.category;
 
     const featureTitle = document.createElement("h4");
-
     featureTitle.textContent = "🔬 元素の特徴";
 
     const featureText = document.createElement("p");
-
     featureText.textContent = element.feature;
 
     const environmentTitle = document.createElement("h4");
 
-    environmentTitle.textContent = "🌱 環境問題との関係";
+    environmentTitle.textContent =
+        environmentalElementNumbers.includes(element.number)
+            ? "🌱 環境問題との関係"
+            : "🌿 環境との接点";
 
     const environmentText = document.createElement("p");
-
     environmentText.textContent = element.environment;
 
     infoArea.appendChild(title);
@@ -3097,8 +3186,6 @@ function showElementInfo(element, selectedButton) {
     infoArea.appendChild(featureText);
     infoArea.appendChild(environmentTitle);
     infoArea.appendChild(environmentText);
-
-    /* 学習履歴に記録 */
 
     recordElementLearning(element.number);
 
@@ -3112,9 +3199,7 @@ function showElementInfo(element, selectedButton) {
 document.addEventListener(
     "DOMContentLoaded",
     function () {
-
         createPeriodicTable();
-
     }
 );
 
