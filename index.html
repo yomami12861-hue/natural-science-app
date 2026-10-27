@@ -2704,6 +2704,11 @@ feature  : 元素の特徴
 environment : 環境問題との関係
 */
 
+/* ================================================
+   元素の周期表データ（全118元素）
+   ① 原子番号1〜30
+================================================ */
+
 const periodicElements = [
 
     {
@@ -2713,10 +2718,8 @@ const periodicElements = [
         period: 1,
         group: 1,
         category: "非金属",
-        feature:
-            "最も軽い元素で、水やさまざまな化合物に含まれています。",
-        environment:
-            "水素は燃料電池などのエネルギー技術に利用されています。利用時に二酸化炭素を直接排出しない場合がありますが、製造方法によって環境負荷が異なります。"
+        feature: "最も軽い元素で、水やさまざまな化合物に含まれています。",
+        environment: "燃料電池などのエネルギー技術に利用されます。利用時に二酸化炭素を直接排出しない場合がありますが、製造方法によって環境負荷が異なります。"
     },
 
     {
@@ -2726,10 +2729,8 @@ const periodicElements = [
         period: 1,
         group: 18,
         category: "希ガス",
-        feature:
-            "化学反応を起こしにくい、非常に軽い気体です。",
-        environment:
-            "医療機器や研究設備などで利用される貴重な資源です。限りある資源として効率的な利用や回収が重要です。"
+        feature: "化学反応を起こしにくい、非常に軽い気体です。",
+        environment: "医療機器や研究設備などで利用される貴重な資源であり、効率的な利用や回収が重要です。"
     },
 
     {
@@ -2739,10 +2740,8 @@ const periodicElements = [
         period: 2,
         group: 1,
         category: "アルカリ金属",
-        feature:
-            "軽く、反応性の高い金属です。",
-        environment:
-            "リチウムイオン電池に利用されています。採掘時の環境負荷や使用済み電池のリサイクルが課題です。"
+        feature: "軽く、反応性の高い金属です。",
+        environment: "リチウムイオン電池に利用されます。採掘時の環境負荷や使用済み電池のリサイクルが課題です。"
     },
 
     {
@@ -2752,10 +2751,8 @@ const periodicElements = [
         period: 2,
         group: 2,
         category: "アルカリ土類金属",
-        feature:
-            "軽量で硬く、特殊な合金などに利用される金属です。",
-        environment:
-            "ベリリウムを含む粉じんを吸入すると健康被害が生じる可能性があり、作業環境での適切な管理が必要です。"
+        feature: "軽量で硬く、特殊な合金などに利用される金属です。",
+        environment: "ベリリウムを含む粉じんの吸入は健康被害を引き起こす可能性があり、作業環境での管理が重要です。"
     },
 
     {
@@ -2765,10 +2762,8 @@ const periodicElements = [
         period: 2,
         group: 13,
         category: "半金属",
-        feature:
-            "ガラスやセラミックスなどの材料に利用されます。",
-        environment:
-            "ホウ素化合物は産業排水などに含まれる場合があり、水環境への影響を考慮した管理が必要です。"
+        feature: "ガラスやセラミックスなどの材料に利用されます。",
+        environment: "ホウ素化合物は産業排水などに含まれる場合があり、水環境への影響を考慮した管理が必要です。"
     },
 
     {
@@ -2778,10 +2773,8 @@ const periodicElements = [
         period: 2,
         group: 14,
         category: "非金属",
-        feature:
-            "生物の体を構成する有機物の基本となる元素です。",
-        environment:
-            "二酸化炭素やメタンなどの温室効果ガスに含まれ、地球温暖化や炭素循環と深く関係しています。"
+        feature: "生物の体を構成する有機物の基本となる元素です。",
+        environment: "二酸化炭素やメタンなどの温室効果ガスに含まれ、地球温暖化や炭素循環と深く関係しています。"
     },
 
     {
@@ -2791,10 +2784,8 @@ const periodicElements = [
         period: 2,
         group: 15,
         category: "非金属",
-        feature:
-            "大気の約78%を占める元素です。",
-        environment:
-            "窒素酸化物は大気汚染や酸性雨、光化学オキシダントの生成に関係します。また、窒素化合物の過剰な流入は水域の富栄養化につながります。"
+        feature: "大気の約78％を占める元素です。",
+        environment: "窒素酸化物は大気汚染や酸性雨に関係します。また、窒素化合物の過剰な流入は水域の富栄養化につながります。"
     },
 
     {
@@ -2804,10 +2795,8 @@ const periodicElements = [
         period: 2,
         group: 16,
         category: "非金属",
-        feature:
-            "呼吸や燃焼などに関係する元素です。",
-        environment:
-            "水中の溶存酸素は水生生物の生存に重要です。また、酸素原子3個からなるオゾンは、大気環境と深く関係しています。"
+        feature: "呼吸や燃焼などに関係する元素です。",
+        environment: "水中の溶存酸素は水生生物の生存に重要です。また、オゾンは大気環境と深く関係しています。"
     },
 
     {
@@ -2817,10 +2806,8 @@ const periodicElements = [
         period: 2,
         group: 17,
         category: "ハロゲン",
-        feature:
-            "反応性が非常に高い元素です。",
-        environment:
-            "フッ素化合物には産業用途の広いものがあります。一部の有機フッ素化合物は環境中で分解されにくく、環境汚染が問題になっています。"
+        feature: "反応性が非常に高い元素です。",
+        environment: "一部の有機フッ素化合物は環境中で分解されにくく、環境汚染が問題になっています。"
     },
 
     {
@@ -2830,10 +2817,8 @@ const periodicElements = [
         period: 2,
         group: 18,
         category: "希ガス",
-        feature:
-            "化学反応を起こしにくい希ガスです。",
-        environment:
-            "照明や半導体製造などで利用されています。資源や製造工程に伴うエネルギー消費も環境負荷を考えるうえで重要です。"
+        feature: "化学反応を起こしにくい希ガスです。",
+        environment: "照明や半導体製造などで利用され、製造工程のエネルギー消費が環境との接点になります。"
     },
 
     {
@@ -2843,10 +2828,8 @@ const periodicElements = [
         period: 3,
         group: 1,
         category: "アルカリ金属",
-        feature:
-            "反応性が高く、食塩などの化合物に含まれる元素です。",
-        environment:
-            "ナトリウムイオン電池などの研究開発が進められています。また、塩分濃度の変化は水や土壌の環境に影響を与えます。"
+        feature: "反応性が高く、食塩などの化合物に含まれます。",
+        environment: "ナトリウムイオン電池の研究開発が進んでいます。また、塩分濃度の変化は水や土壌の環境に影響します。"
     },
 
     {
@@ -2856,10 +2839,8 @@ const periodicElements = [
         period: 3,
         group: 2,
         category: "アルカリ土類金属",
-        feature:
-            "軽量な金属で、生物にも必要な元素です。",
-        environment:
-            "軽量合金として自動車などに利用されます。車体の軽量化はエネルギー消費の削減に役立つ場合があります。"
+        feature: "軽量な金属で、生物にも必要な元素です。",
+        environment: "自動車などの軽量化に利用され、条件によってエネルギー消費の削減に役立ちます。"
     },
 
     {
@@ -2869,10 +2850,8 @@ const periodicElements = [
         period: 3,
         group: 13,
         category: "金属",
-        feature:
-            "軽く、加工しやすい金属です。",
-        environment:
-            "製造には多くの電力が必要ですが、リサイクルによって新たな製錬に必要なエネルギーを大幅に減らせます。"
+        feature: "軽く、加工しやすい金属です。",
+        environment: "製造には多くの電力が必要ですが、リサイクルによって新たな製錬に必要なエネルギーを大幅に減らせます。"
     },
 
     {
@@ -2882,10 +2861,8 @@ const periodicElements = [
         period: 3,
         group: 14,
         category: "半金属",
-        feature:
-            "半導体やガラスなどに利用される元素です。",
-        environment:
-            "太陽電池の主要な材料として利用され、再生可能エネルギーの普及に貢献しています。"
+        feature: "半導体やガラスなどに利用される元素です。",
+        environment: "太陽電池の主要材料として利用され、再生可能エネルギーの普及に貢献しています。"
     },
 
     {
@@ -2895,10 +2872,8 @@ const periodicElements = [
         period: 3,
         group: 15,
         category: "非金属",
-        feature:
-            "生物に必要な元素で、肥料などに利用されます。",
-        environment:
-            "リンが湖沼や河川に過剰に流入すると、富栄養化やアオコの発生などにつながります。"
+        feature: "生物に必要な元素で、肥料などに利用されます。",
+        environment: "湖沼や河川に過剰に流入すると、富栄養化やアオコの発生につながります。"
     },
 
     {
@@ -2908,10 +2883,8 @@ const periodicElements = [
         period: 3,
         group: 16,
         category: "非金属",
-        feature:
-            "さまざまな鉱物や生物の体に含まれる元素です。",
-        environment:
-            "化石燃料の燃焼などで発生する二酸化硫黄は、酸性雨や大気汚染の原因物質の一つです。"
+        feature: "さまざまな鉱物や生物の体に含まれる元素です。",
+        environment: "化石燃料の燃焼などで発生する二酸化硫黄は、酸性雨や大気汚染の原因物質の一つです。"
     },
 
     {
@@ -2921,10 +2894,8 @@ const periodicElements = [
         period: 3,
         group: 17,
         category: "ハロゲン",
-        feature:
-            "反応性が高く、水の消毒などに利用される元素です。",
-        environment:
-            "水道水の消毒に重要ですが、消毒副生成物の管理も必要です。また、一部の塩素を含む化合物は環境汚染に関係します。"
+        feature: "反応性が高く、水の消毒などに利用されます。",
+        environment: "水道水の消毒に重要ですが、消毒副生成物の管理も必要です。一部の塩素化合物は環境汚染に関係します。"
     },
 
     {
@@ -2934,10 +2905,8 @@ const periodicElements = [
         period: 3,
         group: 18,
         category: "希ガス",
-        feature:
-            "化学反応を起こしにくい気体です。",
-        environment:
-            "溶接や断熱ガラスなどに利用されています。断熱ガラスは建物の省エネルギーに役立ちます。"
+        feature: "化学反応を起こしにくい気体です。",
+        environment: "断熱ガラスなどに利用され、建物の省エネルギーに役立ちます。"
     },
 
     {
@@ -2947,10 +2916,8 @@ const periodicElements = [
         period: 4,
         group: 1,
         category: "アルカリ金属",
-        feature:
-            "植物や人間に必要な元素です。",
-        environment:
-            "農業用肥料に利用されています。肥料を適切に使用することは、資源の有効利用や環境負荷の低減につながります。"
+        feature: "植物や人間に必要な元素です。",
+        environment: "農業用肥料に利用され、適切な施肥は資源の有効利用や環境負荷の低減につながります。"
     },
 
     {
@@ -2960,13 +2927,1102 @@ const periodicElements = [
         period: 4,
         group: 2,
         category: "アルカリ土類金属",
-        feature:
-            "骨や歯を構成する重要な元素です。",
-        environment:
-            "石灰石や炭酸カルシウムなどに含まれます。石灰は酸性化した土壌や水の中和などにも利用されています。"
+        feature: "骨や歯を構成する重要な元素です。",
+        environment: "石灰石などに含まれ、石灰は酸性化した土壌や水の中和にも利用されます。"
+    },
+
+    {
+        number: 21,
+        symbol: "Sc",
+        name: "スカンジウム",
+        period: 4,
+        group: 3,
+        category: "遷移金属",
+        feature: "軽量合金や特殊な材料に利用される金属です。",
+        environment: "アルミニウム合金の性能向上に利用されます。採掘や精製時の資源・エネルギー消費が環境との接点です。"
+    },
+
+    {
+        number: 22,
+        symbol: "Ti",
+        name: "チタン",
+        period: 4,
+        group: 4,
+        category: "遷移金属",
+        feature: "軽く、強度と耐食性に優れた金属です。",
+        environment: "二酸化チタンは光触媒などに利用されます。製造時の環境負荷や材料の適切な管理も重要です。"
+    },
+
+    {
+        number: 23,
+        symbol: "V",
+        name: "バナジウム",
+        period: 4,
+        group: 5,
+        category: "遷移金属",
+        feature: "鉄鋼材料の強度を高める用途などに利用されます。",
+        environment: "レドックスフロー電池の材料に利用され、再生可能エネルギーの電力貯蔵に関係しています。"
+    },
+
+    {
+        number: 24,
+        symbol: "Cr",
+        name: "クロム",
+        period: 4,
+        group: 6,
+        category: "遷移金属",
+        feature: "ステンレス鋼やめっきなどに利用される金属です。",
+        environment: "六価クロム化合物には強い有害性を持つものがあり、土壌や地下水の汚染対策が重要です。"
+    },
+
+    {
+        number: 25,
+        symbol: "Mn",
+        name: "マンガン",
+        period: 4,
+        group: 7,
+        category: "遷移金属",
+        feature: "鉄鋼や電池材料などに利用される金属です。",
+        environment: "電池の材料として利用されます。採掘や製造に伴う環境負荷、過剰なばく露への対策が重要です。"
+    },
+
+    {
+        number: 26,
+        symbol: "Fe",
+        name: "鉄",
+        period: 4,
+        group: 8,
+        category: "遷移金属",
+        feature: "建築物や機械などに広く利用される金属です。",
+        environment: "鉄鋼製造は大量のエネルギーを必要とし、二酸化炭素排出削減や鉄スクラップのリサイクルが重要です。"
+    },
+
+    {
+        number: 27,
+        symbol: "Co",
+        name: "コバルト",
+        period: 4,
+        group: 9,
+        category: "遷移金属",
+        feature: "電池や耐熱合金などに利用される金属です。",
+        environment: "一部のリチウムイオン電池に利用されます。採掘時の環境負荷や資源の安定供給が課題です。"
+    },
+
+    {
+        number: 28,
+        symbol: "Ni",
+        name: "ニッケル",
+        period: 4,
+        group: 10,
+        category: "遷移金属",
+        feature: "耐食性の高い合金や電池に利用される金属です。",
+        environment: "電池材料として重要ですが、採掘・製錬時の環境負荷や適切なリサイクルが課題です。"
+    },
+
+    {
+        number: 29,
+        symbol: "Cu",
+        name: "銅",
+        period: 4,
+        group: 11,
+        category: "遷移金属",
+        feature: "電気や熱をよく伝える金属です。",
+        environment: "送電設備や再生可能エネルギー設備に利用されます。一方、鉱山排水や高濃度の銅による水生生物への影響にも注意が必要です。"
+    },
+
+    {
+        number: 30,
+        symbol: "Zn",
+        name: "亜鉛",
+        period: 4,
+        group: 12,
+        category: "金属",
+        feature: "鉄のさびを防ぐめっきなどに利用される金属です。",
+        environment: "生物に必要な微量元素ですが、水環境中で濃度が高くなると水生生物に悪影響を及ぼす場合があります。"
+    },
+
+/* ================================================
+   ② 原子番号31〜60
+================================================ */
+
+    {
+        number: 31,
+        symbol: "Ga",
+        name: "ガリウム",
+        period: 4,
+        group: 13,
+        category: "金属",
+        feature: "半導体や発光ダイオードなどに利用される金属です。",
+        environment: "窒化ガリウムなどは高効率な電子機器に利用されます。製造時の資源利用や廃棄物管理も重要です。"
+    },
+
+    {
+        number: 32,
+        symbol: "Ge",
+        name: "ゲルマニウム",
+        period: 4,
+        group: 14,
+        category: "半金属",
+        feature: "半導体や光学材料に利用される元素です。",
+        environment: "光ファイバーや赤外線機器などに利用されます。希少な資源として回収・再利用が重要です。"
+    },
+
+    {
+        number: 33,
+        symbol: "As",
+        name: "ヒ素",
+        period: 4,
+        group: 15,
+        category: "半金属",
+        feature: "半導体材料などにも利用される元素です。",
+        environment: "一部のヒ素化合物は有害であり、自然由来または人為的な地下水汚染が問題になります。"
+    },
+
+    {
+        number: 34,
+        symbol: "Se",
+        name: "セレン",
+        period: 4,
+        group: 16,
+        category: "非金属",
+        feature: "微量では生物に必要で、電子材料にも利用される元素です。",
+        environment: "過剰なセレンは水生生物などに悪影響を及ぼすことがあり、排水や環境中の濃度管理が重要です。"
+    },
+
+    {
+        number: 35,
+        symbol: "Br",
+        name: "臭素",
+        period: 4,
+        group: 17,
+        category: "ハロゲン",
+        feature: "常温で液体の非金属元素です。",
+        environment: "一部の臭素系難燃剤は残留性や生物への影響が懸念され、適切な化学物質管理が必要です。"
+    },
+
+    {
+        number: 36,
+        symbol: "Kr",
+        name: "クリプトン",
+        period: 4,
+        group: 18,
+        category: "希ガス",
+        feature: "化学反応を起こしにくい希ガスです。",
+        environment: "高性能な断熱窓などに利用され、建物の省エネルギーに役立つ場合があります。"
+    },
+
+    {
+        number: 37,
+        symbol: "Rb",
+        name: "ルビジウム",
+        period: 5,
+        group: 1,
+        category: "アルカリ金属",
+        feature: "反応性の高いアルカリ金属です。",
+        environment: "特殊な電子機器や研究に利用されます。資源の採掘・精製・廃棄の管理が環境との接点です。"
+    },
+
+    {
+        number: 38,
+        symbol: "Sr",
+        name: "ストロンチウム",
+        period: 5,
+        group: 2,
+        category: "アルカリ土類金属",
+        feature: "カルシウムと似た性質を持つ金属です。",
+        environment: "放射性同位体のストロンチウム90は核分裂生成物の一つで、放射性物質による環境汚染の監視対象になります。"
+    },
+
+    {
+        number: 39,
+        symbol: "Y",
+        name: "イットリウム",
+        period: 5,
+        group: 3,
+        category: "遷移金属",
+        feature: "蛍光体や高機能セラミックスなどに利用されます。",
+        environment: "電子機器などに使われる資源であり、採掘・精製時の環境負荷やリサイクルが課題です。"
+    },
+
+    {
+        number: 40,
+        symbol: "Zr",
+        name: "ジルコニウム",
+        period: 5,
+        group: 4,
+        category: "遷移金属",
+        feature: "耐食性に優れた金属です。",
+        environment: "原子炉の燃料被覆管などに利用され、原子力設備の安全管理や資源利用と関係します。"
+    },
+
+    {
+        number: 41,
+        symbol: "Nb",
+        name: "ニオブ",
+        period: 5,
+        group: 5,
+        category: "遷移金属",
+        feature: "高強度鋼や超伝導材料に利用される金属です。",
+        environment: "材料の高性能化に役立ちますが、採掘・製錬に伴う環境負荷を考える必要があります。"
+    },
+
+    {
+        number: 42,
+        symbol: "Mo",
+        name: "モリブデン",
+        period: 5,
+        group: 6,
+        category: "遷移金属",
+        feature: "耐熱合金や触媒などに利用される金属です。",
+        environment: "一部の触媒に利用され、化学工業の工程効率化に役立ちます。鉱山開発に伴う環境管理も重要です。"
+    },
+
+    {
+        number: 43,
+        symbol: "Tc",
+        name: "テクネチウム",
+        period: 5,
+        group: 7,
+        category: "遷移金属",
+        feature: "安定同位体を持たない放射性元素です。",
+        environment: "医療診断に利用される同位体があります。一方、長寿命のテクネチウム99は放射性廃棄物管理の対象です。"
+    },
+
+    {
+        number: 44,
+        symbol: "Ru",
+        name: "ルテニウム",
+        period: 5,
+        group: 8,
+        category: "遷移金属",
+        feature: "触媒や電子材料に利用される金属です。",
+        environment: "化学反応を効率化する触媒に利用されます。希少金属として回収や再利用が重要です。"
+    },
+
+    {
+        number: 45,
+        symbol: "Rh",
+        name: "ロジウム",
+        period: 5,
+        group: 9,
+        category: "遷移金属",
+        feature: "耐食性が高く、触媒として利用される貴金属です。",
+        environment: "自動車の排ガス浄化触媒に利用され、有害な排出物の低減に貢献しています。"
+    },
+
+    {
+        number: 46,
+        symbol: "Pd",
+        name: "パラジウム",
+        period: 5,
+        group: 10,
+        category: "遷移金属",
+        feature: "触媒や電子部品などに利用される貴金属です。",
+        environment: "自動車の排ガス浄化触媒に利用されます。資源の採掘負荷を減らすため、回収・リサイクルが重要です。"
+    },
+
+    {
+        number: 47,
+        symbol: "Ag",
+        name: "銀",
+        period: 5,
+        group: 11,
+        category: "遷移金属",
+        feature: "電気伝導性が非常に高い貴金属です。",
+        environment: "太陽電池などに利用されます。一方、銀イオンなどは濃度によって水生生物に影響するため、排出管理が必要です。"
+    },
+
+    {
+        number: 48,
+        symbol: "Cd",
+        name: "カドミウム",
+        period: 5,
+        group: 12,
+        category: "金属",
+        feature: "電池や一部の電子材料などに利用されてきた金属です。",
+        environment: "カドミウムによる環境汚染はイタイイタイ病の原因となりました。土壌や水、食品への移行を防ぐ管理が重要です。"
+    },
+
+    {
+        number: 49,
+        symbol: "In",
+        name: "インジウム",
+        period: 5,
+        group: 13,
+        category: "金属",
+        feature: "液晶ディスプレイなどの透明電極に利用されます。",
+        environment: "電子機器に利用される希少資源であり、使用済み製品からの回収やリサイクルが重要です。"
+    },
+
+    {
+        number: 50,
+        symbol: "Sn",
+        name: "スズ",
+        period: 5,
+        group: 14,
+        category: "金属",
+        feature: "はんだやめっきなどに利用される金属です。",
+        environment: "一部の有機スズ化合物は海洋生物に悪影響を与えたため、船舶用防汚塗料などで規制されています。"
+    },
+
+    {
+        number: 51,
+        symbol: "Sb",
+        name: "アンチモン",
+        period: 5,
+        group: 15,
+        category: "半金属",
+        feature: "合金や難燃剤などに利用される元素です。",
+        environment: "一部のアンチモン化合物には有害性があり、産業排水や廃棄物の適切な管理が必要です。"
+    },
+
+    {
+        number: 52,
+        symbol: "Te",
+        name: "テルル",
+        period: 5,
+        group: 16,
+        category: "半金属",
+        feature: "半導体や特殊な合金などに利用されます。",
+        environment: "テルル化カドミウムは一部の太陽電池に利用されます。製造・回収・廃棄段階の管理が重要です。"
+    },
+
+    {
+        number: 53,
+        symbol: "I",
+        name: "ヨウ素",
+        period: 5,
+        group: 17,
+        category: "ハロゲン",
+        feature: "甲状腺ホルモンの生成に必要な元素です。",
+        environment: "放射性ヨウ素131は原子力事故時の環境汚染や健康影響を考えるうえで重要な核種です。"
+    },
+
+    {
+        number: 54,
+        symbol: "Xe",
+        name: "キセノン",
+        period: 5,
+        group: 18,
+        category: "希ガス",
+        feature: "化学反応を起こしにくい重い希ガスです。",
+        environment: "照明や医療などに利用されます。放射性キセノンの一部は核活動の監視にも利用されます。"
+    },
+
+    {
+        number: 55,
+        symbol: "Cs",
+        name: "セシウム",
+        period: 6,
+        group: 1,
+        category: "アルカリ金属",
+        feature: "非常に反応性が高いアルカリ金属です。",
+        environment: "放射性同位体のセシウム137は核分裂生成物であり、原子力事故後の土壌や食品などの環境監視に関係します。"
+    },
+
+    {
+        number: 56,
+        symbol: "Ba",
+        name: "バリウム",
+        period: 6,
+        group: 2,
+        category: "アルカリ土類金属",
+        feature: "化合物が医療や工業で利用される金属です。",
+        environment: "水に溶けやすい一部のバリウム化合物には有害性があり、水質や廃棄物の管理が必要です。"
+    },
+
+    {
+        number: 57,
+        symbol: "La",
+        name: "ランタン",
+        period: 8,
+        group: 3,
+        category: "ランタノイド",
+        feature: "光学ガラスや電池材料などに利用される希土類元素です。",
+        environment: "レアアースの採掘・精製に伴う環境負荷や、使用済み製品からの資源回収が課題です。"
+    },
+
+    {
+        number: 58,
+        symbol: "Ce",
+        name: "セリウム",
+        period: 8,
+        group: 4,
+        category: "ランタノイド",
+        feature: "研磨剤や触媒などに利用される希土類元素です。",
+        environment: "排ガス浄化触媒などに利用されます。採掘・精製時の環境管理も重要です。"
+    },
+
+    {
+        number: 59,
+        symbol: "Pr",
+        name: "プラセオジム",
+        period: 8,
+        group: 5,
+        category: "ランタノイド",
+        feature: "磁石やガラスの着色などに利用される希土類元素です。",
+        environment: "高性能磁石などの材料として利用され、レアアース資源の採掘とリサイクルに関係します。"
+    },
+
+    {
+        number: 60,
+        symbol: "Nd",
+        name: "ネオジム",
+        period: 8,
+        group: 6,
+        category: "ランタノイド",
+        feature: "強力な永久磁石の材料として重要な希土類元素です。",
+        environment: "風力発電機や電気自動車の一部に使われる磁石に利用されます。採掘時の環境負荷やリサイクルが課題です。"
+    },
+
+/* ================================================
+   ③ 原子番号61〜90
+================================================ */
+
+    {
+        number: 61,
+        symbol: "Pm",
+        name: "プロメチウム",
+        period: 8,
+        group: 7,
+        category: "ランタノイド",
+        feature: "安定同位体を持たない放射性の希土類元素です。",
+        environment: "放射性物質として適切な遮蔽や廃棄物管理が必要です。一般的な環境問題との直接的な関係は限定的です。"
+    },
+
+    {
+        number: 62,
+        symbol: "Sm",
+        name: "サマリウム",
+        period: 8,
+        group: 8,
+        category: "ランタノイド",
+        feature: "強力な磁石や原子炉関連材料などに利用されます。",
+        environment: "サマリウムコバルト磁石に利用され、資源採掘や製品の回収・再利用と関係します。"
+    },
+
+    {
+        number: 63,
+        symbol: "Eu",
+        name: "ユウロピウム",
+        period: 8,
+        group: 9,
+        category: "ランタノイド",
+        feature: "蛍光体などに利用される希土類元素です。",
+        environment: "照明やディスプレイに利用されます。使用済み電子機器からの資源回収が重要です。"
+    },
+
+    {
+        number: 64,
+        symbol: "Gd",
+        name: "ガドリニウム",
+        period: 8,
+        group: 10,
+        category: "ランタノイド",
+        feature: "磁気的な性質を持ち、医療用造影剤などに利用されます。",
+        environment: "一部のガドリニウム造影剤由来の成分が水環境から検出されており、排水中での挙動が研究されています。"
+    },
+
+    {
+        number: 65,
+        symbol: "Tb",
+        name: "テルビウム",
+        period: 8,
+        group: 11,
+        category: "ランタノイド",
+        feature: "蛍光体や磁性材料に利用される希土類元素です。",
+        environment: "電子機器や高性能磁石に利用され、希少資源の回収・リサイクルが課題です。"
+    },
+
+    {
+        number: 66,
+        symbol: "Dy",
+        name: "ジスプロシウム",
+        period: 8,
+        group: 12,
+        category: "ランタノイド",
+        feature: "磁石の耐熱性を高める用途などに利用されます。",
+        environment: "一部の高性能磁石に使われ、電気自動車や風力発電の材料資源として重要です。"
+    },
+
+    {
+        number: 67,
+        symbol: "Ho",
+        name: "ホルミウム",
+        period: 8,
+        group: 13,
+        category: "ランタノイド",
+        feature: "特殊な磁性材料やレーザーなどに利用されます。",
+        environment: "希少資源として採掘・精製時の環境負荷や資源の効率的な利用が重要です。"
+    },
+
+    {
+        number: 68,
+        symbol: "Er",
+        name: "エルビウム",
+        period: 8,
+        group: 14,
+        category: "ランタノイド",
+        feature: "光ファイバー通信やレーザーなどに利用されます。",
+        environment: "通信設備に利用される材料であり、製造・廃棄時の資源利用が環境との接点です。"
+    },
+
+    {
+        number: 69,
+        symbol: "Tm",
+        name: "ツリウム",
+        period: 8,
+        group: 15,
+        category: "ランタノイド",
+        feature: "特殊なレーザーなどに利用される希土類元素です。",
+        environment: "利用量は比較的少ないものの、希少資源として採掘や精製時の環境負荷が関係します。"
+    },
+
+    {
+        number: 70,
+        symbol: "Yb",
+        name: "イッテルビウム",
+        period: 8,
+        group: 16,
+        category: "ランタノイド",
+        feature: "レーザーや特殊な合金などに利用されます。",
+        environment: "産業用レーザーなどに利用され、材料製造に伴う資源・エネルギー消費と関係します。"
+    },
+
+    {
+        number: 71,
+        symbol: "Lu",
+        name: "ルテチウム",
+        period: 8,
+        group: 17,
+        category: "ランタノイド",
+        feature: "医療や研究などで利用される希土類元素です。",
+        environment: "放射性同位体のルテチウム177は医療に利用され、放射性廃棄物の適切な管理が必要です。"
+    },
+
+    {
+        number: 72,
+        symbol: "Hf",
+        name: "ハフニウム",
+        period: 6,
+        group: 4,
+        category: "遷移金属",
+        feature: "耐熱性が高く、原子炉関連材料などに利用されます。",
+        environment: "原子炉の制御棒などに利用され、原子力設備の安全管理と関係します。"
+    },
+
+    {
+        number: 73,
+        symbol: "Ta",
+        name: "タンタル",
+        period: 6,
+        group: 5,
+        category: "遷移金属",
+        feature: "耐食性に優れ、電子部品などに利用される金属です。",
+        environment: "コンデンサーなどに利用され、鉱物資源の採掘や電子廃棄物のリサイクルが課題です。"
+    },
+
+    {
+        number: 74,
+        symbol: "W",
+        name: "タングステン",
+        period: 6,
+        group: 6,
+        category: "遷移金属",
+        feature: "非常に融点が高く、硬い材料に利用されます。",
+        environment: "切削工具などに利用され、長寿命化やリサイクルによる資源利用の効率化が重要です。"
+    },
+
+    {
+        number: 75,
+        symbol: "Re",
+        name: "レニウム",
+        period: 6,
+        group: 7,
+        category: "遷移金属",
+        feature: "高温に強い合金などに利用される希少金属です。",
+        environment: "航空機エンジン用材料などに利用され、希少資源の回収・再利用が重要です。"
+    },
+
+    {
+        number: 76,
+        symbol: "Os",
+        name: "オスミウム",
+        period: 6,
+        group: 8,
+        category: "遷移金属",
+        feature: "密度が非常に高い金属です。",
+        environment: "四酸化オスミウムは強い有害性を持つため、研究や工業での厳重な管理が必要です。"
+    },
+
+    {
+        number: 77,
+        symbol: "Ir",
+        name: "イリジウム",
+        period: 6,
+        group: 9,
+        category: "遷移金属",
+        feature: "耐食性に優れた貴金属です。",
+        environment: "一部の水電解装置の触媒に利用されます。希少金属であるため回収・再利用が重要です。"
+    },
+
+    {
+        number: 78,
+        symbol: "Pt",
+        name: "白金",
+        period: 6,
+        group: 10,
+        category: "遷移金属",
+        feature: "触媒として優れた性質を持つ貴金属です。",
+        environment: "自動車の排ガス浄化や燃料電池などに利用されます。採掘時の環境負荷とリサイクルが課題です。"
+    },
+
+    {
+        number: 79,
+        symbol: "Au",
+        name: "金",
+        period: 6,
+        group: 11,
+        category: "遷移金属",
+        feature: "さびにくく、電子部品にも利用される貴金属です。",
+        environment: "金の採掘では土地改変や化学物質による汚染が問題になる場合があり、電子廃棄物からの回収が重要です。"
+    },
+
+    {
+        number: 80,
+        symbol: "Hg",
+        name: "水銀",
+        period: 6,
+        group: 12,
+        category: "金属",
+        feature: "常温で液体の金属です。",
+        environment: "メチル水銀による水俣病が知られています。環境中での移動や食物連鎖を通じた生物濃縮が問題になります。"
+    },
+
+    {
+        number: 81,
+        symbol: "Tl",
+        name: "タリウム",
+        period: 6,
+        group: 13,
+        category: "金属",
+        feature: "柔らかい金属で、一部の電子材料などに利用されます。",
+        environment: "一部のタリウム化合物は強い有害性を持ち、土壌や水への排出管理が重要です。"
+    },
+
+    {
+        number: 82,
+        symbol: "Pb",
+        name: "鉛",
+        period: 6,
+        group: 14,
+        category: "金属",
+        feature: "柔らかく、密度が高い金属です。",
+        environment: "鉛は神経系などへの有害性が知られ、土壌汚染や水質汚染、鉛蓄電池の適切な回収が重要です。"
+    },
+
+    {
+        number: 83,
+        symbol: "Bi",
+        name: "ビスマス",
+        period: 6,
+        group: 15,
+        category: "金属",
+        feature: "比較的融点が低く、合金などに利用される金属です。",
+        environment: "一部の用途で鉛の代替材料として利用され、材料の有害性低減に関係します。"
+    },
+
+    {
+        number: 84,
+        symbol: "Po",
+        name: "ポロニウム",
+        period: 6,
+        group: 16,
+        category: "金属",
+        feature: "強い放射能を持つ同位体が知られる元素です。",
+        environment: "自然界にも微量に存在する放射性元素であり、内部被ばくを防ぐための適切な管理が重要です。"
+    },
+
+    {
+        number: 85,
+        symbol: "At",
+        name: "アスタチン",
+        period: 6,
+        group: 17,
+        category: "ハロゲン",
+        feature: "非常に希少な放射性元素です。",
+        environment: "自然界での存在量が極めて少なく、一般的な環境問題との直接的な関係は限定的です。"
+    },
+
+    {
+        number: 86,
+        symbol: "Rn",
+        name: "ラドン",
+        period: 6,
+        group: 18,
+        category: "希ガス",
+        feature: "放射性の希ガスです。",
+        environment: "地中から発生して建物内に入り込むことがあり、室内空気中のラドンへの長期ばく露は肺がんリスクに関係します。"
+    },
+
+    {
+        number: 87,
+        symbol: "Fr",
+        name: "フランシウム",
+        period: 7,
+        group: 1,
+        category: "アルカリ金属",
+        feature: "非常に希少で、強い放射能を持つアルカリ金属です。",
+        environment: "自然界での存在量が極めて少なく、一般的な環境汚染との直接的な関係は限定的です。"
+    },
+
+    {
+        number: 88,
+        symbol: "Ra",
+        name: "ラジウム",
+        period: 7,
+        group: 2,
+        category: "アルカリ土類金属",
+        feature: "放射性のアルカリ土類金属です。",
+        environment: "天然の放射性物質として地下水などに含まれる場合があり、放射線防護や水質管理と関係します。"
+    },
+
+    {
+        number: 89,
+        symbol: "Ac",
+        name: "アクチニウム",
+        period: 9,
+        group: 3,
+        category: "アクチノイド",
+        feature: "放射性の金属元素です。",
+        environment: "医療研究などで利用される同位体があり、放射性物質の取り扱いと廃棄物管理が必要です。"
+    },
+
+    {
+        number: 90,
+        symbol: "Th",
+        name: "トリウム",
+        period: 9,
+        group: 4,
+        category: "アクチノイド",
+        feature: "天然に存在する放射性金属です。",
+        environment: "原子力燃料としての利用が研究されており、採掘や放射性廃棄物の管理が重要です。"
+    },
+
+/* ================================================
+   ④ 原子番号91〜118
+================================================ */
+
+    {
+        number: 91,
+        symbol: "Pa",
+        name: "プロトアクチニウム",
+        period: 9,
+        group: 5,
+        category: "アクチノイド",
+        feature: "天然にも微量に存在する放射性元素です。",
+        environment: "放射性物質として適切な管理が必要ですが、一般的な環境問題との直接的な関係は限定的です。"
+    },
+
+    {
+        number: 92,
+        symbol: "U",
+        name: "ウラン",
+        period: 9,
+        group: 6,
+        category: "アクチノイド",
+        feature: "天然に存在し、原子力燃料に利用される放射性金属です。",
+        environment: "ウラン鉱山の環境管理や原子力利用に伴う放射性廃棄物の処理・処分が重要な課題です。"
+    },
+
+    {
+        number: 93,
+        symbol: "Np",
+        name: "ネプツニウム",
+        period: 9,
+        group: 7,
+        category: "アクチノイド",
+        feature: "主に原子炉などで生成される放射性元素です。",
+        environment: "長寿命の同位体があり、使用済み核燃料や放射性廃棄物の長期管理に関係します。"
+    },
+
+    {
+        number: 94,
+        symbol: "Pu",
+        name: "プルトニウム",
+        period: 9,
+        group: 8,
+        category: "アクチノイド",
+        feature: "原子炉内などで生成される放射性金属です。",
+        environment: "核燃料や放射性廃棄物の管理に関係し、環境への放出防止と長期的な安全管理が重要です。"
+    },
+
+    {
+        number: 95,
+        symbol: "Am",
+        name: "アメリシウム",
+        period: 9,
+        group: 9,
+        category: "アクチノイド",
+        feature: "人工的に生成される放射性元素です。",
+        environment: "一部の煙感知器などに利用される同位体があり、使用済み製品の適切な管理が必要です。"
+    },
+
+    {
+        number: 96,
+        symbol: "Cm",
+        name: "キュリウム",
+        period: 9,
+        group: 10,
+        category: "アクチノイド",
+        feature: "人工的に生成される放射性元素です。",
+        environment: "放射性廃棄物に含まれる場合があり、放射線防護と長期的な廃棄物管理が重要です。"
+    },
+
+    {
+        number: 97,
+        symbol: "Bk",
+        name: "バークリウム",
+        period: 9,
+        group: 11,
+        category: "アクチノイド",
+        feature: "人工的に合成される放射性元素です。",
+        environment: "主に研究用途で扱われ、一般環境への影響は限定的ですが、放射線防護が必要です。"
+    },
+
+    {
+        number: 98,
+        symbol: "Cf",
+        name: "カリホルニウム",
+        period: 9,
+        group: 12,
+        category: "アクチノイド",
+        feature: "強い中性子源として利用される同位体を持つ元素です。",
+        environment: "産業や研究で中性子源として利用され、放射線遮蔽や厳重な管理が必要です。"
+    },
+
+    {
+        number: 99,
+        symbol: "Es",
+        name: "アインスタイニウム",
+        period: 9,
+        group: 13,
+        category: "アクチノイド",
+        feature: "人工的に合成される放射性元素です。",
+        environment: "研究用にごく少量が扱われ、一般的な環境問題との直接的な関係は限定的です。"
+    },
+
+    {
+        number: 100,
+        symbol: "Fm",
+        name: "フェルミウム",
+        period: 9,
+        group: 14,
+        category: "アクチノイド",
+        feature: "人工的に合成される放射性元素です。",
+        environment: "ごく少量の研究利用が中心であり、一般環境への影響は限定的です。"
+    },
+
+    {
+        number: 101,
+        symbol: "Md",
+        name: "メンデレビウム",
+        period: 9,
+        group: 15,
+        category: "アクチノイド",
+        feature: "人工的に合成される放射性元素です。",
+        environment: "研究目的でごく少量が生成され、一般的な環境汚染との直接的な関係はほとんどありません。"
+    },
+
+    {
+        number: 102,
+        symbol: "No",
+        name: "ノーベリウム",
+        period: 9,
+        group: 16,
+        category: "アクチノイド",
+        feature: "人工的に合成される放射性元素です。",
+        environment: "研究施設でごく少量が生成されるため、一般的な環境問題との直接的な関係は限定的です。"
+    },
+
+    {
+        number: 103,
+        symbol: "Lr",
+        name: "ローレンシウム",
+        period: 9,
+        group: 17,
+        category: "アクチノイド",
+        feature: "人工的に合成される放射性元素です。",
+        environment: "生成量が極めて少なく、一般環境への直接的な影響はほとんどありません。"
+    },
+
+    {
+        number: 104,
+        symbol: "Rf",
+        name: "ラザホージウム",
+        period: 7,
+        group: 4,
+        category: "遷移金属",
+        feature: "人工的に合成される超重元素です。",
+        environment: "研究目的で極めて少量が生成され、一般的な環境問題との直接的な関係はほとんどありません。"
+    },
+
+    {
+        number: 105,
+        symbol: "Db",
+        name: "ドブニウム",
+        period: 7,
+        group: 5,
+        category: "遷移金属",
+        feature: "人工的に合成される放射性の超重元素です。",
+        environment: "生成量が極めて少なく、環境への直接的な影響は通常問題になりません。"
+    },
+
+    {
+        number: 106,
+        symbol: "Sg",
+        name: "シーボーギウム",
+        period: 7,
+        group: 6,
+        category: "遷移金属",
+        feature: "人工的に合成される放射性の超重元素です。",
+        environment: "主に基礎研究の対象であり、一般的な環境問題との直接的な関係はほとんどありません。"
+    },
+
+    {
+        number: 107,
+        symbol: "Bh",
+        name: "ボーリウム",
+        period: 7,
+        group: 7,
+        category: "遷移金属",
+        feature: "人工的に合成される放射性の超重元素です。",
+        environment: "極めて少量しか生成されないため、一般環境への影響はほとんどありません。"
+    },
+
+    {
+        number: 108,
+        symbol: "Hs",
+        name: "ハッシウム",
+        period: 7,
+        group: 8,
+        category: "遷移金属",
+        feature: "人工的に合成される放射性の超重元素です。",
+        environment: "研究施設でごく少量が生成され、一般的な環境汚染とは直接結びつきません。"
+    },
+
+    {
+        number: 109,
+        symbol: "Mt",
+        name: "マイトネリウム",
+        period: 7,
+        group: 9,
+        category: "遷移金属",
+        feature: "人工的に合成される放射性の超重元素です。",
+        environment: "基礎研究が中心であり、一般的な環境問題との直接的な関係はほとんどありません。"
+    },
+
+    {
+        number: 110,
+        symbol: "Ds",
+        name: "ダームスタチウム",
+        period: 7,
+        group: 10,
+        category: "遷移金属",
+        feature: "人工的に合成される放射性の超重元素です。",
+        environment: "生成量が極めて少なく、一般環境への直接的な影響はほとんどありません。"
+    },
+
+    {
+        number: 111,
+        symbol: "Rg",
+        name: "レントゲニウム",
+        period: 7,
+        group: 11,
+        category: "遷移金属",
+        feature: "人工的に合成される放射性の超重元素です。",
+        environment: "主に基礎研究の対象で、一般的な環境問題との直接的な関係は限定的です。"
+    },
+
+    {
+        number: 112,
+        symbol: "Cn",
+        name: "コペルニシウム",
+        period: 7,
+        group: 12,
+        category: "金属",
+        feature: "人工的に合成される放射性の超重元素です。",
+        environment: "ごく少量しか生成されないため、一般環境への影響はほとんどありません。"
+    },
+
+    {
+        number: 113,
+        symbol: "Nh",
+        name: "ニホニウム",
+        period: 7,
+        group: 13,
+        category: "金属",
+        feature: "日本の研究グループが発見に貢献した人工の超重元素です。",
+        environment: "基礎研究の対象であり、一般的な環境問題との直接的な関係はほとんどありません。"
+    },
+
+    {
+        number: 114,
+        symbol: "Fl",
+        name: "フレロビウム",
+        period: 7,
+        group: 14,
+        category: "金属",
+        feature: "人工的に合成される放射性の超重元素です。",
+        environment: "生成量が極めて少なく、一般環境への直接的な影響はほとんどありません。"
+    },
+
+    {
+        number: 115,
+        symbol: "Mc",
+        name: "モスコビウム",
+        period: 7,
+        group: 15,
+        category: "金属",
+        feature: "人工的に合成される放射性の超重元素です。",
+        environment: "基礎研究が中心で、一般的な環境汚染とは直接結びつきません。"
+    },
+
+    {
+        number: 116,
+        symbol: "Lv",
+        name: "リバモリウム",
+        period: 7,
+        group: 16,
+        category: "金属",
+        feature: "人工的に合成される放射性の超重元素です。",
+        environment: "生成量が極めて少なく、一般的な環境問題との直接的な関係はほとんどありません。"
+    },
+
+    {
+        number: 117,
+        symbol: "Ts",
+        name: "テネシン",
+        period: 7,
+        group: 17,
+        category: "ハロゲン",
+        feature: "人工的に合成される放射性の超重元素です。",
+        environment: "ごく少量しか生成されず、一般環境への直接的な影響はほとんどありません。"
+    },
+
+    {
+        number: 118,
+        symbol: "Og",
+        name: "オガネソン",
+        period: 7,
+        group: 18,
+        category: "希ガス",
+        feature: "人工的に合成される超重元素で、化学的性質は十分に解明されていません。",
+        environment: "生成量が極めて少なく、一般的な環境問題との直接的な関係はほとんどありません。"
     }
 
 ];
+
 
 
 /* ================================================
