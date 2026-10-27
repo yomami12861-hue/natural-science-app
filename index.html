@@ -2513,11 +2513,16 @@ function recordElementLearning(atomicNumber) {
     */
 
     learningData.map = limitScore(
-        learnedElements.filter(
-            number => number >= 1 && number <= 20
-        ).length * 5
-    );
-
+    Math.round(
+        (
+            new Set(
+                learnedElements.filter(
+                    number => number >= 1 && number <= 118
+                )
+            ).size / 118
+        ) * 100
+    )
+);
     /* 化学と環境の関連理解にも少し加点 */
 
     learningData.relation = limitScore(
