@@ -77,6 +77,9 @@ button {
    メインメニュー
 ========================= */
 
+/* ==================================
+   メインメニューの並び順を統一
+================================== */
 
 .main-menu {
     display: grid;
@@ -84,49 +87,47 @@ button {
     gap: 15px;
 }
 
-/* ① クイズ */
+/* クイズ */
 .main-menu button:nth-child(1) {
     order: 1;
+    grid-column: auto;
 }
 
-/* ② 調べる */
+/* 調べる */
 .main-menu button:nth-child(2) {
     order: 2;
+    grid-column: auto;
 }
 
-/* ③ 元素の周期表 */
-.main-menu button:nth-child(4) {
-    order: 3;
-}
-
-/* ④ マイ環境コーディネート */
+/* マイ環境コーディネート */
 .main-menu button:nth-child(5) {
     order: 4;
+    grid-column: auto;
 }
 
-/* ⑤ 環境学習度を一番下に配置 */
+/* 環境学習度 */
 .main-menu button:nth-child(3) {
     order: 5;
     grid-column: 1 / -1;
 }
 
-.main-menu button {
-    padding: 30px 10px;
-    border: none;
-    border-radius: 15px;
-    background: white;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    font-size: 18px;
+/* 元素の周期表 */
+.main-menu button:nth-child(4) {
+    order: 3;
+    grid-column: auto;
 }
 
-.main-menu button:hover {
-    background: #e8f5e9;
+/* スマホ版 */
+@media (max-width: 700px) {
+    .main-menu {
+        grid-template-columns: 1fr;
+    }
+
+    .main-menu button {
+        grid-column: 1 / -1;
+    }
 }
 
-/* 環境学習度のボタンを一番下に横幅いっぱいで表示 */
-.main-menu button:last-child {
-    grid-column: 1 / -1;
-}
 
 /* =========================
    相談画面
