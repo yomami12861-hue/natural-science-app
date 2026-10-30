@@ -87,35 +87,6 @@ button {
     gap: 15px;
 }
 
-/* クイズ */
-.main-menu button:nth-child(1) {
-    order: 1;
-    grid-column: auto;
-}
-
-/* 調べる */
-.main-menu button:nth-child(2) {
-    order: 2;
-    grid-column: auto;
-}
-
-/* マイ環境コーディネート */
-.main-menu button:nth-child(5) {
-    order: 4;
-    grid-column: auto;
-}
-
-/* 環境学習度 */
-.main-menu button:nth-child(3) {
-    order: 5;
-    grid-column: 1 / -1;
-}
-
-/* 元素の周期表 */
-.main-menu button:nth-child(4) {
-    order: 3;
-    grid-column: auto;
-}
 
 /* スマホ版 */
 @media (max-width: 700px) {
@@ -1424,6 +1395,38 @@ button {
     }
 }
 
+
+/* メインメニューの配置 */
+.main-menu {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+/* ボタンのデザイン */
+.main-menu button {
+    width: 100%;
+    min-height: 85px;
+    padding: 20px;
+    border: none;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    font-size: 17px;
+    cursor: pointer;
+}
+
+/* 最後の環境学習度を横幅いっぱいに */
+.main-menu button:last-child {
+    grid-column: 1 / -1;
+}
+
+/* スマホ表示 */
+@media (max-width: 700px) {
+    .main-menu {
+        grid-template-columns: 1fr;
+    }
+}
 
 </style>
 
