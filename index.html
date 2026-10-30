@@ -96,6 +96,11 @@ button {
     background: #e8f5e9;
 }
 
+/* 環境学習度のボタンを一番下に横幅いっぱいで表示 */
+.main-menu button:last-child {
+    grid-column: 1 / -1;
+}
+
 /* =========================
    相談画面
 ========================= */
@@ -1402,29 +1407,33 @@ button {
 
     <h2>メニュー</h2>
 
-    <div class="main-menu">
+   
+<div class="main-menu">
 
-        <button onclick="showScreen('quizScreen')">
-            📝 クイズ
-        </button>
+    <button onclick="showScreen('quizScreen')">
+        📝 クイズ
+    </button>
 
-        <button onclick="showScreen('consultScreen')">
-            💬 調べる
-        </button>
+    <button onclick="showScreen('consultScreen')">
+        💬 調べる
+    </button>
 
-        <button onclick="showScreen('periodicScreen')">
-            🧪 元素の周期表マップ
-        </button>
-       
-       <button type="button" onclick="showScreen('coordinateScreen')">
-    🌱 マイ環境コーディネート
-</button>
+    <button onclick="showScreen('periodicScreen')">
+        🧪 元素の周期表マップ
+    </button>
 
- <button onclick="showLearningLevel()">
-            📊 環境学習度を確認
-        </button>
+    <button
+        type="button"
+        onclick="showScreen('coordinateScreen')">
+        🌱 マイ環境コーディネート
+    </button>
 
-    </div>
+    <button onclick="showLearningLevel()">
+        📊 環境学習度を確認
+    </button>
+
+</div>
+
 
 </section>
 
