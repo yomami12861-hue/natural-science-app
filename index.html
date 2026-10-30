@@ -376,10 +376,37 @@ button {
    スマートフォン対応
 ========================= */
 
+
 @media (max-width: 700px) {
 
     .main-menu {
         grid-template-columns: 1fr;
+    }
+
+    /* クイズ */
+    .main-menu button:nth-child(1) {
+        order: 1;
+    }
+
+    /* 調べる */
+    .main-menu button:nth-child(2) {
+        order: 2;
+    }
+
+    /* 周期表 */
+    .main-menu button:nth-child(4) {
+        order: 3;
+    }
+
+    /* マイ環境コーディネート */
+    .main-menu button:nth-child(5) {
+        order: 4;
+    }
+
+    /* 環境学習度を一番下 */
+    .main-menu button:nth-child(3) {
+        order: 5;
+        grid-column: 1 / -1;
     }
 
     #environmentMenu button {
