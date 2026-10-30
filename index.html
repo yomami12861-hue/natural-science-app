@@ -402,6 +402,984 @@ button {
 
 }
 
+
+/* ================================================
+   EYE KNOW
+   マイ環境コーディネート
+   第4回：基本デザイン・質問フォーム
+================================================ */
+
+
+/* ================================================
+   ① コーディネート画面全体
+================================================ */
+
+#coordinateScreen {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #263b32;
+}
+
+/* 既存の画面切り替え機能を優先 */
+#coordinateScreen[hidden] {
+    display: none !important;
+}
+
+
+/* ================================================
+   ② タイトルエリア
+================================================ */
+
+.coordinate-header {
+    text-align: center;
+    margin: 25px 0 35px;
+    padding: 30px 20px;
+
+    background: linear-gradient(
+        135deg,
+        #edf9f0,
+        #f4fbf7
+    );
+
+    border: 1px solid #d9ebdf;
+    border-radius: 20px;
+}
+
+.coordinate-header h2 {
+    margin: 0 0 15px;
+
+    color: #176b46;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.coordinate-subtitle {
+    margin: 0 0 15px;
+
+    color: #288557;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.coordinate-description {
+    max-width: 650px;
+    margin: 0 auto;
+
+    color: #4b6355;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+
+/* ================================================
+   ③ 機能紹介エリア
+================================================ */
+
+.coordinate-introduction {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.coordinate-introduction-card {
+    padding: 25px;
+
+    background: #ffffff;
+    border: 1px solid #dcebe0;
+    border-radius: 16px;
+
+    box-shadow: 0 4px 14px rgba(22, 101, 52, 0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.coordinate-introduction-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(22, 101, 52, 0.1);
+}
+
+.coordinate-introduction-card h3 {
+    margin: 0 0 12px;
+
+    color: #176b46;
+    font-size: 19px;
+}
+
+.coordinate-introduction-card p {
+    margin: 0;
+
+    color: #52665a;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+
+/* ================================================
+   ④ 診断フォーム全体
+================================================ */
+
+#coordinateFormArea {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.coordinate-form-header {
+    margin: 20px 0 25px;
+    text-align: center;
+}
+
+.coordinate-form-header h3 {
+    margin: 0 0 12px;
+
+    color: #176b46;
+    font-size: 23px;
+}
+
+.coordinate-form-header p {
+    margin: 0;
+
+    color: #607467;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* ================================================
+   ⑤ 質問カード
+================================================ */
+
+.coordinate-card {
+    background: #ffffff;
+
+    border: 1px solid #dcebe0;
+    border-radius: 18px;
+
+    padding: 28px;
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.035);
+}
+
+.coordinate-card h3 {
+    margin: 0 0 15px;
+
+    padding-bottom: 13px;
+
+    color: #176b46;
+    font-size: 20px;
+
+    border-bottom: 1px solid #e4eee7;
+}
+
+.coordinate-question-description {
+    margin: 0 0 20px;
+
+    color: #65786b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* ================================================
+   ⑥ 各質問
+================================================ */
+
+.coordinate-question {
+    margin-bottom: 25px;
+}
+
+.coordinate-question:last-child {
+    margin-bottom: 0;
+}
+
+.coordinate-question > label {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #344b3c;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.8;
+}
+
+
+/* ================================================
+   ⑦ 選択欄
+================================================ */
+
+.coordinate-question select {
+    display: block;
+
+    width: 100%;
+    min-height: 48px;
+
+    padding: 12px 15px;
+
+    background: #f9fcfa;
+    color: #263b32;
+
+    border: 1px solid #c9ddcf;
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-family: inherit;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.coordinate-question select:hover {
+    border-color: #68aa7e;
+}
+
+.coordinate-question select:focus {
+    outline: none;
+
+    border-color: #238a56;
+
+    box-shadow:
+        0 0 0 3px rgba(35, 138, 86, 0.14);
+}
+
+
+/* ================================================
+   ⑧ チェックボックス
+================================================ */
+
+.coordinate-check {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin: 15px 0;
+    padding: 13px 15px;
+
+    background: #f9fcfa;
+
+    border: 1px solid #e1ebe4;
+    border-radius: 10px;
+
+    color: #344b3c;
+    font-size: 15px;
+    line-height: 1.8;
+
+    cursor: pointer;
+}
+
+.coordinate-check:hover {
+    background: #f1f9f3;
+}
+
+.coordinate-check input[type="checkbox"] {
+    width: 19px;
+    height: 19px;
+
+    margin: 4px 0 0;
+
+    flex-shrink: 0;
+
+    accent-color: #238a56;
+
+    cursor: pointer;
+}
+
+.coordinate-check span {
+    flex: 1;
+}
+
+
+/* ================================================
+   ⑨ 補足説明
+================================================ */
+
+.coordinate-note {
+    margin: 15px 0 0;
+
+    color: #718177;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+
+/* ================================================
+   ⑩ スマートフォン対応
+================================================ */
+
+@media (max-width: 700px) {
+
+    #coordinateScreen {
+        padding: 12px;
+    }
+
+    .coordinate-header {
+        padding: 25px 15px;
+        margin: 15px 0 25px;
+    }
+
+    .coordinate-header h2 {
+        font-size: 24px;
+    }
+
+    .coordinate-subtitle {
+        font-size: 16px;
+    }
+
+    .coordinate-description {
+        font-size: 14px;
+    }
+
+    .coordinate-introduction {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-bottom: 25px;
+    }
+
+    .coordinate-introduction-card {
+        padding: 20px;
+    }
+
+    .coordinate-form-header h3 {
+        font-size: 20px;
+    }
+
+    .coordinate-card {
+        padding: 20px 16px;
+        margin-bottom: 18px;
+    }
+
+    .coordinate-card h3 {
+        font-size: 18px;
+    }
+
+    .coordinate-question {
+        margin-bottom: 20px;
+    }
+
+    .coordinate-question select {
+        font-size: 16px;
+    }
+
+    .coordinate-check {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+}
+
+
+/* ================================================
+   ⑪ 動きを抑える設定への対応
+================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .coordinate-introduction-card,
+    .coordinate-question select {
+        transition: none;
+    }
+
+    .coordinate-introduction-card:hover {
+        transform: none;
+    }
+
+}
+
+
+/* ================================================
+   EYE KNOW
+   マイ環境コーディネート
+   第5回：診断結果・アクション記録
+================================================ */
+
+
+/* ================================================
+   ① 保存設定・削除ボタン
+================================================ */
+
+.coordinate-secondary-button {
+    display: inline-block;
+
+    margin-top: 18px;
+    padding: 12px 18px;
+
+    background: #f1f5f9;
+    color: #475569;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.coordinate-secondary-button:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+}
+
+.coordinate-secondary-button:focus-visible {
+    outline: 3px solid #94a3b8;
+    outline-offset: 3px;
+}
+
+
+/* ================================================
+   ② 診断実行エリア
+================================================ */
+
+.coordinate-submit-area {
+    margin: 35px 0 45px;
+    text-align: center;
+}
+
+.coordinate-submit-message {
+    margin-bottom: 18px;
+
+    color: #607467;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* ================================================
+   ③ 診断実行ボタン
+================================================ */
+
+.coordinate-diagnose-button {
+    display: inline-block;
+
+    width: 100%;
+    max-width: 460px;
+
+    padding: 17px 24px;
+
+    background: linear-gradient(
+        135deg,
+        #238a56,
+        #176b46
+    );
+
+    color: #ffffff;
+
+    border: none;
+    border-radius: 14px;
+
+    font-size: 17px;
+    font-family: inherit;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 16px rgba(23, 107, 70, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.coordinate-diagnose-button:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.05);
+
+    box-shadow:
+        0 9px 20px rgba(23, 107, 70, 0.24);
+}
+
+.coordinate-diagnose-button:active {
+    transform: translateY(0);
+}
+
+.coordinate-diagnose-button:focus-visible {
+    outline: 3px solid #86efac;
+    outline-offset: 4px;
+}
+
+
+/* ================================================
+   ④ 診断結果エリア
+================================================ */
+
+.coordinate-result {
+    margin-top: 35px;
+    margin-bottom: 30px;
+}
+
+.coordinate-result > h3 {
+    margin: 0 0 20px;
+
+    color: #176b46;
+    font-size: 25px;
+    text-align: center;
+}
+
+.coordinate-result > .coordinate-note {
+    margin: 0 0 22px;
+    text-align: center;
+}
+
+
+/* ================================================
+   ⑤ 診断結果カード
+================================================ */
+
+.coordinate-result-card {
+    margin-bottom: 20px;
+    padding: 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #dcebe0;
+    border-radius: 16px;
+
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.coordinate-result-card h4 {
+    margin: 0 0 16px;
+
+    color: #254b36;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+
+/* ================================================
+   ⑥ 優先対策・継続対策
+================================================ */
+
+.coordinate-result-section {
+    margin: 30px 0;
+}
+
+.coordinate-result-section > h3 {
+    margin: 0 0 20px;
+    padding: 0 0 12px;
+
+    font-size: 21px;
+    line-height: 1.6;
+
+    border-bottom: 2px solid #dcebe0;
+}
+
+/* 優先対策 */
+
+.coordinate-result-section.priority > h3 {
+    color: #a16207;
+    border-bottom-color: #f2d69b;
+}
+
+.coordinate-result-section.priority
+.coordinate-result-card {
+    border-left: 5px solid #eab54c;
+}
+
+/* 継続対策 */
+
+.coordinate-result-section.continue > h3 {
+    color: #15803d;
+    border-bottom-color: #a7d9b7;
+}
+
+.coordinate-result-section.continue
+.coordinate-result-card {
+    border-left: 5px solid #64b985;
+}
+
+
+/* ================================================
+   ⑦ 継続対策のラベル
+================================================ */
+
+.coordinate-priority-label {
+    display: inline-block;
+
+    margin-bottom: 15px;
+    padding: 6px 12px;
+
+    background: #e8f7ed;
+    color: #166534;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* ================================================
+   ⑧ 自分を守る・環境を守る・科学的な理由
+================================================ */
+
+.coordinate-advice {
+    margin-top: 13px;
+    padding: 16px 18px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.coordinate-advice strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 15px;
+}
+
+.coordinate-advice h5 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.coordinate-advice p {
+    margin: 0;
+}
+.coordinate-advice p {
+    margin: 0;
+}
+
+/* 自分を守る */
+
+.coordinate-safety {
+    background: #fff1f2;
+    border-left: 4px solid #e8798d;
+}
+
+.coordinate-safety strong {
+    color: #9f1239;
+}
+
+/* 環境を守る */
+
+.coordinate-eco {
+    background: #effaf1;
+    border-left: 4px solid #4caf70;
+}
+
+.coordinate-eco strong {
+    color: #166534;
+}
+
+/* 科学的な理由 */
+
+.coordinate-science {
+    background: #eff6ff;
+    border-left: 4px solid #60a5fa;
+}
+
+.coordinate-science strong {
+    color: #1d4ed8;
+}
+
+
+/* ================================================
+   ⑨ 住宅別アドバイス
+================================================ */
+
+.coordinate-home-tip {
+    margin: 0;
+    padding: 16px 18px;
+
+    background: #eff8f2;
+    color: #344b3c;
+
+    border-left: 4px solid #4eae76;
+    border-radius: 10px;
+
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+
+/* ================================================
+   ⑩ 対策がない場合のメッセージ
+================================================ */
+
+.coordinate-empty-message {
+    padding: 18px;
+
+    background: #f0fdf4;
+    color: #356348;
+
+    border: 1px solid #d1e9d8;
+    border-radius: 12px;
+
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+
+/* ================================================
+   ⑪ アクション記録エリア
+================================================ */
+
+.coordinate-action-area {
+    margin-top: 35px;
+}
+
+.coordinate-action-header h3 {
+    margin-bottom: 12px;
+}
+
+.coordinate-action-header p {
+    margin: 0 0 22px;
+
+    color: #607467;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.coordinate-action-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+/* ================================================
+   ⑫ アクションチェックリスト
+================================================ */
+
+.coordinate-action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    padding: 15px;
+
+    background: #f9fcfa;
+
+    border: 1px solid #dcebe0;
+    border-radius: 11px;
+
+    color: #344b3c;
+    font-size: 14px;
+    line-height: 1.8;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.coordinate-action-item:hover {
+    background: #f0f9f3;
+    border-color: #9fceb0;
+}
+
+.coordinate-action-item input[type="checkbox"] {
+    width: 19px;
+    height: 19px;
+
+    margin: 3px 0 0;
+
+    flex-shrink: 0;
+
+    accent-color: #238a56;
+
+    cursor: pointer;
+}
+
+.coordinate-action-item span {
+    flex: 1;
+}
+
+.coordinate-action-item input:checked + span {
+    color: #718177;
+    text-decoration: line-through;
+}
+
+
+/* ================================================
+   ⑬ アクション達成状況
+================================================ */
+
+.coordinate-progress-area {
+    margin-top: 25px;
+    padding: 20px;
+
+    background: #f5faf6;
+
+    border: 1px solid #dcebe0;
+    border-radius: 13px;
+}
+
+.coordinate-progress-area h4 {
+    margin: 0 0 12px;
+
+    color: #176b46;
+    font-size: 17px;
+}
+
+#coordinateActionProgress {
+    margin: 0 0 12px;
+
+    color: #176b46;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* ================================================
+   ⑭ 進捗バー
+================================================ */
+
+.coordinate-progress-bar {
+    width: 100%;
+    height: 12px;
+
+    margin-top: 12px;
+
+    background: #e1ede5;
+
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.coordinate-progress-fill {
+    width: 0%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #64bd83,
+        #238a56
+    );
+
+    border-radius: 20px;
+
+    transition: width 0.3s ease;
+}
+
+
+/* ================================================
+   ⑮ hidden属性を確実に反映
+================================================ */
+
+#coordinateResult[hidden],
+#coordinateActionArea[hidden] {
+    display: none !important;
+}
+
+
+/* ================================================
+   ⑯ スマートフォン対応
+================================================ */
+
+@media (max-width: 700px) {
+
+    .coordinate-submit-area {
+        margin: 25px 0 35px;
+    }
+
+    .coordinate-diagnose-button {
+        width: 100%;
+        max-width: none;
+
+        padding: 16px 12px;
+        font-size: 15px;
+    }
+
+    .coordinate-result > h3 {
+        font-size: 22px;
+    }
+
+    .coordinate-result-section > h3 {
+        font-size: 18px;
+    }
+
+    .coordinate-result-card {
+        padding: 18px 15px;
+    }
+
+    .coordinate-result-card h4 {
+        font-size: 16px;
+    }
+
+    .coordinate-advice {
+        padding: 14px;
+        font-size: 13px;
+    }
+
+    .coordinate-advice strong {
+        font-size: 14px;
+    }
+
+    .coordinate-home-tip {
+        padding: 14px;
+        font-size: 13px;
+    }
+
+    .coordinate-action-item {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .coordinate-progress-area {
+        padding: 16px;
+    }
+
+    .coordinate-secondary-button {
+        width: 100%;
+    }
+
+}
+
+
+/* ================================================
+   ⑰ 動きを抑える設定への対応
+================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .coordinate-diagnose-button,
+    .coordinate-secondary-button,
+    .coordinate-action-item,
+    .coordinate-progress-fill {
+        transition: none;
+    }
+
+    .coordinate-diagnose-button:hover {
+        transform: none;
+    }
+
+}
+
+
 </style>
 
 </head>
@@ -419,6 +1397,7 @@ button {
 </header>
 
 <div class="container">
+
 <!-- ==================================
      メイン画面
 ================================== -->
@@ -444,7 +1423,13 @@ button {
         <button onclick="showScreen('periodicScreen')">
             🧪 元素の周期表マップ
         </button>
-
+       
+       <button
+    type="button"
+    onclick="showScreen('coordinateScreen')"
+>
+    🌱 マイ環境コーディネート
+</button>
     </div>
 
 </section>
@@ -497,8 +1482,7 @@ button {
         元素をクリックしてください。
     </div>
 
-</section>
-<!-- ==================================
+</section><!-- ==================================
      環境学習度
 ================================== -->
 
@@ -707,8 +1691,8 @@ button {
                 💧 水質汚染
             </button>
 
-            <button onclick="startEnvironmentQuiz('人口と食料')">
-                🌾 人口と食料
+            <button onclick="startEnvironmentQuiz('再生可能エネルギー')">
+                🌾 再生可能エネルギー
             </button>
 
             <button onclick="startEnvironmentQuiz('公害の歴史')">
@@ -837,6 +1821,502 @@ button {
     </div>
 
 </section>
+
+<!-- ================================================
+     EYE KNOW
+     マイ環境コーディネート
+=============================================== -->
+
+<section id="coordinateScreen" class="screen">
+
+    <!-- 戻るボタン -->
+
+    <button
+        type="button"
+        class="back-button"
+        onclick="showScreen('mainScreen')"
+    >
+        ← メインメニューに戻る
+    </button>
+
+
+    <!-- タイトル -->
+
+    <div class="coordinate-header">
+
+        <h2>🌱 マイ環境コーディネート</h2>
+
+        <p class="coordinate-subtitle">
+            自分が今からできそうな環境対策を見つけてみよう！
+        </p>
+
+        <p class="coordinate-description">
+            住まいの環境や生活習慣に関する質問に答えることで、自分の健康や安全を守る方法、そして地球環境への負荷を減らす方法を知ることができます。
+
+小さなことからでも自分で工夫し、環境に配慮した行動をもっと身近なものにしてみましょう！
+        </p>
+
+    </div>
+
+
+    <!-- 機能紹介 -->
+
+    <div class="coordinate-introduction">
+
+        <div class="coordinate-introduction-card">
+
+            <h3>🛡️ 自分を守る</h3>
+
+            <p>
+                暑さ・寒さ・室内空気・災害など、
+                暮らしの中で注意したい環境上の課題を知ります。
+            </p>
+
+        </div>
+
+
+        <div class="coordinate-introduction-card">
+
+            <h3>🌿 環境を守る</h3>
+
+            <p>
+                省エネルギーや資源循環など、
+                環境負荷を減らすためにできる行動を考えます。
+            </p>
+
+        </div>
+
+    </div>
+
+   
+<!-- ================================================
+     診断フォーム
+================================================ -->
+
+<div id="coordinateFormArea">
+
+    <div class="coordinate-form-header">
+
+        <h3>📝 あなたの生活環境を教えてください</h3>
+
+        <p>
+            以下の質問に答えることで、
+            あなたの暮らしに合った環境対策を提案します。
+        </p>
+
+    </div>
+
+
+    <!-- ============================================
+         ① 住宅環境
+    ============================================ -->
+
+    <div class="coordinate-card">
+
+        <h3>🏠 ① 住宅環境について</h3>
+
+        <p class="coordinate-question-description">
+            現在の住まいの特徴を教えてください。
+        </p>
+
+
+        <!-- Q1 住まいの種類 -->
+
+        <div class="coordinate-question">
+
+            <label for="coordinateHome">
+                Q1. 現在のお住まいはどのタイプですか？
+            </label>
+
+            <select id="coordinateHome">
+
+                <option value="apartment">
+                    マンション・アパート
+                </option>
+
+                <option value="house">
+                    一戸建て
+                </option>
+
+                <option value="other">
+                    その他・わからない
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Q2 室内の温度 -->
+
+        <div class="coordinate-question">
+
+            <label for="coordinateTemperature">
+                Q2. 室内の温度について、気になることはありますか？
+            </label>
+
+            <select id="coordinateTemperature">
+
+                <option value="hot">
+                    夏の暑さが気になる
+                </option>
+
+                <option value="cold">
+                    冬の寒さが気になる
+                </option>
+
+                <option value="both">
+                    暑さと寒さの両方が気になる
+                </option>
+
+                <option value="none">
+                    特に気にならない
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Q3 空気環境 -->
+
+        <div class="coordinate-question">
+
+            <label for="coordinateAir">
+                Q3. 室内の空気環境について、気になることはありますか？
+            </label>
+
+            <select id="coordinateAir">
+
+                <option value="normal">
+                    特に気にならない
+                </option>
+
+                <option value="humidity">
+                    湿気・カビが気になる
+                </option>
+
+                <option value="ventilation">
+                    換気が不足していると感じる
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================================
+         ② 周辺環境
+    ============================================ -->
+
+    <div class="coordinate-card">
+
+        <h3>🌳 ② 住まいの周辺環境について</h3>
+
+        <p class="coordinate-question-description">
+            当てはまる項目を選択してください。
+            複数選択できます。
+        </p>
+
+
+        <!-- Q4 川や水路 -->
+
+        <label class="coordinate-check">
+
+            <input
+                type="checkbox"
+                id="coordinateRiver"
+            >
+
+            <span>
+                Q4. 近くに川や水路がある
+            </span>
+
+        </label>
+
+
+        <!-- Q5 道路 -->
+
+        <label class="coordinate-check">
+
+            <input
+                type="checkbox"
+                id="coordinateRoad"
+            >
+
+            <span>
+                Q5. 近くに交通量の多い道路がある
+            </span>
+
+        </label>
+
+
+        <!-- Q6 緑地 -->
+
+        <label class="coordinate-check">
+
+            <input
+                type="checkbox"
+                id="coordinateGreen"
+            >
+
+            <span>
+                Q6. 周辺に緑地や公園が少ない
+            </span>
+
+        </label>
+
+
+        <p class="coordinate-note">
+            ※これらの回答は一般的な対策の提案に使用します。
+            実際の災害危険度や大気汚染濃度を判定するものではありません。
+        </p>
+
+    </div>
+
+
+    <!-- ============================================
+         ③ 生活習慣
+    ============================================ -->
+
+    <div class="coordinate-card">
+
+        <h3>♻️ ③ 生活習慣について</h3>
+
+        <p class="coordinate-question-description">
+            普段の生活について教えてください。
+        </p>
+
+
+        <!-- Q7 節電 -->
+
+        <div class="coordinate-question">
+
+            <label for="coordinateEnergy">
+                Q7. 普段から節電を意識していますか？
+            </label>
+
+            <select id="coordinateEnergy">
+
+                <option value="often">
+                    普段から意識している
+                </option>
+
+                <option value="sometimes" selected>
+                    時々意識している
+                </option>
+
+                <option value="rarely">
+                    あまり意識していない
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Q8 ごみの分別 -->
+
+        <div class="coordinate-question">
+
+            <label for="coordinateWaste">
+                Q8. ごみの分別を意識していますか？
+            </label>
+
+            <select id="coordinateWaste">
+
+                <option value="often" selected>
+                    普段から行っている
+                </option>
+
+                <option value="sometimes">
+                    時々迷うことがある
+                </option>
+
+                <option value="rarely">
+                    あまり意識していない
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================================
+         ④ 診断の希望
+    ============================================ -->
+
+    <div class="coordinate-card">
+
+        <h3>🎯 ④ 特に重視したいこと</h3>
+
+        <div class="coordinate-question">
+
+            <label for="coordinatePriority">
+                Q9. どのような対策を重視したいですか？
+            </label>
+
+            <select id="coordinatePriority">
+
+                <option value="both" selected>
+                    健康・安全と環境保全の両方
+                </option>
+
+                <option value="safety">
+                    健康・安全を重視
+                </option>
+
+                <option value="eco">
+                    環境への配慮を重視
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+<!-- ================================================
+     ⑤ 入力内容の保存設定
+================================================ -->
+
+<div class="coordinate-card">
+
+    <h3>💾 ⑤ 入力内容の保存設定</h3>
+
+    <p class="coordinate-question-description">
+        次回も同じ条件で診断できるように、
+        入力内容を保存できます。
+    </p>
+
+    <label class="coordinate-check">
+
+        <input
+            type="checkbox"
+            id="coordinateRemember"
+        >
+
+        <span>
+            診断の入力内容をこのブラウザに保存する
+        </span>
+
+    </label>
+
+    <p class="coordinate-note">
+        ※保存する場合は、このブラウザ内に入力内容が記録されます。
+        保存しない場合でも診断できます。
+    </p>
+
+    <button
+        type="button"
+        class="coordinate-secondary-button"
+        onclick="clearCoordinateSavedData()"
+    >
+        🗑️ 保存したデータを削除する
+    </button>
+
+</div>
+
+
+<!-- ================================================
+     診断実行ボタン
+================================================ -->
+
+<div class="coordinate-submit-area">
+
+    <p class="coordinate-submit-message">
+        回答が終わったら、診断ボタンを押してください。
+    </p>
+
+    <button
+        type="button"
+        id="coordinateDiagnoseButton"
+        class="coordinate-diagnose-button"
+        onclick="diagnoseEnvironment()"
+    >
+        🌱 自分に合った環境対策を診断する
+    </button>
+
+</div>
+
+    
+</div>
+
+
+    
+
+    <!-- 診断結果 -->
+
+    <div
+        id="coordinateResult"
+        class="coordinate-result"
+        hidden
+    ></div>
+
+
+    
+<!-- ================================================
+     環境アクション記録
+================================================ -->
+
+<div
+    id="coordinateActionArea"
+    class="coordinate-card coordinate-action-area"
+    hidden
+>
+
+    <div class="coordinate-action-header">
+
+        <h3>✅ 私の環境アクション</h3>
+
+        <p>
+            診断結果を参考に、実践した取り組みに
+            チェックを入れてみましょう。
+        </p>
+
+    </div>
+
+
+    <!-- アクションチェックリスト -->
+
+    <div
+        id="coordinateActionList"
+        class="coordinate-action-list"
+    ></div>
+
+
+    <!-- 達成状況 -->
+
+    <div class="coordinate-progress-area">
+
+        <h4>📊 アクション達成状況</h4>
+
+        <p
+            id="coordinateActionProgress"
+            aria-live="polite"
+        >
+            達成状況：0 / 0（0％）
+        </p>
+
+    </div>
+
+
+    <!-- 保存についての説明 -->
+
+    <p class="coordinate-note">
+        ※アクション記録は診断条件ごとに、このブラウザに保存されます。
+        ブラウザのデータを削除すると記録が消える場合があります。
+    </p>
+
+</div>
+
+
+</section>
+
 
 <!-- ==================================
      HTML画面構成ここまで
@@ -1099,14 +2579,14 @@ const chemistryQuizData = {
             choices: [
                 "CO",
                 "CO₂",
-                "O₂",
-                "H₂"
+                "CH₄",
+                "N₂O"
             ],
 
             answer: 1,
 
             explanation:
-                "二酸化炭素の化学式はCO₂です。一方、COは一酸化炭素であり、不完全燃焼などによって発生する有毒な気体です。"
+                "二酸化炭素の化学式は CO₂ です。CO は一酸化炭素で、不完全燃焼などによって発生する有毒な気体として知られています。また、CH₄はメタン、N₂Oは一酸化二窒素です。どちらも温室効果ガスの一つです。"
         },
 
         {
@@ -1123,7 +2603,7 @@ const chemistryQuizData = {
             answer: 1,
 
             explanation:
-                "森林の樹木は、光合成によって大気中の二酸化炭素（CO₂）を吸収し、有機物をつくります。森林は炭素を蓄える重要な役割を担っています。しかし、森林伐採によって森林が減少すると、二酸化炭素を吸収・蓄積する能力が低下し、蓄えられた炭素が大気中に放出されることもあります。そのため、森林の保全は地球温暖化の抑制や生物多様性の保護につながります。"
+                "森林の樹木は、光合成によって大気中の二酸化炭素（CO₂）を吸収し、有機物をつくります。森林は炭素を蓄える重要な役割を担っています。"
         },
 
         {
@@ -1401,7 +2881,7 @@ const chemistryQuizData = {
 
         {
             question:
-                "次の金属のうち、最も酸化されやすいものはどれですか？",
+                "",
 
             choices: [
                 "鉄（Fe）",
@@ -1413,7 +2893,7 @@ const chemistryQuizData = {
             answer: 3,
 
             explanation:
-                "金属の酸化されやすさは、一般にイオン化傾向によって比較できます。マグネシウム（Mg）は鉄（Fe）、銅（Cu）、金（Au）よりもイオン化傾向が大きく、電子を失って酸化されやすい金属です。"
+                ""
         },
 
         {
@@ -1435,7 +2915,7 @@ const chemistryQuizData = {
 
         {
             question:
-                "アンモニアの気体の特徴として正しいものはどれ？",
+                "",
 
             choices: [
                 "刺激臭がある。",
@@ -1447,7 +2927,7 @@ const chemistryQuizData = {
             answer: 0,
 
             explanation:
-                "アンモニア（NH₃）は、鼻をツンと刺激する強いにおいを持つ無色の気体です。腐った卵のようなにおいは、硫化水素（H₂S）の特徴です。また、アンモニアは家畜の排せつ物や肥料などから発生し、悪臭問題やPM2.5の生成にも関係しています。"
+                ""
         },
 
         {
@@ -1657,62 +3137,60 @@ const environmentQuizData = {
 
 
     /* =========================
-       人口と食料
+       再生可能エネルギー
     ========================= */
 
-    "人口と食料": [
+    "再生可能エネルギー": [
 
         {
             question:
-                "食品ロスとは何ですか？",
+                "日本での再生可能エネルギーの普及率は何％？　2024年度",
 
             choices: [
-                "まだ食べられるのに捨てられる食品",
-                "食べ終わった食品",
-                "収穫されたすべての農作物",
-                "食品の栄養価"
+                "23.1%",
+                "31.5%",
+                "45.8%",
+                "57.9%"
             ],
 
             answer: 0,
 
             explanation:
-                "食品ロスとは、本来食べられるにもかかわらず廃棄される食品のことです。"
+                "日本は他の国と比較して、再生可能エネルギーの普及率が低いです。"
         },
 
         {
             question:
-                "持続可能な農業の取り組みとして適切なものはどれですか？",
+                "日本でもっとも導入が進んでいる再生可能エネルギーはどれか？",
 
             choices: [
-                "土壌を無制限に利用する",
-                "水資源を浪費する",
-                "土壌や水資源を適切に管理する",
-                "農地周辺の生態系を必ず破壊する"
+                "風力",
+                "地熱",
+                "太陽光",
+                "水力"
             ],
 
             answer: 2,
 
             explanation:
-                "持続可能な農業では、土壌や水資源、生物多様性を保全しながら食料を生産することが重要です。"
+                "太陽光＞水力＞風力＞地熱"
         },
 
-        {
-            question:
-                "世界の食料問題に関係する要因はどれですか？",
+       {
+    question: "日本の再生可能エネルギーの導入について正しいのはどれか？",
 
-            choices: [
-                "気候変動",
-                "人口増加",
-                "紛争",
-                "すべて"
-            ],
+    choices: [
+        "再生可能エネルギーは需要が集中している都市に集中している。",
+        "人口増加は再生可能エネルギー導入を促す要因とならない。",
+        "太陽光発電が日本で多く導入された理由は、恵まれた気候が主因である。",
+        "地熱発電は、一時、日本への導入の有力地とされていたが、コスト面に問題があり、近年は停滞している。"
+    ],
 
-            answer: 3,
+    answer: 3,
 
-            explanation:
-                "気候変動、人口増加、紛争などは、食料の生産・供給・入手に影響を与える要因です。"
-        }
-
+    explanation:
+        "再生可能エネルギーは都市ではなく地方に多く設置されるため1は誤り。人口増加は電力需要増加を通じて再生可能エネルギー導入を促すため2は誤り。太陽光発電の普及は主にFIT制度による後押しが要因であり、気候だけが主因ではないため3も誤り。地熱発電はコストや立地制約から導入が停滞しており、4が正しい。"
+}
     ],
 
 
@@ -2523,6 +4001,7 @@ function recordElementLearning(atomicNumber) {
         ) * 100
     )
 );
+
     /* 化学と環境の関連理解にも少し加点 */
 
     learningData.relation = limitScore(
@@ -2534,6 +4013,8 @@ function recordElementLearning(atomicNumber) {
     updateLearningDisplay();
 
 }
+
+
 /* ================================================
    調べる機能の利用を記録
 ================================================ */
@@ -2685,10 +4166,15 @@ function showLearningLevel() {
 document.addEventListener(
     "DOMContentLoaded",
     function () {
+        showScreen("mainScreen");
 
         updateLearningDisplay();
 
         updateDifficultyButtons();
+
+         createPeriodicTable();
+
+        initializeCoordinate();
 
     }
 );
@@ -2697,7 +4183,7 @@ document.addEventListener(
 ================================================ */
 
 /*
-原子番号1～20の元素データ
+原子番号1～118の元素データ
 
 number   : 原子番号
 symbol   : 元素記号
@@ -4027,9 +5513,6 @@ const periodicElements = [
     }
 
 ];
-
-
-
 /* ================================================
    元素の分類ごとの色
 ================================================ */
@@ -4132,8 +5615,7 @@ function createPeriodicTable() {
         table.appendChild(button);
 
     });
-
-      /* ================================================
+    /* ================================================
        ランタノイド・アクチノイドの位置案内
     ================================================ */
 
@@ -4167,13 +5649,6 @@ function createPeriodicTable() {
     updatePeriodicHighlight();
 
 }
-
-
-    /* 表示状態を反映 */
-    updatePeriodicHighlight();
-
-}
-
 
 /* ================================================
    ハイライト表示の切り替え
@@ -4698,6 +6173,1502 @@ document.addEventListener(
 
     }
 );
+
+
+/* ================================================
+   EYE KNOW
+   マイ環境コーディネート
+
+   第6回：住宅環境の診断データ
+================================================ */
+
+
+/* ================================================
+   診断アドバイスデータ
+================================================ */
+
+/*
+各診断項目には以下の情報を設定します。
+
+title   : 診断結果のタイトル
+level   : 対策の表示優先度（1が最優先）
+safety  : 自分の健康・安全を守る方法
+eco     : 環境負荷を減らす方法
+science : 科学的な理由
+action  : 実際に取り組む行動
+
+第7回では、同じオブジェクトに
+周辺環境・生活習慣の診断データを追加します。
+*/
+
+const coordinateAdviceData = {
+
+
+    /* ============================================
+       ① 夏の暑さ・熱中症対策
+    ============================================ */
+
+    hot: {
+
+        title: "夏の暑さ・熱中症対策",
+
+        level: 1,
+
+        safety:
+            "室温や湿度をこまめに確認し、暑いときは適切に冷房を使用しましょう。水分補給や休憩も重要です。無理な節電によって熱中症の危険性を高めないようにしてください。",
+
+        eco:
+            "遮光カーテンやすだれなどで窓からの日射を遮り、室温の上昇を抑えましょう。また、エアコンのフィルターを定期的に清掃することで、冷房効率の維持につながります。",
+
+        science:
+            "室内の温度は、外気との熱移動や窓からの日射などによって変化します。特に窓から入る日射は室温上昇の原因の一つです。日射遮蔽によって室内への熱の流入を抑えることで、冷房負荷の低減につながります。",
+
+        action:
+            "室温・湿度を確認し、窓の日射遮蔽を見直す"
+
+    },
+
+
+    /* ============================================
+       ② 冬の寒さ・断熱対策
+    ============================================ */
+
+    cold: {
+
+        title: "冬の寒さ・断熱対策",
+
+        level: 1,
+
+        safety:
+            "冬は居室だけでなく、脱衣所や浴室などの寒さにも注意しましょう。急激な温度変化は身体への負担となるため、必要に応じて暖房を使用し、室内の温度差を小さくすることが大切です。",
+
+        eco:
+            "窓の断熱対策や隙間風の防止を行い、暖房で暖めた空気の熱が外へ逃げにくい環境を整えましょう。厚手のカーテンや断熱用品など、住まいに合わせた対策を検討できます。",
+
+        science:
+            "熱は温度の高い場所から低い場所へ移動する性質があります。冬は室内から屋外へ熱が移動しやすくなります。窓や壁などの断熱性能を高めることで熱損失を減らし、暖房に必要なエネルギーを抑えることができます。",
+
+        action:
+            "窓や室内の断熱対策を確認する"
+
+    },
+
+
+    /* ============================================
+       ③ 湿気・カビ対策
+    ============================================ */
+
+    humidity: {
+
+        title: "湿気・結露・カビ対策",
+
+        level: 2,
+
+        safety:
+            "浴室や窓周辺、家具の裏側など、湿気がたまりやすい場所を確認しましょう。換気や除湿を適切に行い、結露やカビが発生しにくい環境を整えることが大切です。",
+
+        eco:
+            "調理や入浴などで発生する湿気を適切に排出し、必要に応じて除湿機や換気設備を使用しましょう。湿気の発生源を管理することで、過度な除湿運転を避けやすくなります。",
+
+        science:
+            "空気に含まれる水蒸気が、温度の低い窓や壁などに接触して冷やされると、結露が発生することがあります。結露による水分や高い湿度は、カビが発生しやすい環境をつくります。換気や除湿、断熱などは湿気の管理に役立ちます。",
+
+        action:
+            "浴室や窓周辺の結露・カビを確認する"
+
+    },
+
+
+    /* ============================================
+       ④ 室内の換気対策
+    ============================================ */
+
+    ventilation: {
+
+        title: "室内の換気・空気環境対策",
+
+        level: 2,
+
+        safety:
+            "室内では、調理や暖房器具の使用、日常生活などによって空気中にさまざまな物質が発生します。換気設備を適切に使用し、室内の空気を入れ替えましょう。特に燃焼を伴う器具は、製品の使用方法や換気上の注意を守ることが重要です。",
+
+        eco:
+            "換気設備のフィルターを清掃し、必要な換気量を確保しましょう。熱交換型換気設備がある場合は、適切に使用することで換気による熱損失を抑えられる場合があります。ただし、省エネルギーのために必要な換気を止めないようにしてください。",
+
+        science:
+            "室内の汚染物質濃度は、汚染物質の発生量、換気量、室内での除去などによって変化します。換気によって汚染物質を屋外へ排出し、室内濃度を低減できる場合があります。一方、外気の温度と室温に差がある場合、換気によって冷暖房負荷が生じるため、空気環境と省エネルギーの両立が重要です。",
+
+      ction:
+    "換気設備の使い方とフィルターの状態を確認する
+},
+    /* ============================================
+       ⑤ 大雨・浸水への備え
+    ============================================ */
+
+    river: {
+
+        title: "大雨・浸水への備え",
+
+        level: 1,
+
+        safety:
+            "近くに川や水路がある場合は、自治体のハザードマップを確認しましょう。浸水想定区域や避難場所、避難経路を事前に把握しておくことが大切です。川の近さだけで浸水の危険性が決まるわけではありません。",
+
+        eco:
+            "地域の清掃活動や緑地の保全など、雨水の流出や水環境に関わる取り組みに関心を持ちましょう。雨水をためる設備や雨水が地面に浸透しやすい環境づくりも、条件によっては雨水流出の抑制に役立ちます。",
+
+        science:
+            "大雨による浸水は、降雨量、地形、河川の水位、排水設備の能力など、さまざまな条件によって発生します。また、地表面がアスファルトなどで覆われると雨水が地面に浸透しにくくなり、地表を流れる雨水が増える場合があります。",
+
+        action:
+            "自治体のハザードマップと避難場所を確認する"
+
+    },
+
+
+    /* ============================================
+       ⑥ 道路周辺の大気環境
+    ============================================ */
+
+    road: {
+
+        title: "道路周辺の大気環境",
+
+        level: 2,
+
+        safety:
+            "交通量の多い道路の周辺では、大気環境の情報を確認しましょう。大気汚染物質の濃度は、交通量だけでなく気象条件などによっても変化します。",
+
+        eco:
+            "移動の際には、可能な範囲で公共交通機関や徒歩、自転車などを活用しましょう。自動車の利用を減らすことは、排気ガスや温室効果ガスの排出削減につながる場合があります。",
+
+        science:
+            "自動車の排気ガスには窒素酸化物（NOx）などの大気汚染物質が含まれています。窒素酸化物は大気中で化学反応に関わり、光化学オキシダントなどの生成にも関係します。大気汚染物質の濃度は、排出量や風向・風速などによって変化します。",
+
+        action:
+            "大気環境の情報を確認する"
+
+    },
+
+
+    /* ============================================
+       ⑦ 緑地・ヒートアイランド対策
+    ============================================ */
+
+    green: {
+
+        title: "緑地・ヒートアイランド対策",
+
+        level: 2,
+
+        safety:
+            "暑い日に外出する場合は、日陰を活用し、気温や暑さ指数（WBGT）を確認しましょう。周辺に緑地が少ない場合でも、建物の日陰や休憩できる場所を事前に確認することが大切です。",
+
+        eco:
+            "地域の緑化活動や樹木の保全に関心を持ちましょう。ベランダや庭などで植物を育てる場合は、住まいの条件や管理方法に合わせて無理のない範囲で取り組みましょう。",
+
+        science:
+            "都市部では、人工的な地表面への蓄熱や人工排熱などによって、周辺より気温が高くなるヒートアイランド現象が発生することがあります。植物による日射の遮蔽や蒸散は、周辺の熱環境を和らげる働きがあります。",
+
+        action:
+            "近隣の日陰や休憩できる場所を確認する"
+
+    },
+
+
+    /* ============================================
+       ⑧ 家庭の省エネルギー
+    ============================================ */
+
+    energy: {
+
+        title: "家庭の省エネルギー",
+
+        level: 3,
+
+        safety:
+            "節電は大切ですが、健康や安全に必要な冷暖房・照明などは適切に使用しましょう。特に暑さや寒さが厳しいときは、無理な節電を避けることが重要です。",
+
+        eco:
+            "使用していない照明を消す、LED照明を活用する、家電製品を効率的に使用するなど、生活の中で取り組める省エネルギー対策を実践しましょう。",
+
+        science:
+            "家庭で使用する電力は、発電方法によって温室効果ガスの排出に関係します。電力消費量を減らすことで、発電に伴う環境負荷の低減につながる場合があります。また、省エネルギー性能の高い機器は、同じ機能をより少ないエネルギーで実現できます。",
+
+        action:
+            "無理のない省エネルギー対策を1つ実践する"
+
+    },
+
+
+    /* ============================================
+       ⑨ ごみ削減・資源循環
+    ============================================ */
+
+    waste: {
+
+        title: "ごみ削減・資源循環",
+
+        level: 3,
+
+        safety:
+            "電池やスプレー缶などは、自治体の分別ルールに従って安全に排出しましょう。不適切な排出は、ごみ収集車や処理施設での火災などにつながるおそれがあります。",
+
+        eco:
+            "必要以上に物を購入しない、繰り返し使える製品を選ぶ、資源ごみを適切に分別するなど、3R（リデュース・リユース・リサイクル）を意識しましょう。",
+
+        science:
+            "製品の製造・使用・廃棄には、資源やエネルギーが必要です。ごみの発生を抑制し、再使用やリサイクルを進めることで、資源消費や廃棄物処理に伴う環境負荷を低減できる場合があります。",
+
+        action:
+            "ごみの分別ルールを確認し、3Rを意識する"
+
+    }
+
+};
+
+
+/* ================================================
+   EYE KNOW
+   マイ環境コーディネート
+
+   第8回：住宅別アドバイス・診断条件の判定
+================================================ */
+
+
+/* ================================================
+   ① 住宅別アドバイス
+================================================ */
+
+const coordinateHomeAdvice = {
+
+    /* マンション・アパート */
+
+    apartment: {
+
+        title: "🏢 マンション・アパート向けの対策",
+
+        text:
+            "マンションやアパートでは、遮光カーテンや窓まわりの工夫など、室内で実施できる対策から始めましょう。窓や共用部分の改修には、管理規約の確認や貸主・管理者の許可が必要な場合があります。"
+
+    },
+
+
+    /* 一戸建て */
+
+    house: {
+
+        title: "🏠 一戸建て向けの対策",
+
+        text:
+            "一戸建てでは、窓・屋根・外壁などからの熱の出入りに着目しましょう。住宅の状態や予算に応じて、日射遮蔽や断熱改善を検討できます。換気設備や空調設備の定期的な点検も大切です。"
+
+    },
+
+
+    /* その他 */
+
+    other: {
+
+        title: "🏡 住まいに共通する対策",
+
+        text:
+            "住まいの種類にかかわらず、室温・湿度の確認、適切な換気、日射遮蔽などは重要です。建物の構造や設備に合わせて、無理なく実践できる対策を選びましょう。"
+
+    }
+
+};
+
+
+/* ================================================
+   ② 診断フォームの回答を取得
+================================================ */
+
+function getCoordinateAnswers() {
+
+    return {
+
+        /* Q1：住まいの種類 */
+
+        home:
+            document.getElementById(
+                "coordinateHome"
+            ).value,
+
+
+        /* Q2：室内の温度 */
+
+        temperature:
+            document.getElementById(
+                "coordinateTemperature"
+            ).value,
+
+
+        /* Q3：室内の空気環境 */
+
+        air:
+            document.getElementById(
+                "coordinateAir"
+            ).value,
+
+
+        /* Q4：川や水路 */
+
+        river:
+            document.getElementById(
+                "coordinateRiver"
+            ).checked,
+
+
+        /* Q5：交通量の多い道路 */
+
+        road:
+            document.getElementById(
+                "coordinateRoad"
+            ).checked,
+
+
+        /* Q6：緑地や公園 */
+
+        green:
+            document.getElementById(
+                "coordinateGreen"
+            ).checked,
+
+
+        /* Q7：節電 */
+
+        energy:
+            document.getElementById(
+                "coordinateEnergy"
+            ).value,
+
+
+        /* Q8：ごみの分別 */
+
+        waste:
+            document.getElementById(
+                "coordinateWaste"
+            ).value,
+
+
+        /* Q9：重視する対策 */
+
+        priority:
+            document.getElementById(
+                "coordinatePriority"
+            ).value
+
+    };
+
+}
+
+
+/* ================================================
+   ③ 診断条件の判定
+================================================ */
+
+function getCoordinateDiagnosis(answers) {
+
+    /*
+    priorityKeys：
+        優先して確認したい対策
+
+    continueKeys：
+        現在の取り組みを継続するとよい対策
+    */
+
+    const priorityKeys = [];
+
+    const continueKeys = [];
+
+
+    /* ============================================
+       Q2：暑さ・寒さ
+    ============================================ */
+
+    if (
+        answers.temperature === "hot" ||
+        answers.temperature === "both"
+    ) {
+
+        priorityKeys.push("hot");
+
+    }
+
+    if (
+        answers.temperature === "cold" ||
+        answers.temperature === "both"
+    ) {
+
+        priorityKeys.push("cold");
+
+    }
+
+
+    /* ============================================
+       Q3：室内の空気環境
+    ============================================ */
+
+    if (answers.air === "humidity") {
+
+        priorityKeys.push("humidity");
+
+    }
+
+    if (answers.air === "ventilation") {
+
+        priorityKeys.push("ventilation");
+
+    }
+
+
+    /* ============================================
+       Q4：川や水路
+    ============================================ */
+
+    if (answers.river === true) {
+
+        priorityKeys.push("river");
+
+    }
+
+
+    /* ============================================
+       Q5：交通量の多い道路
+    ============================================ */
+
+    if (answers.road === true) {
+
+        priorityKeys.push("road");
+
+    }
+
+
+    /* ============================================
+       Q6：緑地や公園
+    ============================================ */
+
+    if (answers.green === true) {
+
+        priorityKeys.push("green");
+
+    }
+
+
+    /* ============================================
+       Q7：節電
+    ============================================ */
+
+    if (answers.energy === "often") {
+
+        /*
+        普段から意識している場合は
+        継続対策に分類
+        */
+
+        continueKeys.push("energy");
+
+    } else {
+
+        /*
+        時々・あまり意識していない場合は
+        優先対策に分類
+        */
+
+        priorityKeys.push("energy");
+
+    }
+
+
+    /* ============================================
+       Q8：ごみの分別
+    ============================================ */
+
+    if (answers.waste === "often") {
+
+        continueKeys.push("waste");
+
+    } else {
+
+        priorityKeys.push("waste");
+
+    }
+
+
+    /* ============================================
+       ④ 表示優先順位の設定
+    ============================================ */
+
+    /*
+    level 1：健康・安全に関わる対策
+    level 2：生活環境に関わる対策
+    level 3：日常の環境配慮
+
+    ※実際の危険度を判定するものではありません。
+    */
+
+    priorityKeys.sort(function (a, b) {
+
+        return (
+            coordinateAdviceData[a].level -
+            coordinateAdviceData[b].level
+        );
+
+    });
+
+
+    /* ============================================
+       ⑤ 継続対策も表示順を整理
+    ============================================ */
+
+    continueKeys.sort(function (a, b) {
+
+        return (
+            coordinateAdviceData[a].level -
+            coordinateAdviceData[b].level
+        );
+
+    });
+
+
+    /* ============================================
+       ⑥ 診断結果を返す
+    ============================================ */
+
+    return {
+
+        priorityKeys: priorityKeys,
+
+        continueKeys: continueKeys
+
+    };
+
+}
+
+/* ================================================
+   EYE KNOW
+   マイ環境コーディネート
+
+   第9回：診断結果表示・チェックリスト
+================================================ */
+
+
+/* ================================================
+   ① 診断結果カードの作成
+================================================ */
+
+function createCoordinateResultCard(key, priority) {
+
+    const data = coordinateAdviceData[key];
+
+    if (!data) {
+        return document.createElement("div");
+    }
+
+    const card = document.createElement("div");
+
+    card.className = "coordinate-result-card";
+
+    // タイトル
+    const title = document.createElement("h4");
+    title.textContent = data.title;
+    card.appendChild(title);
+
+
+    /* 自分を守る対策 */
+
+    if (priority !== "eco") {
+
+        const safety = document.createElement("div");
+        safety.className = "coordinate-advice coordinate-safety";
+
+        const safetyTitle = document.createElement("h5");
+        safetyTitle.textContent = "🛡️ 自分を守る対策";
+
+        const safetyText = document.createElement("p");
+        safetyText.textContent = data.safety;
+
+        safety.appendChild(safetyTitle);
+        safety.appendChild(safetyText);
+
+        card.appendChild(safety);
+    }
+
+
+    /* 環境を守る対策 */
+
+    if (priority !== "safety") {
+
+        const eco = document.createElement("div");
+        eco.className = "coordinate-advice coordinate-eco";
+
+        const ecoTitle = document.createElement("h5");
+        ecoTitle.textContent = "🌿 環境を守る対策";
+
+        const ecoText = document.createElement("p");
+        ecoText.textContent = data.eco;
+
+        eco.appendChild(ecoTitle);
+        eco.appendChild(ecoText);
+
+        card.appendChild(eco);
+    }
+
+
+    /* 科学的な理由 */
+
+    const science = document.createElement("div");
+    science.className = "coordinate-advice coordinate-science";
+
+    const scienceTitle = document.createElement("h5");
+    scienceTitle.textContent = "🔬 科学的な理由";
+
+    const scienceText = document.createElement("p");
+    scienceText.textContent = data.science;
+
+    science.appendChild(scienceTitle);
+    science.appendChild(scienceText);
+
+    card.appendChild(science);
+
+    return card;
+}
+
+
+/* ================================================
+   ② 環境アクションの達成率を計算
+================================================ */
+
+function updateCoordinateActionProgress() {
+
+    const checkboxes = document.querySelectorAll(
+        "#coordinateActionList input[type='checkbox']"
+    );
+
+    const total = checkboxes.length;
+
+    let completed = 0;
+
+    checkboxes.forEach(function (checkbox) {
+
+        if (checkbox.checked) {
+            completed++;
+        }
+
+    });
+
+    const percent = total === 0
+        ? 0
+        : Math.round((completed / total) * 100);
+
+
+    /* 達成状況の文字 */
+
+    const progressText = document.getElementById(
+        "coordinateActionProgress"
+    );
+
+    if (progressText) {
+
+        progressText.textContent =
+            "達成状況：" +
+            completed +
+            " / " +
+            total +
+            "（" +
+            percent +
+            "％）";
+
+    }
+
+const progressFill =
+    document.getElementById(
+        "coordinateProgressFill"
+    );
+
+if (progressFill) {
+    progressFill.style.width =
+        percent + "%";
+}
+}
+/* ================================================
+   ③ チェックリストを作成
+================================================ */
+
+function createCoordinateActionList(keys, profileKey) {
+
+    const actionList = document.getElementById(
+        "coordinateActionList"
+    );
+
+    if (!actionList) {
+        return;
+    }
+
+    actionList.innerHTML = "";
+
+
+    /* 重複する項目を除外 */
+
+    const uniqueKeys = [...new Set(keys)];
+
+
+   uniqueKeys.forEach(function (key, index) {
+    const data = coordinateAdviceData[key];
+
+        if (!data) {
+            return;
+        });
+
+
+        /* チェック項目の外枠 */
+
+        const item = document.createElement("div");
+
+        item.className = "coordinate-action-item";
+
+
+        /* チェックボックス */
+
+        const checkbox = document.createElement("input");
+
+        checkbox.type = "checkbox";
+
+        checkbox.id = "coordinateAction_" + index;
+
+        checkbox.dataset.actionKey = key;
+
+
+        /* 項目名 */
+
+        const label = document.createElement("label");
+
+        label.htmlFor = checkbox.id;
+
+        label.textContent = data.action;
+
+
+
+     item.appendChild(checkbox);
+item.appendChild(label);
+
+actionList.appendChild(item);
+*
+
+        /* チェック状態が変わった場合 */
+
+/* 保存済みのチェック状態を復元 */
+
+checkbox.checked = restoreCoordinateActionRecord(
+    profileKey,
+    key
+);
+
+
+/* チェック変更時に記録を保存 */
+
+checkbox.addEventListener("change", function () {
+
+    saveCoordinateActionRecord(
+        profileKey,
+        key,
+        checkbox.checked
+    );
+
+    updateCoordinateActionProgress();
+
+});
+
+       
+    /* ============================================
+       進捗バーの作成
+    ============================================ */
+
+    const progressBar = document.createElement("div");
+
+    progressBar.className = "coordinate-progress-bar";
+
+    const progressFill = document.createElement("div");
+
+    progressFill.className = "coordinate-progress-fill";
+
+    progressFill.id = "coordinateProgressFill";
+
+
+    progressFill.style.width = "0%";
+
+    progressBar.appendChild(progressFill);
+
+    actionList.appendChild(progressBar);
+
+
+    /* 初期の達成率を表示 */
+
+    updateCoordinateActionProgress();
+
+}
+
+
+/* ================================================
+   ④ 診断結果を表示
+================================================ */
+
+function diagnoseEnvironment() {
+
+    /* 回答を取得 */
+
+    const answers = getCoordinateAnswers();
+    saveCoordinateSettings(answers);
+
+
+    /* 診断条件を判定 */
+
+    const diagnosis = getCoordinateDiagnosis(answers);
+
+
+    /* 結果表示エリア */
+
+    const resultArea = document.getElementById(
+        "coordinateResult"
+    );
+
+    const actionArea = document.getElementById(
+        "coordinateActionArea"
+    );
+
+    if (!resultArea || !actionArea) {
+        return;
+    }
+
+
+    /* 前回の表示を消去 */
+
+    resultArea.innerHTML = "";
+
+
+    /* ============================================
+       結果タイトル
+    ============================================ */
+
+    const heading = document.createElement("h3");
+
+    heading.textContent = "🌱 あなたにおすすめの環境対策";
+
+    resultArea.appendChild(heading);
+
+
+    /* ============================================
+       住宅別アドバイス
+    ============================================ */
+
+    const homeData =
+        coordinateHomeAdvice[answers.home] ||
+        coordinateHomeAdvice.other;
+
+    const homeCard = document.createElement("div");
+
+    homeCard.className = "coordinate-result-card coordinate-home-tip";
+
+    const homeTitle = document.createElement("h4");
+
+    homeTitle.textContent = homeData.title;
+
+    const homeText = document.createElement("p");
+
+    homeText.textContent = homeData.text;
+
+    homeCard.appendChild(homeTitle);
+    homeCard.appendChild(homeText);
+
+    resultArea.appendChild(homeCard);
+
+
+    /* ============================================
+       優先して取り組む対策
+    ============================================ */
+
+    const prioritySection = document.createElement("div");
+
+    prioritySection.className =
+        "coordinate-result-section priority";
+
+    const priorityHeading = document.createElement("h3");
+
+    priorityHeading.textContent =
+        "⚠️ 優先して確認したい対策";
+
+    prioritySection.appendChild(priorityHeading);
+
+
+    if (diagnosis.priorityKeys.length === 0) {
+
+        const emptyMessage = document.createElement("p");
+
+        emptyMessage.className = "coordinate-empty-message";
+
+        emptyMessage.textContent =
+            "今回の回答では、優先して確認する対策は選ばれませんでした。";
+
+        prioritySection.appendChild(emptyMessage);
+
+    } else {
+
+        diagnosis.priorityKeys.forEach(function (key) {
+
+            const card = createCoordinateResultCard(
+                key,
+                answers.priority
+            );
+
+            prioritySection.appendChild(card);
+
+        });
+
+    }
+
+    resultArea.appendChild(prioritySection);
+
+
+    /* ============================================
+       継続するとよい対策
+    ============================================ */
+
+    const continueSection = document.createElement("div");
+
+    continueSection.className =
+        "coordinate-result-section continue";
+
+    const continueHeading = document.createElement("h3");
+
+    continueHeading.textContent =
+        "✅ 継続するとよい対策";
+
+    continueSection.appendChild(continueHeading);
+
+
+    if (diagnosis.continueKeys.length === 0) {
+
+        const emptyMessage = document.createElement("p");
+
+        emptyMessage.className = "coordinate-empty-message";
+
+        emptyMessage.textContent =
+            "今回の回答では、継続対策に分類された項目はありません。";
+
+        continueSection.appendChild(emptyMessage);
+
+    } else {
+
+        diagnosis.continueKeys.forEach(function (key) {
+
+            const card = createCoordinateResultCard(
+                key,
+                answers.priority
+            );
+
+            continueSection.appendChild(card);
+
+        });
+
+    }
+
+    resultArea.appendChild(continueSection);
+
+
+    /* ============================================
+       診断結果の表示
+    ============================================ */
+
+    resultArea.hidden = false;
+
+    actionArea.hidden = false;
+
+
+    /* ============================================
+       チェックリストを作成
+    ============================================ */
+
+    const allKeys = [
+        ...diagnosis.priorityKeys,
+        ...diagnosis.continueKeys
+    ];
+
+    /*
+    第10回で、診断条件ごとに
+    チェック記録を保存するために使用します。
+    */
+
+    const profileKey = JSON.stringify(answers);
+
+    createCoordinateActionList(
+        allKeys,
+        profileKey
+    );
+
+
+    /* ============================================
+       結果表示位置へ移動
+    ============================================ */
+
+    resultArea.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+    });
+
+}
+
+
+/* ================================================
+   EYE KNOW
+   マイ環境コーディネート
+
+   第10回：保存・復元・削除
+================================================ */
+
+
+/* ================================================
+   ① 保存用のキー
+================================================ */
+
+const COORDINATE_ACTION_KEY =
+    "eyeKnowCoordinateActionsV2";
+
+const COORDINATE_SETTINGS_KEY =
+    "eyeKnowCoordinateSettingsV2";
+
+
+/* ================================================
+   ② localStorageを安全に読み込む
+================================================ */
+
+function readCoordinateStorage(key, fallback) {
+
+    try {
+
+        const saved = localStorage.getItem(key);
+
+        if (saved === null) {
+            return fallback;
+        }
+
+        return JSON.parse(saved);
+
+    } catch (error) {
+
+        console.warn(
+            "保存データの読み込みに失敗しました。",
+            error
+        );
+
+        return fallback;
+    }
+}
+
+
+/* ================================================
+   ③ localStorageへ保存
+================================================ */
+
+function writeCoordinateStorage(key, data) {
+
+    try {
+
+        localStorage.setItem(
+            key,
+            JSON.stringify(data)
+        );
+
+        return true;
+
+    } catch (error) {
+
+        console.warn(
+            "保存データの書き込みに失敗しました。",
+            error
+        );
+
+        return false;
+    }
+}
+
+
+/* ================================================
+   ④ チェック記録の管理
+================================================ */
+
+let coordinateCompletedActions = {};
+
+
+/* 保存済みのチェック記録を読み込む */
+
+function loadCoordinateActionRecords() {
+
+    const saved = readCoordinateStorage(
+        COORDINATE_ACTION_KEY,
+        {}
+    );
+
+    coordinateCompletedActions =
+        saved &&
+        typeof saved === "object" &&
+        !Array.isArray(saved)
+            ? saved
+            : {};
+
+}
+
+
+/* 診断条件を識別するキー */
+
+function getCoordinateProfileKey(answers) {
+
+    return JSON.stringify(answers);
+
+}
+
+
+/* チェック記録を保存する */
+
+function saveCoordinateActionRecord(
+    profileKey,
+    actionKey,
+    checked
+) {
+
+    if (
+        !coordinateCompletedActions[profileKey] ||
+        typeof coordinateCompletedActions[profileKey] !== "object"
+    ) {
+
+        coordinateCompletedActions[profileKey] = {};
+
+    }
+
+    coordinateCompletedActions[profileKey][actionKey] =
+        checked;
+
+    writeCoordinateStorage(
+        COORDINATE_ACTION_KEY,
+        coordinateCompletedActions
+    );
+
+}
+
+
+/* チェック記録を復元する */
+
+function restoreCoordinateActionRecord(
+    profileKey,
+    actionKey
+) {
+
+    const profile =
+        coordinateCompletedActions[profileKey];
+
+    if (!profile) {
+        return false;
+    }
+
+    return profile[actionKey] === true;
+
+}
+
+
+/* ================================================
+   ⑤ 入力内容を保存
+================================================ */
+
+function saveCoordinateSettings(answers) {
+
+    const rememberCheckbox =
+        document.getElementById(
+            "coordinateRemember"
+        );
+
+    if (!rememberCheckbox) {
+        return;
+    }
+
+    if (rememberCheckbox.checked) {
+
+        writeCoordinateStorage(
+            COORDINATE_SETTINGS_KEY,
+            answers
+        );
+
+    } else {
+
+        try {
+
+            localStorage.removeItem(
+                COORDINATE_SETTINGS_KEY
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "入力内容の削除に失敗しました。",
+                error
+            );
+
+        }
+
+    }
+
+}
+
+
+/* ================================================
+   ⑥ 保存した入力内容を復元
+================================================ */
+
+function restoreCoordinateSettings() {
+
+    const saved = readCoordinateStorage(
+        COORDINATE_SETTINGS_KEY,
+        null
+    );
+
+    if (
+        !saved ||
+        typeof saved !== "object" ||
+        Array.isArray(saved)
+    ) {
+        return;
+    }
+
+
+    /* セレクトボックスを安全に復元 */
+
+    function restoreSelect(id, value) {
+
+        const element =
+            document.getElementById(id);
+
+        if (!element || typeof value !== "string") {
+            return;
+        }
+
+        const validOption =
+            Array.from(element.options).some(
+                function (option) {
+                    return option.value === value;
+                }
+            );
+
+        if (validOption) {
+            element.value = value;
+        }
+
+    }
+
+
+    restoreSelect(
+        "coordinateHome",
+        saved.home
+    );
+
+    restoreSelect(
+        "coordinateTemperature",
+        saved.temperature
+    );
+
+    restoreSelect(
+        "coordinateAir",
+        saved.air
+    );
+
+    restoreSelect(
+        "coordinateEnergy",
+        saved.energy
+    );
+
+    restoreSelect(
+        "coordinateWaste",
+        saved.waste
+    );
+
+    restoreSelect(
+        "coordinatePriority",
+        saved.priority
+    );
+
+
+    /* チェックボックスを復元 */
+
+    const checkboxFields = [
+        ["coordinateRiver", "river"],
+        ["coordinateRoad", "road"],
+        ["coordinateGreen", "green"]
+    ];
+
+    checkboxFields.forEach(function (field) {
+
+        const element =
+            document.getElementById(field[0]);
+
+        if (
+            element &&
+            typeof saved[field[1]] === "boolean"
+        ) {
+
+            element.checked = saved[field[1]];
+
+        }
+
+    });
+
+
+    /* 入力内容を保存する設定を復元 */
+
+    const rememberCheckbox =
+        document.getElementById(
+            "coordinateRemember"
+        );
+
+    if (rememberCheckbox) {
+        rememberCheckbox.checked = true;
+    }
+
+}
+
+
+/* ================================================
+   ⑦ 保存データをすべて削除
+================================================ */
+
+function clearCoordinateSavedData() {
+
+    const confirmed = window.confirm(
+        "マイ環境コーディネートの保存データを削除しますか？\n" +
+        "入力内容とチェック記録が削除されます。"
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+
+        localStorage.removeItem(
+            COORDINATE_ACTION_KEY
+        );
+
+        localStorage.removeItem(
+            COORDINATE_SETTINGS_KEY
+        );
+
+    } catch (error) {
+
+        console.warn(
+            "保存データの削除に失敗しました。",
+            error
+        );
+
+        window.alert(
+            "保存データを削除できませんでした。"
+        );
+
+        return;
+    }
+
+
+    /* メモリ上の記録も初期化 */
+
+    coordinateCompletedActions = {};
+
+
+    /* 保存設定のチェックを外す */
+
+    const rememberCheckbox =
+        document.getElementById(
+            "coordinateRemember"
+        );
+
+    if (rememberCheckbox) {
+        rememberCheckbox.checked = false;
+    }
+
+
+    /* 現在表示されているチェックも解除 */
+
+    document.querySelectorAll(
+        "#coordinateActionList input[type='checkbox']"
+    ).forEach(function (checkbox) {
+
+        checkbox.checked = false;
+
+    });
+
+    updateCoordinateActionProgress();
+
+
+    /* 診断結果を非表示 */
+
+    const resultArea =
+        document.getElementById(
+            "coordinateResult"
+        );
+
+    const actionArea =
+        document.getElementById(
+            "coordinateActionArea"
+        );
+
+    if (resultArea) {
+
+        resultArea.innerHTML = "";
+        resultArea.hidden = true;
+
+    }
+
+    if (actionArea) {
+
+        actionArea.hidden = true;
+
+    }
+
+    window.alert(
+        "マイ環境コーディネートの保存データを削除しました。"
+    );
+
+}
+
+
+/* ================================================
+   ⑧ 初期化処理
+================================================ */
+
+function initializeCoordinate() {
+
+    loadCoordinateActionRecords();
+
+    restoreCoordinateSettings();
+
+}
+
+
+/* ================================================
+   ⑨ ページ読み込み時に初期化
+================================================ */
+
+if (document.readyState === "loading") {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeCoordinate
+    );
+
+} else {
+
+    initializeCoordinate();
+
+}
+
 
 </script>
 
