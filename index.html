@@ -6891,7 +6891,6 @@ if (progressFill) {
 /* ================================================
    ③ チェックリストを作成
 ================================================ */
-
 function createCoordinateActionList(keys, profileKey) {
 
     const actionList = document.getElementById(
@@ -6899,110 +6898,70 @@ function createCoordinateActionList(keys, profileKey) {
     );
 
     if (!actionList) {
+        console.error("アクションリストが見つかりません");
         return;
     }
 
     actionList.innerHTML = "";
 
-
-    /* 重複する項目を除外 */
-
     const uniqueKeys = [...new Set(keys)];
 
+    uniqueKeys.forEach(function (key, index) {
 
-   uniqueKeys.forEach(function (key, index) {
-    const data = coordinateAdviceData[key];
+        const data = coordinateAdviceData[key];
 
-       if (!data) {
-    return;
-}
+        if (!data) {
+            console.warn("対策データがありません:", key);
+            return;
+        }
 
-        /* チェック項目の外枠 */
-
-        const item = document.createElement("div");
-
+        const item = document.createElement("label");
         item.className = "coordinate-action-item";
 
-
-        /* チェックボックス */
-
         const checkbox = document.createElement("input");
-
         checkbox.type = "checkbox";
-
         checkbox.id = "coordinateAction_" + index;
-
         checkbox.dataset.actionKey = key;
 
+        const text = document.createElement("span");
+        text.textContent = data.action;
 
-        /* 項目名 */
+        checkbox.checked = restoreCoordinateActionRecord(
+            profileKey,
+            key
+        );
 
-        const label = document.createElement("label");
+        checkbox.addEventListener("change", function () {
 
-        label.htmlFor = checkbox.id;
+            saveCoordinateActionRecord(
+                profileKey,
+                key,
+                checkbox.checked
+            );
 
-        label.textContent = data.action;
+            updateCoordinateActionProgress();
+        });
 
+        item.appendChild(checkbox);
+        item.appendChild(text);
+        actionList.appendChild(item);
 
+    });
 
-     item.appendChild(checkbox);
-item.appendChild(label);
+    // 進捗バーはチェックリスト全体に1つだけ作成
+    const progressBar = document.createElement("div");
+    progressBar.className = "coordinate-progress-bar";
 
-actionList.appendChild(item);
+    const progressFill = document.createElement("div");
+    progressFill.className = "coordinate-progress-fill";
+    progressFill.id = "coordinateProgressFill";
 
-        /* チェック状態が変わった場合 */
-
-/* 保存済みのチェック状態を復元 */
-
-checkbox.checked = restoreCoordinateActionRecord(
-    profileKey,
-    key
-);
-
-
-/* チェック変更時に記録を保存 */
-checkbox.addEventListener("change", function () {
-
-    saveCoordinateActionRecord(
-        profileKey,
-        key,
-        checkbox.checked
-    );
+    progressBar.appendChild(progressFill);
+    actionList.appendChild(progressBar);
 
     updateCoordinateActionProgress();
-
-});
-
-// ここでforEachを終了する
-});
-
-
-/* ============================================
-   進捗バーの作成
-============================================ */
-
-const progressBar = document.createElement("div");
-
-progressBar.className = "coordinate-progress-bar";
-
-const progressFill = document.createElement("div");
-
-progressFill.className = "coordinate-progress-fill";
-
-progressFill.id = "coordinateProgressFill";
-
-progressFill.style.width = "0%";
-
-progressBar.appendChild(progressFill);
-
-actionList.appendChild(progressBar);
-
-
-/* 初期の達成率を表示 */
-
-updateCoordinateActionProgress();
-
 }
+
 /* ================================================
    ④ 診断結果を表示
 ================================================ */
