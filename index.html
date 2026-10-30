@@ -1067,10 +1067,6 @@ button {
 .coordinate-advice p {
     margin: 0;
 }
-.coordinate-advice p {
-    margin: 0;
-}
-
 /* 自分を守る */
 
 .coordinate-safety {
@@ -1424,7 +1420,10 @@ button {
             🧪 元素の周期表マップ
         </button>
        
-       <button type="button"onclick="showScreen('coordinateScreen')">
+       <button
+    type="button"
+    onclick="showScreen('coordinateScreen')"
+>
     🌱 マイ環境コーディネート
 </button>
     </div>
@@ -6295,9 +6294,9 @@ const coordinateAdviceData = {
         science:
             "室内の汚染物質濃度は、汚染物質の発生量、換気量、室内での除去などによって変化します。換気によって汚染物質を屋外へ排出し、室内濃度を低減できる場合があります。一方、外気の温度と室温に差がある場合、換気によって冷暖房負荷が生じるため、空気環境と省エネルギーの両立が重要です。",
 
-      ction:
-    "換気設備の使い方とフィルターの状態を確認する
-},
+             action:
+            "換気設備の使い方とフィルターの状態を確認する"
+    },
     /* ============================================
        ⑤ 大雨・浸水への備え
     ============================================ */
@@ -6914,10 +6913,9 @@ function createCoordinateActionList(keys, profileKey) {
    uniqueKeys.forEach(function (key, index) {
     const data = coordinateAdviceData[key];
 
-        if (!data) {
-            return;
-        });
-
+       if (!data) {
+    return;
+}
 
         /* チェック項目の外枠 */
 
@@ -6951,7 +6949,6 @@ function createCoordinateActionList(keys, profileKey) {
 item.appendChild(label);
 
 actionList.appendChild(item);
-*
 
         /* チェック状態が変わった場合 */
 
@@ -6964,7 +6961,6 @@ checkbox.checked = restoreCoordinateActionRecord(
 
 
 /* チェック変更時に記録を保存 */
-
 checkbox.addEventListener("change", function () {
 
     saveCoordinateActionRecord(
@@ -6977,36 +6973,36 @@ checkbox.addEventListener("change", function () {
 
 });
 
-       
-    /* ============================================
-       進捗バーの作成
-    ============================================ */
-
-    const progressBar = document.createElement("div");
-
-    progressBar.className = "coordinate-progress-bar";
-
-    const progressFill = document.createElement("div");
-
-    progressFill.className = "coordinate-progress-fill";
-
-    progressFill.id = "coordinateProgressFill";
+// ここでforEachを終了する
+});
 
 
-    progressFill.style.width = "0%";
+/* ============================================
+   進捗バーの作成
+============================================ */
 
-    progressBar.appendChild(progressFill);
+const progressBar = document.createElement("div");
 
-    actionList.appendChild(progressBar);
+progressBar.className = "coordinate-progress-bar";
+
+const progressFill = document.createElement("div");
+
+progressFill.className = "coordinate-progress-fill";
+
+progressFill.id = "coordinateProgressFill";
+
+progressFill.style.width = "0%";
+
+progressBar.appendChild(progressFill);
+
+actionList.appendChild(progressBar);
 
 
-    /* 初期の達成率を表示 */
+/* 初期の達成率を表示 */
 
-    updateCoordinateActionProgress();
+updateCoordinateActionProgress();
 
 }
-
-
 /* ================================================
    ④ 診断結果を表示
 ================================================ */
