@@ -77,10 +77,37 @@ button {
    メインメニュー
 ========================= */
 
+
 .main-menu {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
+}
+
+/* ① クイズ */
+.main-menu button:nth-child(1) {
+    order: 1;
+}
+
+/* ② 調べる */
+.main-menu button:nth-child(2) {
+    order: 2;
+}
+
+/* ③ 元素の周期表 */
+.main-menu button:nth-child(4) {
+    order: 3;
+}
+
+/* ④ マイ環境コーディネート */
+.main-menu button:nth-child(5) {
+    order: 4;
+}
+
+/* ⑤ 環境学習度を一番下に配置 */
+.main-menu button:nth-child(3) {
+    order: 5;
+    grid-column: 1 / -1;
 }
 
 .main-menu button {
