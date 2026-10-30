@@ -384,32 +384,6 @@ button {
         grid-template-columns: 1fr;
     }
 
-    /* クイズ */
-    .main-menu button:nth-child(1) {
-        order: 1;
-    }
-
-    /* 調べる */
-    .main-menu button:nth-child(2) {
-        order: 2;
-    }
-
-    /* 周期表 */
-    .main-menu button:nth-child(4) {
-        order: 3;
-    }
-
-    /* マイ環境コーディネート */
-    .main-menu button:nth-child(5) {
-        order: 4;
-    }
-
-    /* 環境学習度を一番下 */
-    .main-menu button:nth-child(3) {
-        order: 5;
-        grid-column: 1 / -1;
-    }
-
     #environmentMenu button {
         width: 100%;
         margin: 6px 0;
@@ -1435,6 +1409,21 @@ button {
 
 }
 
+/* メインメニューの配置 */
+
+.main-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+/* スマホ版 */
+@media (max-width: 700px) {
+    .main-menu {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 </style>
 
@@ -1463,6 +1452,8 @@ button {
     <h2>メニュー</h2>
 
    
+
+
 <div class="main-menu">
 
     <button onclick="showScreen('quizScreen')">
@@ -1477,8 +1468,7 @@ button {
         🧪 元素の周期表マップ
     </button>
 
-    <button
-        type="button"
+    <button type="button"
         onclick="showScreen('coordinateScreen')">
         🌱 マイ環境コーディネート
     </button>
@@ -1488,7 +1478,6 @@ button {
     </button>
 
 </div>
-
 
 </section>
 
