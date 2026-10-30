@@ -1421,7 +1421,29 @@ button {
     grid-column: 1 / -1;
 }
 
-/* スマホ表示 */
+/* メインメニューの配置とデザインを修復 */
+
+.main-menu {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.main-menu button {
+    width: 100%;
+    min-height: 85px;
+    padding: 20px;
+    background: white;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    font-size: 17px;
+    cursor: pointer;
+    order: 0;
+    grid-column: auto;
+}
+
+/* スマホ版 */
 @media (max-width: 700px) {
     .main-menu {
         grid-template-columns: 1fr;
