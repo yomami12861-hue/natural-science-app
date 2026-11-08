@@ -1450,6 +1450,39 @@ button {
     }
 }
 
+/* ==================================
+   クイズ画面のボタン配置
+================================== */
+
+.quiz-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* 次の問題ボタン */
+
+#nextButton {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #555;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+/* ボタンのホバー */
+
+#nextButton:hover,
+.back-button:hover {
+    background: #333;
+}
+
 </style>
 
 </head>
@@ -1802,21 +1835,22 @@ button {
 
             <div id="explanation"></div>
 
-            <button
-                id="nextButton"
-                onclick="nextQuestion()"
-                style="display:none;">
-                次の問題
-            </button>
+           <div class="quiz-navigation">
 
-            <button
-                class="back-button"
-                onclick="backToQuizCategory()">
-                ← クイズ選択に戻る
-            </button>
+    <button
+        class="back-button"
+        onclick="backToQuizCategory()">
+        ← クイズ選択に戻る
+    </button>
 
-        </div>
+    <button
+        id="nextButton"
+        onclick="nextQuestion()"
+        style="display:none;">
+        次の問題
+    </button>
 
+</div>
     </div>
 
 </section>
@@ -3163,7 +3197,7 @@ const environmentQuizData = {
                 "カドミウム",
                 "ヒ素",
                 "鉛"
-             ],
+            ],
 
             answer: 0,
 
