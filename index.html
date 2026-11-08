@@ -3099,16 +3099,16 @@ const environmentQuizData = {
                 "PM2.5とは何を指しますか？",
 
             choices: [
+                "粒径が2.5mm以下の粒子",
+                "粒径が2.5μm以下の微小粒子",
                 "粒径が2.5mm以上の粒子",
-                "粒径が2.5μm以上の微小粒子",
-                "酸素の一種",
-                "水に含まれる細菌"
+                "粒径が2.5mm以上の粒子"
             ],
 
             answer: 1,
 
             explanation:
-                "PM2.5は、大気中に浮遊する粒径2.5μm以上の微小粒子状物質です。呼吸器や循環器への健康影響が懸念されています。"
+                "PM2.5は、大気中に浮遊する粒径2.5μm以下の微小粒子状物質です。呼吸器や循環器への健康影響が懸念されています。"
         },
 
         {
@@ -3434,7 +3434,7 @@ const environmentQuizData = {
     "水銀",
     "ヒ素",
     "鉛"
-]
+],
 
             answer: 2,
 
@@ -5727,8 +5727,8 @@ function createPeriodicTable() {
     ================================================ */
 
     [
-        { row: 6, text: "57–71" },
-        { row: 7, text: "89–103" }
+        { row: 8, text: "57–71" },
+    { row: 9, text: "89–103" }
     ].forEach(item => {
 
         const label = document.createElement("div");
