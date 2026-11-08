@@ -4671,7 +4671,7 @@ const periodicElements = [
         group: 15,
         category: "半金属",
         feature: "半導体材料などにも利用される元素です。",
-        environment: "一部のヒ素化合物は有害であり、自然由来または人為的な地下水汚染が問題になります。"
+        environment: "ヒ素は自然界の土壌や地下水などに含まれることがあり、鉱山開発や工場排水などによって環境中に広がる場合があります。特に、ヒ素を含む地下水を長期間飲み続けると健康被害につながるおそれがあるため、水質検査や適切な排水処理が重要です。"
     },
 
     {
@@ -5328,7 +5328,7 @@ const periodicElements = [
         group: 6,
         category: "アクチノイド",
         feature: "天然に存在し、原子力燃料に利用される放射性金属です。",
-        environment: "本アプリでは、この元素と環境問題との関係について、詳しい解説を掲載していません。"
+        environment: "ウランは原子力発電の燃料として利用されますが、採掘や精製に伴う環境への影響、放射性廃棄物の処理・保管などが課題となっています。放射線による影響を防ぐため、適切な管理が必要です。"
     },
 
     {
@@ -5624,19 +5624,13 @@ const periodicElements = [
 // 詳しい環境説明を残す元素
 const detailedElementSymbols = [
     "H",   // 水素
-    "He",  // ヘリウム
-    "Li",  // リチウム
+　　"Li",  // リチウム
     "C",   // 炭素
     "N",   // 窒素
     "O",   // 酸素
-    "Ne",  // ネオン
-    "Mg",  // マグネシウム
     "Al",  // アルミニウム
-    "Si",  // ケイ素
     "P",   // リン
     "S",   // 硫黄
-    "Cl",  // 塩素
-    "Ar",  // アルゴン
     "Cr",  // クロム
     "Fe",  // 鉄
     "Co",  // コバルト
@@ -5686,15 +5680,15 @@ const elementCategoryColors = {
 
 const environmentalElementNumbers = [
     1,   // H 水素
-    3,   // Li リチウム
+　　3,   // Li リチウム　
     6,   // C 炭素
     7,   // N 窒素
     8,   // O 酸素
     13,  // Al アルミニウム
-    14,  // Si ケイ素
     15,  // P リン
     16,  // S 硫黄
     24,  // Cr クロム
+　　26,  // Fe 鉄
     27,  // Co コバルト
     29,  // Cu 銅
     30,  // Zn 亜鉛
@@ -7385,7 +7379,7 @@ function writeCoordinateStorage(key, data) {
         localStorage.setItem(
             key,
             JSON.stringify(data)
-        );
+        )
 
         return true;
 
